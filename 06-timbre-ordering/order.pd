@@ -1,0 +1,342 @@
+#N canvas 226 188 1088 613 10;
+#X declare -path abstractions;
+#X obj 466 477 timbreID;
+#X msg 485 449 clear;
+#X obj 822 439 table timbreID-set;
+#X msg 427 120 order \$1;
+#X floatatom 427 103 5 0 3701 0 - - -;
+#X obj 581 400 tgl 15 0 empty lb1 empty 17 7 0 10 -262144 -1 -1 1 1
+;
+#X msg 581 420 relative_ordering \$1;
+#N canvas 376 79 825 488 players 0;
+#X obj 586 268 dac~;
+#X obj 604 85 r master-volume;
+#X obj 586 244 *~;
+#X obj 604 176 dbtorms;
+#X obj 604 197 pack f 40;
+#X obj 604 218 line~;
+#X obj 604 106 moses 41;
+#X obj 604 127 t b;
+#X msg 604 148 0;
+#X obj 586 53 catch~ timbre-order-sum;
+#X obj 330 279 grain-player-unit-abs 28;
+#X obj 330 39 grain-player-unit-abs 16;
+#X obj 330 339 grain-player-unit-abs 31;
+#X obj 100 39 grain-player-unit-abs 0;
+#X obj 100 59 grain-player-unit-abs 1;
+#X obj 100 79 grain-player-unit-abs 2;
+#X obj 100 99 grain-player-unit-abs 3;
+#X obj 100 119 grain-player-unit-abs 4;
+#X obj 100 139 grain-player-unit-abs 5;
+#X obj 100 159 grain-player-unit-abs 6;
+#X obj 100 179 grain-player-unit-abs 7;
+#X obj 100 199 grain-player-unit-abs 8;
+#X obj 100 219 grain-player-unit-abs 9;
+#X obj 100 239 grain-player-unit-abs 10;
+#X obj 100 259 grain-player-unit-abs 11;
+#X obj 100 279 grain-player-unit-abs 12;
+#X obj 100 299 grain-player-unit-abs 13;
+#X obj 100 319 grain-player-unit-abs 14;
+#X obj 100 339 grain-player-unit-abs 15;
+#X obj 330 59 grain-player-unit-abs 17;
+#X obj 330 79 grain-player-unit-abs 18;
+#X obj 330 99 grain-player-unit-abs 19;
+#X obj 330 119 grain-player-unit-abs 20;
+#X obj 330 139 grain-player-unit-abs 21;
+#X obj 330 159 grain-player-unit-abs 22;
+#X obj 330 179 grain-player-unit-abs 23;
+#X obj 330 199 grain-player-unit-abs 24;
+#X obj 330 219 grain-player-unit-abs 25;
+#X obj 330 239 grain-player-unit-abs 26;
+#X obj 330 259 grain-player-unit-abs 27;
+#X obj 330 299 grain-player-unit-abs 29;
+#X obj 330 319 grain-player-unit-abs 30;
+#X connect 1 0 6 0;
+#X connect 2 0 0 0;
+#X connect 2 0 0 1;
+#X connect 3 0 4 0;
+#X connect 4 0 5 0;
+#X connect 5 0 2 1;
+#X connect 6 0 7 0;
+#X connect 6 1 3 0;
+#X connect 7 0 8 0;
+#X connect 8 0 3 0;
+#X connect 9 0 2 0;
+#X restore 882 419 pd players;
+#X obj 427 208 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X floatatom 508 208 5 5 1000 0 - - -;
+#N canvas 697 212 255 162 random-no-replacement 0;
+#X obj 21 33 inlet;
+#X msg 21 54 scramble;
+#X obj 21 75 tabletool timbreOrder;
+#X connect 0 0 1 0;
+#X connect 1 0 2 0;
+#X restore 427 323 pd random-no-replacement;
+#X obj 427 302 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 734 226 hsl 128 15 40 100 0 0 master-volume master-volume-set
+Master-volume -2 -8 0 12 -262144 -1 -1 11367 1;
+#N canvas 64 39 1122 670 timbreOrder-graph 0;
+#N canvas 0 22 450 300 (subpatch) 0;
+#X array timbreOrder 109 float 2;
+#X coords 0 109 109 0 800 600 1;
+#X restore 65 37 graph;
+#X floatatom 890 381 5 0 0 0 - - -;
+#X msg 890 422 \; timbreOrder bounds 0 \$2 \$1 0 \;;
+#X obj 890 399 pack f f;
+#X floatatom 943 381 5 0 0 0 - - -;
+#X obj 890 249 r num-grains;
+#X obj 890 270 t f f f;
+#X msg 942 305 \; timbreOrder resize \$1 \;;
+#X connect 1 0 3 0;
+#X connect 3 0 2 0;
+#X connect 4 0 3 1;
+#X connect 5 0 6 0;
+#X connect 6 0 1 0;
+#X connect 6 1 4 0;
+#X connect 6 2 7 0;
+#X restore 822 460 pd timbreOrder-graph;
+#N canvas 553 81 613 324 init 0;
+#X msg 54 204 \; pd dsp 1 \;;
+#X obj 54 -70 loadbang;
+#X obj 54 -49 t b b b b b b;
+#X msg 175 78 44100;
+#X obj 175 99 s samplerate;
+#X obj 71 171 s lb1;
+#X msg 132 128 80;
+#X obj 132 150 s master-volume-set;
+#X obj 279 212 declare -path abstractions;
+#X connect 1 0 2 0;
+#X connect 2 0 0 0;
+#X connect 2 1 5 0;
+#X connect 2 3 6 0;
+#X connect 2 4 3 0;
+#X connect 3 0 4 0;
+#X connect 6 0 7 0;
+#X restore 822 419 pd init;
+#X text 448 302 Load random order as a point of comparison.;
+#X text 552 206 Grain rate in ms.;
+#N canvas 457 216 465 408 auto-play 0;
+#X obj 137 123 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 184 123 + 1;
+#X obj 155 59 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X text 53 121 Manual step;
+#X msg 173 101 0;
+#X floatatom 106 180 5 0 0 0 - - current-grain;
+#X text 13 53 Auto-play through \; timbre order;
+#X obj 185 206 + 1;
+#X obj 155 288 pack f f;
+#X obj 155 185 t b f;
+#X obj 155 10 inlet;
+#X obj 250 10 inlet;
+#X obj 155 31 t f b;
+#X obj 155 227 % 32;
+#X obj 264 126 r num-grains;
+#X obj 155 79 metro 10;
+#X obj 155 123 f;
+#X obj 155 164 %;
+#X obj 155 206 f;
+#X msg 155 310 \; play-\$1 \$2 \;;
+#X connect 0 0 16 0;
+#X connect 1 0 16 1;
+#X connect 2 0 15 0;
+#X connect 4 0 16 1;
+#X connect 7 0 18 1;
+#X connect 8 0 19 0;
+#X connect 9 0 18 0;
+#X connect 9 1 8 1;
+#X connect 10 0 12 0;
+#X connect 11 0 15 1;
+#X connect 12 0 2 0;
+#X connect 12 1 4 0;
+#X connect 13 0 8 0;
+#X connect 14 0 17 1;
+#X connect 15 0 16 0;
+#X connect 16 0 1 0;
+#X connect 16 0 17 0;
+#X connect 17 0 5 0;
+#X connect 17 0 9 0;
+#X connect 18 0 7 0;
+#X connect 18 0 13 0;
+#X restore 427 232 pd auto-play;
+#X obj -17 40 cnv 15 200 40 empty empty empty 20 12 0 14 -228856 -66577
+0;
+#X text 752 551 timbreID - William Brent 2009;
+#N canvas 884 461 375 215 order-routing 0;
+#X obj 31 40 inlet;
+#X obj 31 169 s timbreOrder;
+#X obj 31 150 list prepend 0;
+#X obj 180 94 list length;
+#X msg 180 155 \; timbreOrder resize \$1;
+#X obj 31 77 t a a;
+#X obj 180 115 t f f;
+#X obj 212 135 s ordering-length;
+#X connect 0 0 5 0;
+#X connect 2 0 1 0;
+#X connect 3 0 6 0;
+#X connect 5 0 2 0;
+#X connect 5 1 3 0;
+#X connect 6 0 4 0;
+#X connect 6 1 7 0;
+#X restore 505 505 pd order-routing;
+#X obj -29 453 cnv 15 180 50 empty empty empty 20 12 0 14 -228856 -66577
+0;
+#N canvas 389 299 631 356 load 0;
+#X obj 63 192 soundfiler;
+#X floatatom 63 214 10 0 1.323e+06 0 - - -;
+#X obj 63 33 inlet;
+#X obj 206 97 inlet;
+#X obj 206 117 openpanel;
+#X obj 63 232 s sf-length;
+#X msg 63 59 read -resize -skip 0 -maxsize 2.7e+07 ../sound/cartoons.wav
+timbreID-set;
+#X msg 206 139 read -resize -maxsize 5.8212e+07 \$1 timbreID-set;
+#X connect 0 0 1 0;
+#X connect 1 0 5 0;
+#X connect 2 0 6 0;
+#X connect 3 0 4 0;
+#X connect 4 0 7 0;
+#X connect 6 0 0 0;
+#X connect 7 0 0 0;
+#X restore -15 351 pd load database;
+#X obj -15 277 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 78 317 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X text 8 274 2) Load the provided soundfile \, or...;
+#X text 103 315 ...load your own file;
+#X text -17 128 1) Specify an overlap and analysis \; window size (in
+that order).;
+#X obj 175 456 bng 15 250 50 0 empty empty empty 17 7 0 10 -258113
+-1 -1;
+#X text 198 448 4) Store analysis results \; to a separate file for
+later.;
+#X obj -15 417 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X text 8 414 3) Analyze. This will choke Pd for a few seconds...;
+#N canvas 458 133 684 653 analysis 0;
+#X obj 344 114 cnv 15 200 30 empty empty empty 20 12 0 14 -261234 -66577
+0;
+#X obj 158 18 r window-size;
+#X text 354 120 Write analysis file;
+#X obj 176 40 r overlap;
+#X obj 33 55 inlet;
+#X msg 33 315 analyze \$1 \$2;
+#X obj 33 294 pack f f;
+#X obj 33 184 until;
+#X obj 66 235 + 1024;
+#X obj 86 268 r window-size;
+#X msg 51 210 0;
+#X obj 158 126 r sf-length;
+#X obj 344 171 inlet;
+#X msg 125 356 normalize 0;
+#X text 211 350 Try analyzing without normalization too. The results
+will also be good \, but different.;
+#X msg 344 204 write database/cartoon-db.timid;
+#X obj 158 168 t f f;
+#X obj 191 221 s num-grains;
+#X obj 191 194 i;
+#X obj 33 463 t b a;
+#X obj 33 524 outlet;
+#X obj 158 88 t f f;
+#X obj 33 75 t b b b;
+#X msg 79 115 clear;
+#X obj 344 276 s \$0-tID;
+#X obj 65 497 s \$0-tID;
+#X obj 79 136 s \$0-tID;
+#X msg 354 234 read database/cartoon-db.timid;
+#X obj 158 69 /;
+#X obj 158 147 /;
+#X obj 33 163 f;
+#X obj 33 235 f;
+#X obj 33 412 barkSpec timbreID-set 0.25;
+#X connect 1 0 28 0;
+#X connect 3 0 28 1;
+#X connect 4 0 22 0;
+#X connect 5 0 32 0;
+#X connect 6 0 5 0;
+#X connect 7 0 31 0;
+#X connect 8 0 31 1;
+#X connect 9 0 6 1;
+#X connect 10 0 31 1;
+#X connect 11 0 29 0;
+#X connect 12 0 15 0;
+#X connect 13 0 32 0;
+#X connect 15 0 24 0;
+#X connect 16 0 30 1;
+#X connect 16 1 18 0;
+#X connect 18 0 17 0;
+#X connect 19 0 20 0;
+#X connect 19 1 25 0;
+#X connect 21 0 8 1;
+#X connect 21 1 29 1;
+#X connect 22 0 30 0;
+#X connect 22 1 10 0;
+#X connect 22 2 23 0;
+#X connect 23 0 26 0;
+#X connect 27 0 24 0;
+#X connect 28 0 21 0;
+#X connect 29 0 16 0;
+#X connect 30 0 7 0;
+#X connect 31 0 8 0;
+#X connect 31 0 6 0;
+#X connect 32 0 19 0;
+#X restore -15 471 pd analysis;
+#X obj 642 97 nbx 7 24 -1e+37 1e+37 0 0 empty num-grains empty 0 -8
+0 24 -262144 -1 -1 109 256;
+#X text 425 184 5) Auto play through the ordering.;
+#X obj -15 514 bng 15 250 50 0 empty empty Done 17 7 0 12 -262144 -1
+-1;
+#X text 425 16 4) Request an ordering starting on a grain in the available
+range;
+#X obj 466 419 r \$0-tID;
+#X obj 427 141 s \$0-tID;
+#X obj 581 441 s \$0-tID;
+#X floatatom 529 232 5 0 0 0 - current-grain -;
+#X obj -63 -20 cnv 10 400 10 empty empty empty 20 12 0 14 -233017 -66577
+0;
+#X obj -63 -20 cnv 10 10 400 empty empty empty 20 12 0 14 -233017 -66577
+0;
+#N canvas 557 458 515 323 INSTRUCTIONS 0;
+#X text 38 193 Try a few different orderings \, then try loading a
+random order as a point of comparison.;
+#X text 38 234 After you've messed around with this sound source \,
+analyze your own audio and explore its possible orderings.;
+#X text 38 25 This example can order grains of sound from any file
+you choose (cartoons.wav is provided in the sound folder). With the
+default sound file and window-size \, each grain is 92.88 ms long.
+Before you use the patch \, listen to cartoons.wav to see what the
+sound source is like in general. Then analyze it \, request an ordering
+(I like 400) \, and auto-play through the ordering. The re-ordered
+version of the sound source produces sonic gestures that were never
+in cartoons.wav \, but still have convincing continuity. cartoons.wav
+is pretty low quality audio and has a lot of hiss \, clicks \, and
+pops. Notice that all the purely noisy grains get grouped together.
+;
+#X restore 13 53 pd INSTRUCTIONS;
+#X msg -15 173 \; overlap 1 \; window-size 4096 \;;
+#X msg 427 73 400;
+#X msg 467 73 777;
+#X msg 507 73 13;
+#X text 640 77 Total number of grains:;
+#X connect 0 3 20 0;
+#X connect 1 0 0 0;
+#X connect 3 0 38 0;
+#X connect 4 0 3 0;
+#X connect 5 0 6 0;
+#X connect 6 0 39 0;
+#X connect 8 0 17 0;
+#X connect 9 0 17 1;
+#X connect 11 0 10 0;
+#X connect 23 0 22 0;
+#X connect 24 0 22 1;
+#X connect 28 0 32 1;
+#X connect 30 0 32 0;
+#X connect 32 0 35 0;
+#X connect 37 0 0 0;
+#X connect 45 0 4 0;
+#X connect 46 0 4 0;
+#X connect 47 0 4 0;

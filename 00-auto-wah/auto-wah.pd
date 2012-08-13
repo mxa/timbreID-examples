@@ -1,0 +1,74 @@
+#N canvas 387 100 778 503 10;
+#X obj -184 171 specCentroid~ 2048;
+#X obj -249 300 vcf~ 10;
+#X obj -127 89 loadbang;
+#X obj -249 108 readsf~;
+#X msg -214 62 stop;
+#X obj -307 -24 cnv 10 400 10 empty empty empty 20 12 0 14 -233017
+-66577 0;
+#X obj -307 -24 cnv 10 10 400 empty empty empty 20 12 0 14 -233017
+-66577 0;
+#X msg -249 28 open ../sound/guitar.wav \, start;
+#X obj -195 398 hsl 128 15 40 100 0 0 empty empty master-volume -2
+-8 0 12 -262144 -1 -1 9100 1;
+#N canvas 124 252 301 292 volume 0;
+#X obj -205 112 *~;
+#X obj -205 134 dac~;
+#X obj -106 94 moses 41;
+#X obj -106 116 t b;
+#X msg -106 138 0;
+#X obj -106 160 dbtorms;
+#X obj -106 182 pack f 40;
+#X obj -106 204 line~;
+#X obj -205 24 inlet~;
+#X obj -106 44 inlet;
+#X connect 0 0 1 0;
+#X connect 0 0 1 1;
+#X connect 2 0 3 0;
+#X connect 2 1 5 0;
+#X connect 3 0 4 0;
+#X connect 4 0 5 0;
+#X connect 5 0 6 0;
+#X connect 6 0 7 0;
+#X connect 7 0 0 1;
+#X connect 8 0 0 0;
+#X connect 9 0 2 0;
+#X restore -249 423 pd volume;
+#X obj -249 335 *~ 4;
+#X text -208 330 <-- some make-up gain to compensate for power loss
+after the filter;
+#X obj -184 264 line~;
+#X obj -184 235 pack f 135;
+#X obj -127 111 metro 150;
+#X obj -184 203 min 10000;
+#X text 26 211 Of course \, the most varied and interesting results
+are achieved by using timbre features to control several sound parameters
+at once. You may want centroid to control center frequency \, while
+spectral spread controls Q \, and zero crossing rate controls parameters
+of additional effects (like the LFO speed of a flanger). The more parameters
+your patch has \, the more timbre features you can put to use.;
+#X text 26 11 The most basic use of timbreID analysis objects is to
+produce control values based on timbre features. Here \, we analyze
+for spectral centroid in order to control the center frequency of a
+band-pass filter. We're lucky that the units of specCentroid~'s outlet
+are the same as those expected for the middle inlet of vcf~: Hz. If
+that weren't the case \, we would just scale appropriately. This patch
+gives us an effect similar to a wah-wah pedal \, with the added convenience
+that it's driven automatically. The attacks of notes are brighter and
+therefore have a higher centroid than the sustain. So the filter sweeps
+upwards during an attack and falls downward during the sustain. We
+ignore any centroid reports above 10kHz \, and smooth the changes out
+with a line~.;
+#X connect 0 0 15 0;
+#X connect 1 0 10 0;
+#X connect 2 0 14 0;
+#X connect 3 0 1 0;
+#X connect 3 0 0 0;
+#X connect 4 0 3 0;
+#X connect 7 0 3 0;
+#X connect 8 0 9 1;
+#X connect 10 0 9 0;
+#X connect 12 0 1 1;
+#X connect 13 0 12 0;
+#X connect 14 0 0 0;
+#X connect 15 0 13 0;

@@ -1,0 +1,291 @@
+#N canvas 230 227 931 504 10;
+#X declare -path abstractions;
+#N canvas 0 22 450 300 (subpatch) 0;
+#X array barkSpec-graph 24 float 0;
+#X coords 0 100 23 0 200 140 1;
+#X restore 691 264 graph;
+#N canvas 118 158 748 419 osc-bank 0;
+#X obj 385 321 *~;
+#X obj 403 250 dbtorms;
+#X obj 403 271 pack f 40;
+#X obj 403 292 line~;
+#X obj 385 75 catch~ sum;
+#X obj 404 111 env~;
+#X floatatom 404 132 5 0 0 0 - - -;
+#X obj 193 80 vocode-voice 14;
+#X obj 43 60 vocode-voice 1;
+#X obj 43 80 vocode-voice 2;
+#X obj 43 100 vocode-voice 3;
+#X obj 43 120 vocode-voice 4;
+#X obj 43 140 vocode-voice 5;
+#X obj 43 160 vocode-voice 6;
+#X obj 43 180 vocode-voice 7;
+#X obj 43 200 vocode-voice 8;
+#X obj 43 220 vocode-voice 9;
+#X obj 43 240 vocode-voice 10;
+#X obj 43 260 vocode-voice 11;
+#X obj 43 280 vocode-voice 12;
+#X obj 193 260 vocode-voice 23;
+#X obj 193 240 vocode-voice 22;
+#X obj 193 220 vocode-voice 21;
+#X obj 193 200 vocode-voice 20;
+#X obj 193 180 vocode-voice 19;
+#X obj 193 160 vocode-voice 18;
+#X obj 193 140 vocode-voice 17;
+#X obj 193 120 vocode-voice 16;
+#X obj 193 100 vocode-voice 15;
+#X obj 193 60 vocode-voice 13;
+#X obj 193 280 vocode-voice 24;
+#X obj 403 160 r master-volume;
+#X obj 549 186 metro;
+#X obj 549 207 s bs;
+#X obj 581 151 r refresh-rate;
+#X obj 549 130 r refresh;
+#X obj 403 182 moses 41;
+#X obj 403 204 t b;
+#X msg 403 226 0;
+#X obj 386 355 dac~;
+#X connect 0 0 39 0;
+#X connect 0 0 39 1;
+#X connect 1 0 2 0;
+#X connect 2 0 3 0;
+#X connect 3 0 0 1;
+#X connect 4 0 0 0;
+#X connect 4 0 5 0;
+#X connect 5 0 6 0;
+#X connect 31 0 36 0;
+#X connect 32 0 33 0;
+#X connect 34 0 32 1;
+#X connect 35 0 32 0;
+#X connect 36 0 37 0;
+#X connect 36 1 1 0;
+#X connect 37 0 38 0;
+#X connect 38 0 1 0;
+#X restore 34 394 pd osc-bank;
+#X obj 255 206 hsl 128 15 200 1 0 0 refresh-rate refresh-rate-set refresh-rate
+8 8 0 12 -262144 -1 -1 12509 1;
+#X obj 63 160 *~;
+#X obj 63 139 adc~ 1;
+#X obj 94 160 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#N canvas 558 80 718 589 loudness-curve 0;
+#N canvas 0 22 450 300 (subpatch) 0;
+#X array loudness-curve 24 float 2;
+#X coords 0 100 24 0 600 420 1 0 0;
+#X restore 33 34 graph;
+#X text 30 463 Set the relative levels (dB) of all bands in the oscillator
+bank. Be careful to do this with the volume low to avoid sudden blasts
+of loudness.;
+#X restore 34 415 pd loudness-curve;
+#X obj 255 126 hsl 128 15 40 100 0 0 master-volume empty master-volume
+8 8 0 12 -262144 -1 -1 7900 1;
+#X floatatom 390 319 5 1 108 1 MIDI fund -;
+#X floatatom 252 349 5 0 1000 1 portamento portamento-set portamento
+;
+#X floatatom 252 367 5 0 1000 1 amp-smoothing amp-smoothing-set amp-smoothing
+;
+#X floatatom 390 126 5 0 0 1 dB master-volume -;
+#N canvas 260 83 611 491 init 0;
+#X obj 35 28 loadbang;
+#X obj 35 403 declare -path abstractions;
+#X msg 161 83 \; thresh-set 0.2 \; bs normalize 0 \; refresh-set 1
+\; refresh-rate-set 4 \; portamento-set 30 \; amp-smoothing-set 12
+\; fund-set 50 \; pd dsp 1 \;;
+#X msg 35 285 \; syllable-durations read data/syllable-durations.txt
+\; scale read data/scale.txt \; loudness-curve read data/loudness.txt
+\; loudness-curve ylabel -0.7 10 20 30 40 50 60 70 80 90 100 \;;
+#X connect 0 0 2 0;
+#X connect 0 0 3 0;
+#X restore 34 373 pd init;
+#X obj 255 319 hsl 128 15 0 127 0 0 fund fund-set fundamental 16 8
+0 12 -262144 -1 -1 4700 1;
+#X obj 105 202 r bs;
+#X obj 252 166 tgl 15 0 refresh refresh-set refresh-on-off 17 7 0 12
+-262144 -1 -1 1 1;
+#N canvas 539 110 691 525 list-process 0;
+#X obj 60 26 inlet;
+#X obj 60 158 list split 1;
+#X obj 100 187 list split 1;
+#X obj 92 356 list append;
+#X obj 92 387 t l;
+#X obj 67 426 list;
+#X obj 60 115 t l l b;
+#X obj 203 157 list length;
+#X obj 12 368 f;
+#X obj 42 368 + 1;
+#X obj 203 178 / 2;
+#X obj 203 199 + 0.5;
+#X obj 203 220 i;
+#X obj 60 319 t b l;
+#X obj 12 389 select;
+#X msg 30 339 1;
+#X obj 67 455 list prepend 0;
+#X obj 67 477 s barkSpec-graph;
+#X obj 185 442 s barkSpec;
+#X text 158 10 This drops every other value in the 47-point list of
+magnitudes from the Bark filterbank (half-Bark spacing). Basically
+\, it's a crude way to bypass the overlapping filters in barkSpec~'s
+bank. We end up with the output of the nonoverlapping filters spaced
+exactly one Bark apart from each other.;
+#X obj 26 235 moses 0.2;
+#X obj 26 256 t b;
+#X msg 26 277 0;
+#X obj 86 211 r thresh;
+#X text 195 255 <<< Here \, we bash any amplitudes below the given
+threshold value to 0 so we don't power oscillators in bands where there's
+just low-level noise.;
+#X connect 0 0 6 0;
+#X connect 1 0 20 0;
+#X connect 1 1 2 0;
+#X connect 2 1 1 0;
+#X connect 3 0 4 0;
+#X connect 4 0 3 1;
+#X connect 4 0 5 1;
+#X connect 5 0 16 0;
+#X connect 5 0 18 0;
+#X connect 6 0 1 0;
+#X connect 6 1 7 0;
+#X connect 6 2 3 1;
+#X connect 6 2 15 0;
+#X connect 7 0 10 0;
+#X connect 8 0 9 0;
+#X connect 8 0 14 0;
+#X connect 9 0 8 1;
+#X connect 10 0 11 0;
+#X connect 11 0 12 0;
+#X connect 12 0 14 1;
+#X connect 13 0 8 0;
+#X connect 13 1 3 0;
+#X connect 14 0 5 0;
+#X connect 15 0 8 1;
+#X connect 16 0 17 0;
+#X connect 20 0 21 0;
+#X connect 20 1 13 0;
+#X connect 21 0 22 0;
+#X connect 22 0 13 0;
+#X connect 23 0 20 1;
+#X restore 34 274 pd list-process;
+#X obj 34 244 barkSpec~ 1024 0.5;
+#X text 689 421 timbreID - William Brent 2010;
+#X floatatom 252 385 5 0 100 1 threshold thresh-set thresh;
+#X text 249 416 Shift-drag the threshold number box to change the minimum
+input gain requirement. Anything less than this will produce a level
+of 0 for the band in question.;
+#X obj 1 -13 cnv 10 400 10 empty empty empty 20 12 0 14 -233017 -66577
+0;
+#X obj 1 -13 cnv 10 10 400 empty empty empty 20 12 0 14 -233017 -66577
+0;
+#X floatatom 390 206 5 1 108 1 ms refresh-rate -;
+#X text 249 25 Here's a 24-band vocoder using barkSpec~ as an analysis
+filterbank spaced in Barks. You can play with the proportional levels
+of all oscillators in the [pd loudness-curve] subpatch. If you use
+the live input \, you should use headphones to avoid feedback.;
+#N canvas 239 212 791 690 sequencer 0;
+#X obj 34 82 t b b;
+#X msg 34 140 0;
+#X obj 130 194 f;
+#X obj 160 194 + 1;
+#N canvas 0 0 450 300 (subpatch) 0;
+#X array syllable-durations 9 float 2;
+#X coords 0 350 9 0 400 280 1 0 0;
+#X restore 338 41 graph;
+#X obj 130 268 t f b;
+#X obj 63 428 del;
+#N canvas 0 0 450 300 (subpatch) 0;
+#X array scale 18 float 2;
+#X coords 0 108 18 21 400 280 1 0 0;
+#X restore 339 361 graph;
+#X obj 178 324 f;
+#X obj 208 324 + 1;
+#X msg 31 363 stop;
+#X obj 130 219 moses 9;
+#X obj 178 438 s fund-set;
+#X obj 178 376 tabread scale;
+#X obj 63 450 s seq-next;
+#X obj 34 60 r seq-reset;
+#X obj 130 144 r seq-next;
+#X obj 178 346 % 18;
+#X obj 178 408 spigot;
+#X obj 231 408 r seq-switch;
+#X obj 31 338 r del-stop;
+#X obj 66 108 s del-stop;
+#X obj 130 246 tabread syllable-durations;
+#X msg 32 523 offset 1;
+#X obj 72 585 tabletool scale;
+#X msg 81 554 offset -1;
+#X text 117 515 Transpose the scale up/down;
+#X connect 0 0 1 0;
+#X connect 0 1 21 0;
+#X connect 1 0 2 0;
+#X connect 2 0 3 0;
+#X connect 2 0 11 0;
+#X connect 3 0 2 1;
+#X connect 5 0 6 0;
+#X connect 5 1 8 0;
+#X connect 6 0 14 0;
+#X connect 8 0 9 0;
+#X connect 8 0 17 0;
+#X connect 9 0 8 1;
+#X connect 10 0 6 0;
+#X connect 11 0 22 0;
+#X connect 13 0 18 0;
+#X connect 15 0 0 0;
+#X connect 16 0 2 0;
+#X connect 17 0 13 0;
+#X connect 18 0 12 0;
+#X connect 19 0 18 1;
+#X connect 20 0 10 0;
+#X connect 22 0 5 0;
+#X connect 23 0 24 0;
+#X connect 25 0 24 0;
+#X restore 34 435 pd sequencer;
+#X obj 252 286 tgl 15 0 seq-switch seq-switch-set sequencer-on-off
+17 7 0 12 -262144 -1 -1 0 1;
+#N canvas 6 81 471 440 sf-player 0;
+#X obj 63 194 readsf~;
+#X obj 144 316 spigot;
+#X msg 164 127 stop;
+#X msg 63 94 open ../sound/voice.wav \, start;
+#X obj 63 118 t a b;
+#X obj 269 219 s seq-reset;
+#X obj 211 316 inlet;
+#X obj 63 276 outlet~;
+#X obj 309 142 s del-stop;
+#X obj 130 35 inlet;
+#X obj 130 57 select 1 0;
+#X obj 173 270 s play-toggle-set;
+#X msg 173 248 0;
+#X obj 144 368 s play-toggle-set;
+#X msg 144 346 1;
+#X obj 113 221 t b b;
+#X connect 0 0 7 0;
+#X connect 0 1 15 0;
+#X connect 1 0 14 0;
+#X connect 2 0 0 0;
+#X connect 3 0 4 0;
+#X connect 4 0 0 0;
+#X connect 4 1 5 0;
+#X connect 6 0 1 1;
+#X connect 9 0 10 0;
+#X connect 10 0 3 0;
+#X connect 10 1 2 0;
+#X connect 10 1 8 0;
+#X connect 12 0 11 0;
+#X connect 14 0 13 0;
+#X connect 15 0 1 0;
+#X connect 15 1 12 0;
+#X restore 35 82 pd sf-player;
+#X obj 104 61 tgl 15 0 empty empty loop 17 7 0 12 -262144 -1 -1 1 1
+;
+#X obj 35 58 tgl 15 0 empty play-toggle-set play 17 7 0 12 -262144
+-1 -1 1 1;
+#X text 249 249 Try the auto-sequencer. Check out [pd sequencer] if
+you'd like to change the melody.;
+#X connect 3 0 17 0;
+#X connect 4 0 3 0;
+#X connect 5 0 3 1;
+#X connect 14 0 17 0;
+#X connect 17 0 16 0;
+#X connect 27 0 17 0;
+#X connect 28 0 27 1;
+#X connect 29 0 27 0;

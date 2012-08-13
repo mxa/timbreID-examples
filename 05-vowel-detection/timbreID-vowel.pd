@@ -1,0 +1,338 @@
+#N canvas 230 79 1038 735 10;
+#X obj 137 148 cepstrum~ 1024;
+#X obj 75 97 bng 30 250 50 0 empty empty Analyze 0 -10 0 10 -258113
+-1 -1;
+#X obj 137 359 timbreID;
+#X obj 137 630 print timbre;
+#X obj 137 48 adc~;
+#X msg 685 575 cluster_list \$1;
+#X msg 457 598 clear;
+#X obj 384 650 s \$0-tID;
+#X obj 70 312 r \$0-tID;
+#X obj 646 650 s \$0-tID;
+#X obj 685 552 hradio 15 1 0 4 empty empty empty 0 -8 0 10 -262144
+-1 -1 0;
+#X msg 705 611 uncluster;
+#X msg 427 578 forget;
+#X obj 167 508 select 0 1 2;
+#X obj 190 385 print cluster;
+#X obj 882 66 bng 15 250 50 0 empty vE0 empty 17 7 0 10 -262144 -1
+-1;
+#X obj 882 86 bng 15 250 50 0 empty vE1 empty 17 7 0 10 -262144 -1
+-1;
+#X obj 882 106 bng 15 250 50 0 empty vE2 empty 17 7 0 10 -262144 -1
+-1;
+#X obj 882 126 bng 15 250 50 0 empty vE3 empty 17 7 0 10 -262144 -1
+-1;
+#X obj 882 146 bng 15 250 50 0 empty vE4 empty 17 7 0 10 -262144 -1
+-1;
+#X obj 882 166 bng 15 250 50 0 empty vE5 empty 17 7 0 10 -262144 -1
+-1;
+#X obj 882 186 bng 15 250 50 0 empty vE6 empty 17 7 0 10 -262144 -1
+-1;
+#X obj 902 126 bng 15 250 50 0 empty vE7 empty 17 7 0 10 -262144 -1
+-1;
+#X obj 922 126 bng 15 250 50 0 empty vE8 empty 17 7 0 10 -262144 -1
+-1;
+#X obj 902 66 bng 15 250 50 0 empty vE9 empty 17 7 0 10 -262144 -1
+-1;
+#X obj 922 66 bng 15 250 50 0 empty vE10 empty 17 7 0 10 -262144 -1
+-1;
+#X obj 942 66 bng 15 250 50 0 empty vE11 empty 17 7 0 10 -262144 -1
+-1;
+#X obj 902 186 bng 15 250 50 0 empty vE12 empty 17 7 0 10 -262144 -1
+-1;
+#X obj 922 186 bng 15 250 50 0 empty vE13 empty 17 7 0 10 -262144 -1
+-1;
+#X obj 942 186 bng 15 250 50 0 empty vE14 empty 17 7 0 10 -262144 -1
+-1;
+#X obj 872 372 bng 15 250 50 0 empty vA0 empty 17 7 0 10 -262144 -1
+-1;
+#X obj 878 352 bng 15 250 50 0 empty vA1 empty 17 7 0 10 -262144 -1
+-1;
+#X obj 884 332 bng 15 250 50 0 empty vA2 empty 17 7 0 10 -262144 -1
+-1;
+#X obj 890 312 bng 15 250 50 0 empty vA3 empty 17 7 0 10 -262144 -1
+-1;
+#X obj 896 292 bng 15 250 50 0 empty vA4 empty 17 7 0 10 -262144 -1
+-1;
+#X obj 902 272 bng 15 250 50 0 empty vA5 empty 17 7 0 10 -262144 -1
+-1;
+#X obj 912 252 bng 15 250 50 0 empty vA6 empty 17 7 0 10 -262144 -1
+-1;
+#X obj 922 272 bng 15 250 50 0 empty vA7 empty 17 7 0 10 -262144 -1
+-1;
+#X obj 928 292 bng 15 250 50 0 empty vA8 empty 17 7 0 10 -262144 -1
+-1;
+#X obj 934 312 bng 15 250 50 0 empty vA9 empty 17 7 0 10 -262144 -1
+-1;
+#X obj 940 332 bng 15 250 50 0 empty vA10 empty 17 7 0 10 -262144 -1
+-1;
+#X obj 946 352 bng 15 250 50 0 empty vA11 empty 17 7 0 10 -262144 -1
+-1;
+#X obj 952 372 bng 15 250 50 0 empty vA12 empty 17 7 0 10 -262144 -1
+-1;
+#X obj 913 312 bng 15 250 50 0 empty vA13 empty 17 7 0 10 -262144 -1
+-1;
+#X obj 902 558 bng 15 250 50 0 empty vO7 empty 17 7 0 10 -262144 -1
+-1;
+#X obj 886 538 bng 15 250 50 0 empty vO8 empty 17 7 0 10 -262144 -1
+-1;
+#X obj 876 518 bng 15 250 50 0 empty vO9 empty 17 7 0 10 -262144 -1
+-1;
+#X obj 868 499 bng 15 250 50 0 empty vO10 empty 17 7 0 10 -262144 -1
+-1;
+#X obj 876 478 bng 15 250 50 0 empty vO11 empty 17 7 0 10 -262144 -1
+-1;
+#X obj 886 458 bng 15 250 50 0 empty vO12 empty 17 7 0 10 -262144 -1
+-1;
+#X obj 902 438 bng 15 250 50 0 empty vO13 empty 17 7 0 10 -262144 -1
+-1;
+#X obj 922 438 bng 15 250 50 0 empty vO0 empty 17 7 0 10 -262144 -1
+-1;
+#X obj 938 458 bng 15 250 50 0 empty vO1 empty 17 7 0 10 -262144 -1
+-1;
+#X obj 948 478 bng 15 250 50 0 empty vO2 empty 17 7 0 10 -262144 -1
+-1;
+#X obj 956 498 bng 15 250 50 0 empty vO3 empty 17 7 0 10 -262144 -1
+-1;
+#X obj 948 518 bng 15 250 50 0 empty vO4 empty 17 7 0 10 -262144 -1
+-1;
+#X obj 938 538 bng 15 250 50 0 empty vO5 empty 17 7 0 10 -262144 -1
+-1;
+#X obj 922 558 bng 15 250 50 0 empty vO6 empty 17 7 0 10 -262144 -1
+-1;
+#N canvas 234 150 449 341 vE 0;
+#X obj 68 12 inlet;
+#X obj 68 73 % 15;
+#X obj 68 94 route 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14;
+#X obj 38 285 s vE0;
+#X obj 58 265 s vE1;
+#X obj 78 245 s vE2;
+#X obj 98 225 s vE3;
+#X obj 118 205 s vE4;
+#X obj 138 185 s vE5;
+#X obj 158 165 s vE6;
+#X obj 178 145 s vE7;
+#X obj 328 285 s vE8;
+#X obj 338 265 s vE9;
+#X obj 348 245 s vE10;
+#X obj 358 225 s vE11;
+#X obj 368 205 s vE12;
+#X obj 378 185 s vE13;
+#X obj 388 165 s vE14;
+#X obj 68 33 f 0;
+#X obj 98 33 + 1;
+#X connect 0 0 18 0;
+#X connect 1 0 2 0;
+#X connect 2 0 3 0;
+#X connect 2 1 4 0;
+#X connect 2 2 5 0;
+#X connect 2 3 6 0;
+#X connect 2 4 7 0;
+#X connect 2 5 8 0;
+#X connect 2 6 9 0;
+#X connect 2 7 10 0;
+#X connect 2 8 11 0;
+#X connect 2 9 12 0;
+#X connect 2 10 13 0;
+#X connect 2 11 14 0;
+#X connect 2 12 15 0;
+#X connect 2 13 16 0;
+#X connect 2 14 17 0;
+#X connect 18 0 19 0;
+#X connect 18 0 1 0;
+#X connect 19 0 18 1;
+#X restore 167 569 pd vE;
+#N canvas 234 150 451 341 vA 0;
+#X obj 68 12 inlet;
+#X obj 68 73 % 15;
+#X obj 68 94 route 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14;
+#X obj 38 285 s vA0;
+#X obj 58 265 s vA1;
+#X obj 78 245 s vA2;
+#X obj 98 225 s vA3;
+#X obj 118 205 s vA4;
+#X obj 138 185 s vA5;
+#X obj 158 165 s vA6;
+#X obj 178 145 s vA7;
+#X obj 328 285 s vA8;
+#X obj 338 265 s vA9;
+#X obj 348 245 s vA10;
+#X obj 358 225 s vA11;
+#X obj 368 205 s vA12;
+#X obj 378 185 s vA13;
+#X obj 388 165 s vA14;
+#X obj 68 33 f 0;
+#X obj 98 33 + 1;
+#X connect 0 0 18 0;
+#X connect 1 0 2 0;
+#X connect 2 0 3 0;
+#X connect 2 1 4 0;
+#X connect 2 2 5 0;
+#X connect 2 3 6 0;
+#X connect 2 4 7 0;
+#X connect 2 5 8 0;
+#X connect 2 6 9 0;
+#X connect 2 7 10 0;
+#X connect 2 8 11 0;
+#X connect 2 9 12 0;
+#X connect 2 10 13 0;
+#X connect 2 11 14 0;
+#X connect 2 12 15 0;
+#X connect 2 13 16 0;
+#X connect 2 14 17 0;
+#X connect 18 0 19 0;
+#X connect 18 0 1 0;
+#X connect 19 0 18 1;
+#X restore 194 549 pd vA;
+#N canvas 234 150 469 335 vO 0;
+#X obj 68 12 inlet;
+#X obj 68 73 % 15;
+#X obj 68 94 route 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14;
+#X obj 38 285 s vO0;
+#X obj 58 265 s vO1;
+#X obj 78 245 s vO2;
+#X obj 98 225 s vO3;
+#X obj 118 205 s vO4;
+#X obj 138 185 s vO5;
+#X obj 158 165 s vO6;
+#X obj 178 145 s vO7;
+#X obj 328 285 s vO8;
+#X obj 338 265 s vO9;
+#X obj 348 245 s vO10;
+#X obj 358 225 s vO11;
+#X obj 368 205 s vO12;
+#X obj 378 185 s vO13;
+#X obj 388 165 s vO14;
+#X obj 68 33 f 0;
+#X obj 98 33 + 1;
+#X connect 0 0 18 0;
+#X connect 1 0 2 0;
+#X connect 2 0 3 0;
+#X connect 2 1 4 0;
+#X connect 2 2 5 0;
+#X connect 2 3 6 0;
+#X connect 2 4 7 0;
+#X connect 2 5 8 0;
+#X connect 2 6 9 0;
+#X connect 2 7 10 0;
+#X connect 2 8 11 0;
+#X connect 2 9 12 0;
+#X connect 2 10 13 0;
+#X connect 2 11 14 0;
+#X connect 2 12 15 0;
+#X connect 2 13 16 0;
+#X connect 2 14 17 0;
+#X connect 18 0 19 0;
+#X connect 18 0 1 0;
+#X connect 19 0 18 1;
+#X restore 221 529 pd vO;
+#X obj 178 111 metro 11.61;
+#X msg 403 541 read database/vowel-db.timid;
+#X obj 137 479 route 0 1;
+#X obj 137 459 list prepend 0;
+#X obj 161 199 hradio 30 1 0 2 tr-id empty Train-Identify 0 -8 0 18
+-262144 -1 -1 0;
+#X obj 137 330 route 0 1;
+#X obj 137 310 list prepend 0;
+#X obj 232 439 r tr-id;
+#X obj 232 290 r tr-id;
+#X obj 374 48 cnv 15 200 20 empty empty empty 20 12 0 14 -228856 -66577
+0;
+#X text 390 49 Vowel identification;
+#X text 373 80 Train timbreID using your own voice \, then have it
+identify which vowel you're singing \, regardless of pitch.;
+#X obj 137 259 list split 40;
+#N canvas 516 619 444 187 init 0;
+#X obj 139 21 r tr-id;
+#X obj 139 42 route 0 1;
+#X obj 169 93 print -n;
+#X msg 169 73 Identification mode active;
+#X obj 139 133 print -n;
+#X msg 139 113 Training mode active;
+#X obj 31 23 loadbang;
+#X msg 31 112 \; pd dsp 1 \;;
+#X connect 0 0 1 0;
+#X connect 1 0 5 0;
+#X connect 1 1 3 0;
+#X connect 3 0 2 0;
+#X connect 5 0 4 0;
+#X connect 6 0 7 0;
+#X restore 514 650 pd init;
+#N canvas 92 382 476 283 why? 0;
+#X text 26 26 The idea behind cepstral analysis is that it deconvolves
+two convolved sounds. In the case of your singing voice \, a certain
+frequency of glottal impulses are convolved with the filter that is
+your head. By breaking off the early part of the cepstrum using these
+instances of [list split] \, we're grabbing the part of cepstrum that's
+supposed to only represent the filter \, not the pitch. When you change
+the shape of your oral cavity by changing vowels \, you're changing
+the filter \, and hopefully we can recognize that change here.;
+#X text 26 166 This deconvolution isn't perfect \, but it does seem
+to work with voice and reed instruments. The choice of using cepstral
+coefficients 1 - 40 out of the total 513 that are available is totally
+arbitrary. Try something else if you want. You could also try [bfcc~]
+instead \, although it seems to be more sensitive to pitch.;
+#X restore 38 271 pd why? -->;
+#X obj 137 285 list split 1;
+#X text 788 659 timbreID - William Brent 2009;
+#X msg 384 503 write database/vowel-db.timid;
+#X text 373 340 Finally \, click the rightmost of the two large radio
+buttons labeled "Train-Identify". This will route analyses to timbreID's
+identification inlet. Turn on continuous analysis by activating the
+metro at the top. When you sing a pitch on one of the three vowels
+\, you should see its corresponding letter light up at right. This
+seems to work within a decent range of pitches. Try a different analysis
+extern (or a combination of externs) from the timbreID set to see if
+you can do better. You could also try training it with a few different
+pitches on each vowel.;
+#X msg 646 503 cluster 4;
+#X obj 1 1 cnv 10 400 10 empty empty empty 20 12 0 14 -233017 -66577
+0;
+#X obj 1 1 cnv 10 10 400 empty empty empty 20 12 0 14 -233017 -66577
+0;
+#X obj 178 91 tgl 15 0 empty empty Continuous-analysis 17 7 0 10 -262144
+-1 -1 0 1;
+#X text 373 250 Next \, click the "cluster 4" message box to group
+the training analyses into four clusters (three vowels + silence).
+You can check the results of the clustering by clicking each of the
+four radio buttons connected to the [cluster_list( message. This will
+print the members of each specific cluster.;
+#X text 373 120 First \, find a quiet area and sing "eee" (as in eagle)
+on a pitch in the middle of your range and hold it steady. While you're
+holding the vowel \, click the red analysis bang at left about 5-10
+times. This will send training analyses to timbreID. Next \, do the
+same while singing and holding "aah" as in Autumn \, then "ooo" as
+in food. Then \, analyze a few frames of silence so it knows what that
+sounds like. Save the analyses to a separate file by clicking the "write"
+message below.;
+#X connect 0 0 73 0;
+#X connect 1 0 0 0;
+#X connect 2 0 64 0;
+#X connect 2 3 14 0;
+#X connect 4 0 0 0;
+#X connect 5 0 9 0;
+#X connect 6 0 7 0;
+#X connect 8 0 2 0;
+#X connect 10 0 5 0;
+#X connect 11 0 9 0;
+#X connect 12 0 7 0;
+#X connect 13 0 58 0;
+#X connect 13 1 59 0;
+#X connect 13 2 60 0;
+#X connect 61 0 0 0;
+#X connect 62 0 7 0;
+#X connect 63 0 3 0;
+#X connect 63 1 13 0;
+#X connect 64 0 63 0;
+#X connect 66 0 2 0;
+#X connect 66 1 2 1;
+#X connect 67 0 66 0;
+#X connect 68 0 64 1;
+#X connect 69 0 67 1;
+#X connect 73 0 76 0;
+#X connect 76 1 67 0;
+#X connect 78 0 7 0;
+#X connect 80 0 9 0;
+#X connect 83 0 61 0;

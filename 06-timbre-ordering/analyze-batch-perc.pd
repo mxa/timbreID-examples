@@ -1,0 +1,180 @@
+#N canvas 286 201 808 506 10;
+#X declare -path abstractions -path data;
+#X obj 95 -13 dac~;
+#X obj 72 281 timbreID;
+#X msg 72 -115 bang;
+#X obj 72 -64 tabplay~ timbreID-set;
+#X obj 8 -89 s start;
+#N canvas 319 198 779 485 attack-times 0;
+#X obj 72 122 tabread timbreID-attacks;
+#X floatatom 72 143 10 0 0 0 - - -;
+#X obj 101 102 + 1;
+#X obj 46 16 r start;
+#X obj 166 13 r end;
+#X msg 166 34 0;
+#X obj 72 324 del;
+#X obj 72 460 outlet;
+#X obj 72 253 / 44100;
+#X obj 72 274 * 1000;
+#X obj 72 201 - 0;
+#X obj 72 232 t f f;
+#X obj 318 190 f 0;
+#X obj 295 213 f 0;
+#X obj 295 244 + 0;
+#X obj 295 149 t b b f;
+#X obj 295 265 t f f;
+#X obj 72 102 f 0;
+#X obj 72 392 t b b;
+#X obj 72 345 spigot 1;
+#X obj 200 343 f 0;
+#X obj 230 343 + 1;
+#X msg 200 385 0;
+#X obj 72 295 t f b;
+#X msg 218 320 0;
+#X obj 46 37 t b b b b;
+#X msg 125 324 1;
+#X msg 90 72 0;
+#X obj 166 55 t f f f f f;
+#X text 146 412 Offset by 23.22ms to \; wait for 1024 samples \; to
+pass by before analysis.;
+#X text 282 16 This sub-patch reads the attacks times listed in the
+timbreID-attacks table \, which was prepared in advance. Then it schedules
+bangs to be sent out the outlet to perform analysis starting at the
+attack of each sound. There's probably a nicer way to do this \, but
+here's this...for now.;
+#X text 366 178 Accumulate the total time that has passed so we can
+subtract it from the latest attack time and schedule the right amount
+of delay.;
+#X obj 72 161 * 44100;
+#X obj 72 422 del 23.22;
+#X msg 159 324 0;
+#X obj 177 289 r stop;
+#X obj 200 364 select 68;
+#X connect 0 0 1 0;
+#X connect 1 0 32 0;
+#X connect 2 0 17 1;
+#X connect 3 0 25 0;
+#X connect 4 0 5 0;
+#X connect 5 0 28 0;
+#X connect 6 0 19 0;
+#X connect 8 0 9 0;
+#X connect 9 0 23 0;
+#X connect 10 0 11 0;
+#X connect 11 0 8 0;
+#X connect 11 1 15 0;
+#X connect 12 0 13 1;
+#X connect 13 0 14 0;
+#X connect 14 0 16 0;
+#X connect 15 0 13 0;
+#X connect 15 1 12 0;
+#X connect 15 2 14 1;
+#X connect 16 0 10 1;
+#X connect 16 1 12 1;
+#X connect 17 0 2 0;
+#X connect 17 0 0 0;
+#X connect 18 0 33 0;
+#X connect 18 1 17 0;
+#X connect 19 0 18 0;
+#X connect 20 0 21 0;
+#X connect 20 0 36 0;
+#X connect 21 0 20 1;
+#X connect 22 0 19 1;
+#X connect 23 0 6 0;
+#X connect 23 1 20 0;
+#X connect 24 0 20 1;
+#X connect 25 0 17 0;
+#X connect 25 1 27 0;
+#X connect 25 2 24 0;
+#X connect 25 3 26 0;
+#X connect 26 0 19 1;
+#X connect 27 0 17 1;
+#X connect 28 0 10 1;
+#X connect 28 1 14 1;
+#X connect 28 2 13 1;
+#X connect 28 3 12 1;
+#X connect 28 4 19 1;
+#X connect 32 0 10 0;
+#X connect 33 0 7 0;
+#X connect 34 0 19 1;
+#X connect 35 0 34 0;
+#X connect 36 0 22 0;
+#X restore 255 100 pd attack-times;
+#X text 349 -145 Pd's batch mode is a beautiful thing. If you cd into
+Pd's /bin folder and type:;
+#X obj 130 165 r write-database;
+#X text 349 -5 When editing this patch to change analysis settings
+\, the sound file being analyzed \, or the name of the analysis text
+file \, make sure to turn off DSP and hit the "stop" message at the
+top left. That way you won't accidentally produce an unwanted file
+\, or overwrite an existing one.;
+#N canvas 721 472 574 209 init 0;
+#X obj 46 57 t b b b b;
+#X msg 79 166 \; pd dsp 1 \;;
+#X obj 31 129 s lb4;
+#X obj 138 97 s lb1;
+#X obj 118 127 s lb2;
+#X obj 203 162 declare -path abstractions -path data;
+#X obj 46 36 loadbang;
+#X connect 0 0 2 0;
+#X connect 0 1 1 0;
+#X connect 0 2 4 0;
+#X connect 0 3 3 0;
+#X connect 6 0 0 0;
+#X restore 494 142 pd init;
+#N canvas 802 152 487 396 soundfile 0;
+#X obj 35 80 soundfiler;
+#X text 104 24 Load the training sample to a table:;
+#X obj 35 268 table timbreID-set;
+#N canvas 1061 268 266 218 timbreID-attacks 0;
+#N canvas 0 22 450 300 (subpatch) 0;
+#X array timbreID-attacks 68 float 2;
+#X coords 0 200 68 0 200 140 1;
+#X restore 31 35 graph;
+#X restore 35 287 pd timbreID-attacks;
+#X text 104 120 Load the attack times to a table:;
+#X obj 35 23 r lb1;
+#X obj 35 120 r lb2;
+#X msg 35 46 read -resize -maxsize 8.2e+06 ../sound/percussion.wav
+timbreID-set;
+#X msg 35 143 \; timbreID-attacks read ../labels/perc-labels.txt \;
+;
+#X connect 5 0 7 0;
+#X connect 6 0 8 0;
+#X connect 7 0 0 0;
+#X restore 494 122 pd soundfile;
+#X obj 72 -135 r lb4;
+#X obj 195 -24 del 500;
+#X obj 195 -3 s write-database;
+#X obj 130 186 t b b;
+#X msg 89 217 \; pd quit \;;
+#X obj 132 -92 s stop;
+#X obj 124 -124 cnv 15 50 25 empty empty empty 20 12 0 14 -258113 -66577
+0;
+#X msg 132 -120 stop;
+#X obj 461 232 cnv 15 270 25 empty empty empty 20 12 0 14 -191407 -66577
+0;
+#X text 470 236 <---- Change the database name here.;
+#X obj 72 307 print instances-received;
+#X msg 161 236 write database/percussion-db.timid;
+#X text 349 -65 this patch will run and do analysis in non real time.
+When it finishes it will produce an analysis database file that you
+can load in the main order-perc.pd patch.;
+#X text 349 -105 ./pd -batch /your/path/to/analyze-batch-perc.pd;
+#X obj 72 134 temporal_evolution;
+#X connect 1 0 21 0;
+#X connect 2 0 3 0;
+#X connect 2 0 4 0;
+#X connect 3 0 0 0;
+#X connect 3 0 0 1;
+#X connect 3 0 25 0;
+#X connect 3 1 12 0;
+#X connect 5 0 25 1;
+#X connect 7 0 14 0;
+#X connect 11 0 2 0;
+#X connect 12 0 13 0;
+#X connect 14 0 15 0;
+#X connect 14 1 22 0;
+#X connect 18 0 16 0;
+#X connect 18 0 3 0;
+#X connect 22 0 1 0;
+#X connect 25 0 1 0;

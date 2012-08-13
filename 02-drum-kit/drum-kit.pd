@@ -1,0 +1,334 @@
+#N canvas 317 79 909 721 10;
+#X declare -path abstractions;
+#X obj 169 457 nbx 3 28 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 28
+-262144 -1 -1 0 256;
+#X obj 116 344 timbreID;
+#X obj 82 -34 adc~;
+#X msg 582 366 uncluster;
+#X msg 664 481 clear;
+#X msg 649 457 forget;
+#X obj 169 491 print timbre;
+#X obj 531 -13 hsl 128 15 40 100 0 0 master-volume empty master-volume
+-2 -8 0 12 -228856 -1 -1 0 1;
+#N canvas 342 157 558 437 init 0;
+#X obj 129 190 soundfiler;
+#X text 141 149 Load the training sample to a table:;
+#N canvas 494 217 613 241 drum-kit-times 0;
+#N canvas 0 22 450 300 (subpatch) 0;
+#X array drum-kit-times 4 float 2;
+#X coords 0 4 4 0 200 140 1 0 0;
+#X restore 367 58 graph;
+#X obj 43 58 r lb1;
+#X msg 43 80 \; drum-kit-times read ../labels/drum-kit-labels.txt \;
+;
+#X connect 1 0 2 0;
+#X restore 233 62 pd drum-kit-times;
+#X obj 39 22 loadbang;
+#X obj 233 42 table drum-kit;
+#X obj 113 83 s lb1;
+#X msg 129 166 read -resize ../sound/drum-kit.wav drum-kit;
+#X obj 39 44 t b b b;
+#X obj 31 366 declare -path abstractions;
+#X msg 3 239 \; tempo-factor-set 1 \; pd dsp 1 \;;
+#X connect 3 0 7 0;
+#X connect 6 0 0 0;
+#X connect 7 0 9 0;
+#X connect 7 1 6 0;
+#X connect 7 2 5 0;
+#X restore 528 201 pd init;
+#X msg 618 403 write database/drum-kit.timid;
+#X msg 629 428 read database/drum-kit.timid;
+#X obj 555 313 hradio 15 1 0 4 empty empty empty 0 -8 0 10 -262144
+-1 -1 0;
+#X msg 555 333 cluster_list \$1;
+#X obj 210 393 print cluster;
+#X text 631 312 <-- print out cluster lists;
+#X obj 82 124 bfcc~ 1024 0.5;
+#N canvas 236 258 836 512 sequencer 0;
+#X obj 24 14 inlet;
+#X obj 24 439 outlet;
+#N canvas 0 22 450 300 (subpatch) 0;
+#X array notes 100 float 2;
+#X coords 0 4 99 0 200 140 1 0 0;
+#X restore 545 23 graph;
+#N canvas 0 22 450 300 (subpatch) 0;
+#X array durations 100 float 2;
+#X coords 0 2000 100 0 200 140 1;
+#X restore 545 206 graph;
+#X obj 197 98 f;
+#X obj 227 98 + 1;
+#X msg 215 74 0;
+#X obj 129 131 tabwrite notes;
+#X obj 74 131 timer;
+#X obj 74 212 spigot;
+#X msg 113 187 0;
+#X msg 152 187 1;
+#X obj 74 60 spigot;
+#X obj 74 81 t b b b f b;
+#X obj 215 53 r seq-reset;
+#X obj 113 166 r seq-reset;
+#X obj 74 243 tabwrite durations;
+#X obj 197 218 - 1;
+#X obj 545 374 r seq-reset;
+#X msg 545 395 \; notes const 0 \; durations const 0 \;;
+#X obj 290 150 r seq-play;
+#X obj 290 415 del;
+#X msg 290 171 0;
+#X obj 322 283 tabread notes;
+#X obj 290 253 t f f;
+#X obj 290 354 tabread durations;
+#X obj 290 232 f;
+#X obj 320 232 + 1;
+#X obj 323 199 r seq-next;
+#X obj 113 38 r seq-record;
+#X obj 407 237 f;
+#X obj 407 177 r seq-record;
+#X obj 407 198 select 0;
+#X obj 290 324 moses;
+#X obj 290 436 s seq-next;
+#X obj 290 386 /;
+#X obj 327 386 r tempo-factor;
+#X connect 0 0 1 0;
+#X connect 0 0 12 0;
+#X connect 4 0 5 0;
+#X connect 4 0 7 1;
+#X connect 4 0 17 0;
+#X connect 4 0 30 1;
+#X connect 5 0 4 1;
+#X connect 6 0 4 1;
+#X connect 8 0 9 0;
+#X connect 9 0 16 0;
+#X connect 10 0 9 1;
+#X connect 11 0 9 1;
+#X connect 12 0 13 0;
+#X connect 13 0 11 0;
+#X connect 13 1 8 0;
+#X connect 13 2 8 1;
+#X connect 13 3 7 0;
+#X connect 13 4 4 0;
+#X connect 14 0 6 0;
+#X connect 15 0 10 0;
+#X connect 17 0 16 1;
+#X connect 18 0 19 0;
+#X connect 20 0 22 0;
+#X connect 21 0 34 0;
+#X connect 22 0 26 0;
+#X connect 23 0 1 0;
+#X connect 24 0 33 0;
+#X connect 24 1 23 0;
+#X connect 25 0 35 0;
+#X connect 26 0 27 0;
+#X connect 26 0 24 0;
+#X connect 27 0 26 1;
+#X connect 28 0 26 0;
+#X connect 29 0 12 1;
+#X connect 30 0 33 1;
+#X connect 31 0 32 0;
+#X connect 32 0 30 0;
+#X connect 33 0 25 0;
+#X connect 35 0 21 0;
+#X connect 36 0 35 1;
+#X restore 46 490 pd sequencer;
+#X text 675 590 timbreID - William Brent 2010;
+#X obj 528 22 cnv 15 300 100 empty empty empty 20 12 0 14 -228856 -66577
+0;
+#X obj 536 54 tgl 15 0 seq-record empty record-on-off 17 7 0 12 -262144
+-1 -1 0 1;
+#X obj 536 94 bng 15 250 50 0 seq-reset empty reset 17 7 0 12 -258113
+-1 -1;
+#X obj 536 74 bng 15 250 50 0 seq-play empty play 17 7 0 12 -4034 -1
+-1;
+#X text 533 27 Sequencer controls;
+#N canvas 691 156 488 231 sequencer-instructions 0;
+#X text 21 100 It makes the most sense to turn the master volume off
+while you record \, then turn it up for playback. That way you can
+avoid feedback \, and drastically lower the double attack threshold
+in [pd onset]. That will allow you to play faster rhythms. Of course
+\, trying to record performance events based solely on an attack detector's
+output is a pretty fragile endeavor...;
+#X text 21 10 The [pd sequencer] sub-patch contains a basic record/playback
+sequencer. Once you've trained the system \, turn on the ID spigot
+and check the "record-on-off" toggle to enable recording. Then just
+play your setup and the timbre/duration of each event will be recorded.
+Uncheck the record and ID toggles and hit play to listen back.;
+#X restore 528 181 pd sequencer-instructions;
+#X obj 1 -76 cnv 10 400 10 empty empty empty 20 12 0 14 -233017 -66577
+0;
+#X obj 1 -76 cnv 10 10 400 empty empty empty 20 12 0 14 -233017 -66577
+0;
+#X text 151 20 Detect onsets with bark~;
+#N canvas 397 173 745 433 onsets 0;
+#X obj 54 -36 inlet~;
+#X obj 54 238 outlet;
+#X text 76 114 Delay the bang to bfcc~ by 1/2 the analysis period to
+fill the window with a good portion of immediately post-onset sound.
+;
+#X obj 1 -85 cnv 10 400 10 empty empty empty 20 12 0 14 -233017 -66577
+0;
+#X obj 1 -85 cnv 10 10 400 empty empty empty 20 12 0 14 -233017 -66577
+0;
+#X obj 54 46 bark~;
+#X obj 86 84 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 334 203 loadbang;
+#X obj 79 7 r bark-settings;
+#X text 256 -36 timbreID comes with its own onset detection object:
+bark~. See its helpfile for more details. In comparison with bonk~
+(the usual onset detection object in Pd) \, bark~ performs very similarly
+but has several extra conveniences. Most importantly \, there is a
+non-real-time version of the object \, enabling easy parsing of pre-recorded
+audio.;
+#X obj 54 174 del 11.61;
+#X msg 334 225 \; bark-settings minvel 50 \; bark-settings debounce
+200 \; bark-settings thresh -1 12 \;;
+#X connect 0 0 5 0;
+#X connect 5 0 6 0;
+#X connect 5 0 10 0;
+#X connect 7 0 11 0;
+#X connect 8 0 5 0;
+#X connect 10 0 1 0;
+#X restore 140 44 pd onsets;
+#X obj 151 74 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#N canvas 257 180 956 508 INSTRUCTIONS 0;
+#X text 25 52 This is a toy example showing how to map the playback
+of samples to sounds that you make in real-time.;
+#X text 497 408 Latency is also an issue. Pd's default latency is 50
+ms \, but you can change this to 20 ms on a Macintosh \, and 10-15
+ms on Linux machines. That'll make the mapping more immediate and satisfying.
+;
+#X text 497 253 A couple caveats: this idea is prone to feedback. I
+set bark~'s "debounce" setting to 200 ms to prevent it from hearing
+the mapped sample attack played over your speakers \, which would cause
+the system to continually retrigger itself. As a result \, after bark~
+reports an attack it will be deaf for the next 200 ms. This means you
+can't play quick rhythms with the patch as-is. For testing things out
+you can use headphones and lower that value to something like 50 or
+75 ms. Also \, you can edit the kit-player-unit abstraction to extend
+the playback length of the samples \, (which is extremely short and
+cut-off sounding right now).;
+#X text 25 222 Hit each of your instruments 5-10 times \, and watch
+Pd's post window for feedback that timbreID is receiving training instances
+accurately. The master-volume should be down \, since training causes
+output from timbreID's left outlet (and that triggers sample playback).
+When you're finished training \, turn off the "train" spigot \, and
+save your training database to a file with the "write" message.;
+#X text 25 324 Click the "cluster 4" message box in the middle-right
+of the patch. This should group your training instances together by
+instrument if your instruments were significantly different from each
+other in terms of timbre. You can double check the results of clustering
+by clicking each of the three radio buttons attached to the "cluster_list"
+message \, which prints the members of each cluster in Pd's post window.
+;
+#X text 497 139 To do anything with this \, you'll probably want to
+load your own samples \, and likely use more than four. The more instruments
+you train timbreID with \, the more care you need to take in terms
+of choosing timbrally distinct instruments (or beatbox sounds). See
+the timbreID helpfile for more information on clustering \, including
+manual clustering if the automatic clustering algorithm fails to group
+things nicely.;
+#X text 25 93 First \, you need to train timbreID. Grab 4 timbrally
+distinct objects to hit as percussion instruments \, or just make some
+beatbox sounds with your mouth. Whatever sounds you use \, they should
+have short durations and sharp attacks. Turn on the "train" spigot
+to allow analyses to be sent to timbreID's training inlet. Attacks
+are detected by bark~ in the [pd onsets] sub-patch. You can open that
+up to change bark~'s settings if it's over- or under-reporting attacks.
+;
+#X text 497 99 You can record sequences as well - see [pd sequencer-instructions]
+for more details.;
+#X text 497 29 Now turn on the "id" spigot \, and play your instruments
+one at a time. You should hear the same sample played back if you repeatedly
+hit one instrument - each instrument you play will be mapped to a different
+sample.;
+#X restore 528 161 pd INSTRUCTIONS;
+#X obj 82 156 list split 1;
+#N canvas 513 133 704 357 players 0;
+#X obj 471 266 dac~;
+#X obj 125 146 f 0;
+#X obj 155 146 + 1;
+#X obj 125 188 pack f f;
+#X obj 125 125 t b f;
+#X obj 125 91 inlet;
+#X obj 486 163 dbtorms;
+#X obj 486 184 pack f 40;
+#X obj 486 205 line~;
+#X obj 471 242 *~;
+#X obj 486 72 r master-volume;
+#X obj 486 94 moses 41;
+#X obj 486 116 t b;
+#X msg 486 138 0;
+#X obj 471 41 catch~ drum-kit-bus;
+#X msg 125 210 \; play-\$1 \$2 \;;
+#X obj 125 167 % 8;
+#X obj 270 86 kit-player-unit 0;
+#X obj 270 106 kit-player-unit 1;
+#X obj 270 126 kit-player-unit 2;
+#X obj 270 146 kit-player-unit 3;
+#X obj 270 166 kit-player-unit 4;
+#X obj 270 186 kit-player-unit 5;
+#X obj 270 206 kit-player-unit 6;
+#X obj 270 226 kit-player-unit 7;
+#X connect 1 0 2 0;
+#X connect 1 0 16 0;
+#X connect 2 0 1 1;
+#X connect 3 0 15 0;
+#X connect 4 0 1 0;
+#X connect 4 1 3 1;
+#X connect 5 0 4 0;
+#X connect 6 0 7 0;
+#X connect 7 0 8 0;
+#X connect 8 0 9 1;
+#X connect 9 0 0 1;
+#X connect 9 0 0 0;
+#X connect 10 0 11 0;
+#X connect 11 0 12 0;
+#X connect 11 1 6 0;
+#X connect 12 0 13 0;
+#X connect 13 0 6 0;
+#X connect 14 0 9 0;
+#X connect 16 0 3 0;
+#X restore 46 520 pd players;
+#X obj 35 294 r \$0-tID;
+#X obj 116 228 spigot;
+#X obj 166 228 tgl 15 0 empty empty train 17 7 0 12 -262144 -1 -1 0
+1;
+#X obj 246 228 spigot;
+#X obj 296 228 tgl 15 0 empty empty id 17 7 0 12 -262144 -1 -1 0 1
+;
+#X obj 528 529 s \$0-tID;
+#X text 177 156 Split off BFCCs 1-20;
+#X obj 116 176 list split 20;
+#X msg 528 278 cluster 4;
+#X obj 659 94 hsl 128 15 0.5 4 0 0 tempo-factor tempo-factor-set Tempo
+8 8 0 12 -262144 -1 -1 1814 1;
+#X text 135 253 Note that if you're using a laptop trackpad \, clicking
+one of these switches may cause an onset! I use an external mouse to
+avoid this \, or you can try to mess with the minvel thresh for bark~
+;
+#X connect 0 0 6 0;
+#X connect 1 0 0 0;
+#X connect 1 0 16 0;
+#X connect 1 3 13 0;
+#X connect 2 0 15 0;
+#X connect 2 0 27 0;
+#X connect 3 0 37 0;
+#X connect 4 0 37 0;
+#X connect 5 0 37 0;
+#X connect 9 0 37 0;
+#X connect 10 0 37 0;
+#X connect 11 0 12 0;
+#X connect 12 0 37 0;
+#X connect 15 0 30 0;
+#X connect 16 0 31 0;
+#X connect 27 0 15 0;
+#X connect 27 0 28 0;
+#X connect 30 1 39 0;
+#X connect 32 0 1 0;
+#X connect 33 0 1 0;
+#X connect 34 0 33 1;
+#X connect 35 0 1 1;
+#X connect 36 0 35 1;
+#X connect 39 0 33 0;
+#X connect 39 0 35 0;
+#X connect 40 0 37 0;
