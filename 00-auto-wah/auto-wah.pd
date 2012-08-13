@@ -1,5 +1,4 @@
 #N canvas 387 100 778 503 10;
-#X obj -184 171 specCentroid~ 2048;
 #X obj -249 300 vcf~ 10;
 #X obj -127 89 loadbang;
 #X obj -249 108 readsf~;
@@ -10,7 +9,7 @@
 -66577 0;
 #X msg -249 28 open ../sound/guitar.wav \, start;
 #X obj -195 398 hsl 128 15 40 100 0 0 empty empty master-volume -2
--8 0 12 -262144 -1 -1 9100 1;
+-8 0 12 -262144 -1 -1 0 1;
 #N canvas 124 252 301 292 volume 0;
 #X obj -205 112 *~;
 #X obj -205 134 dac~;
@@ -59,16 +58,17 @@ therefore have a higher centroid than the sustain. So the filter sweeps
 upwards during an attack and falls downward during the sustain. We
 ignore any centroid reports above 10kHz \, and smooth the changes out
 with a line~.;
-#X connect 0 0 15 0;
-#X connect 1 0 10 0;
-#X connect 2 0 14 0;
-#X connect 3 0 1 0;
-#X connect 3 0 0 0;
-#X connect 4 0 3 0;
-#X connect 7 0 3 0;
-#X connect 8 0 9 1;
-#X connect 10 0 9 0;
-#X connect 12 0 1 1;
-#X connect 13 0 12 0;
-#X connect 14 0 0 0;
-#X connect 15 0 13 0;
+#X obj -184 174 tID/specCentroid~ 2048;
+#X connect 0 0 9 0;
+#X connect 1 0 13 0;
+#X connect 2 0 0 0;
+#X connect 2 0 17 0;
+#X connect 3 0 2 0;
+#X connect 6 0 2 0;
+#X connect 7 0 8 1;
+#X connect 9 0 8 0;
+#X connect 11 0 0 1;
+#X connect 12 0 11 0;
+#X connect 13 0 17 0;
+#X connect 14 0 12 0;
+#X connect 17 0 14 0;

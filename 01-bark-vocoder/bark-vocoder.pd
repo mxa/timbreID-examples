@@ -78,7 +78,7 @@ bank. Be careful to do this with the volume low to avoid sudden blasts
 of loudness.;
 #X restore 34 415 pd loudness-curve;
 #X obj 255 126 hsl 128 15 40 100 0 0 master-volume empty master-volume
-8 8 0 12 -262144 -1 -1 7900 1;
+8 8 0 12 -262144 -1 -1 0 1;
 #X floatatom 390 319 5 1 108 1 MIDI fund -;
 #X floatatom 252 349 5 0 1000 1 portamento portamento-set portamento
 ;
@@ -98,7 +98,7 @@ of loudness.;
 #X connect 0 0 3 0;
 #X restore 34 373 pd init;
 #X obj 255 319 hsl 128 15 0 127 0 0 fund fund-set fundamental 16 8
-0 12 -262144 -1 -1 4700 1;
+0 12 -262144 -1 -1 5000 1;
 #X obj 105 202 r bs;
 #X obj 252 166 tgl 15 0 refresh refresh-set refresh-on-off 17 7 0 12
 -262144 -1 -1 1 1;
@@ -165,7 +165,6 @@ just low-level noise.;
 #X connect 22 0 13 0;
 #X connect 23 0 20 1;
 #X restore 34 274 pd list-process;
-#X obj 34 244 barkSpec~ 1024 0.5;
 #X text 689 421 timbreID - William Brent 2010;
 #X floatatom 252 385 5 0 100 1 threshold thresh-set thresh;
 #X text 249 416 Shift-drag the threshold number box to change the minimum
@@ -185,13 +184,13 @@ the live input \, you should use headphones to avoid feedback.;
 #X msg 34 140 0;
 #X obj 130 194 f;
 #X obj 160 194 + 1;
-#N canvas 0 0 450 300 (subpatch) 0;
+#N canvas 0 22 450 300 (subpatch) 0;
 #X array syllable-durations 9 float 2;
 #X coords 0 350 9 0 400 280 1 0 0;
 #X restore 338 41 graph;
 #X obj 130 268 t f b;
 #X obj 63 428 del;
-#N canvas 0 0 450 300 (subpatch) 0;
+#N canvas 0 22 450 300 (subpatch) 0;
 #X array scale 18 float 2;
 #X coords 0 108 18 21 400 280 1 0 0;
 #X restore 339 361 graph;
@@ -211,9 +210,9 @@ the live input \, you should use headphones to avoid feedback.;
 #X obj 66 108 s del-stop;
 #X obj 130 246 tabread syllable-durations;
 #X msg 32 523 offset 1;
-#X obj 72 585 tabletool scale;
 #X msg 81 554 offset -1;
 #X text 117 515 Transpose the scale up/down;
+#X obj 72 585 tID/tabletool scale;
 #X connect 0 0 1 0;
 #X connect 0 1 21 0;
 #X connect 1 0 2 0;
@@ -236,8 +235,8 @@ the live input \, you should use headphones to avoid feedback.;
 #X connect 19 0 18 1;
 #X connect 20 0 10 0;
 #X connect 22 0 5 0;
-#X connect 23 0 24 0;
-#X connect 25 0 24 0;
+#X connect 23 0 26 0;
+#X connect 24 0 26 0;
 #X restore 34 435 pd sequencer;
 #X obj 252 286 tgl 15 0 seq-switch seq-switch-set sequencer-on-off
 17 7 0 12 -262144 -1 -1 0 1;
@@ -275,17 +274,18 @@ the live input \, you should use headphones to avoid feedback.;
 #X connect 15 0 1 0;
 #X connect 15 1 12 0;
 #X restore 35 82 pd sf-player;
-#X obj 104 61 tgl 15 0 empty empty loop 17 7 0 12 -262144 -1 -1 1 1
+#X obj 104 61 tgl 15 0 empty empty loop 17 7 0 12 -262144 -1 -1 0 1
 ;
 #X obj 35 58 tgl 15 0 empty play-toggle-set play 17 7 0 12 -262144
--1 -1 1 1;
+-1 -1 0 1;
 #X text 249 249 Try the auto-sequencer. Check out [pd sequencer] if
 you'd like to change the melody.;
-#X connect 3 0 17 0;
+#X obj 34 244 tID/barkSpec~ 1024 0.5;
+#X connect 3 0 30 0;
 #X connect 4 0 3 0;
 #X connect 5 0 3 1;
-#X connect 14 0 17 0;
-#X connect 17 0 16 0;
-#X connect 27 0 17 0;
-#X connect 28 0 27 1;
-#X connect 29 0 27 0;
+#X connect 14 0 30 0;
+#X connect 26 0 30 0;
+#X connect 27 0 26 1;
+#X connect 28 0 26 0;
+#X connect 30 0 16 0;

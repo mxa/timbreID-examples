@@ -2,7 +2,6 @@
 #X declare -path abstractions;
 #X obj 169 457 nbx 3 28 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 28
 -262144 -1 -1 0 256;
-#X obj 116 344 timbreID;
 #X obj 82 -34 adc~;
 #X msg 582 366 uncluster;
 #X msg 664 481 clear;
@@ -43,7 +42,6 @@
 #X msg 555 333 cluster_list \$1;
 #X obj 210 393 print cluster;
 #X text 631 312 <-- print out cluster lists;
-#X obj 82 124 bfcc~ 1024 0.5;
 #N canvas 236 258 836 512 sequencer 0;
 #X obj 24 14 inlet;
 #X obj 24 439 outlet;
@@ -167,7 +165,6 @@ fill the window with a good portion of immediately post-onset sound.
 0;
 #X obj 1 -85 cnv 10 10 400 empty empty empty 20 12 0 14 -233017 -66577
 0;
-#X obj 54 46 bark~;
 #X obj 86 84 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
 #X obj 334 203 loadbang;
@@ -181,12 +178,13 @@ audio.;
 #X obj 54 174 del 11.61;
 #X msg 334 225 \; bark-settings minvel 50 \; bark-settings debounce
 200 \; bark-settings thresh -1 12 \;;
-#X connect 0 0 5 0;
-#X connect 5 0 6 0;
-#X connect 5 0 10 0;
+#X obj 54 46 tID/bark~;
+#X connect 0 0 11 0;
+#X connect 6 0 10 0;
 #X connect 7 0 11 0;
-#X connect 8 0 5 0;
-#X connect 10 0 1 0;
+#X connect 9 0 1 0;
+#X connect 11 0 5 0;
+#X connect 11 0 9 0;
 #X restore 140 44 pd onsets;
 #X obj 151 74 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
@@ -306,29 +304,31 @@ sample.;
 one of these switches may cause an onset! I use an external mouse to
 avoid this \, or you can try to mess with the minvel thresh for bark~
 ;
-#X connect 0 0 6 0;
-#X connect 1 0 0 0;
-#X connect 1 0 16 0;
-#X connect 1 3 13 0;
-#X connect 2 0 15 0;
-#X connect 2 0 27 0;
-#X connect 3 0 37 0;
-#X connect 4 0 37 0;
-#X connect 5 0 37 0;
-#X connect 9 0 37 0;
-#X connect 10 0 37 0;
-#X connect 11 0 12 0;
-#X connect 12 0 37 0;
-#X connect 15 0 30 0;
-#X connect 16 0 31 0;
-#X connect 27 0 15 0;
-#X connect 27 0 28 0;
-#X connect 30 1 39 0;
-#X connect 32 0 1 0;
-#X connect 33 0 1 0;
+#X obj 82 124 tID/bfcc~ 1024 0.5;
+#X obj 116 344 tID/timbreID;
+#X connect 0 0 5 0;
+#X connect 1 0 25 0;
+#X connect 1 0 41 0;
+#X connect 2 0 35 0;
+#X connect 3 0 35 0;
+#X connect 4 0 35 0;
+#X connect 8 0 35 0;
+#X connect 9 0 35 0;
+#X connect 10 0 11 0;
+#X connect 11 0 35 0;
+#X connect 14 0 29 0;
+#X connect 25 0 26 0;
+#X connect 25 0 41 0;
+#X connect 28 1 37 0;
+#X connect 30 0 42 0;
+#X connect 31 0 42 0;
+#X connect 32 0 31 1;
+#X connect 33 0 42 1;
 #X connect 34 0 33 1;
-#X connect 35 0 1 1;
-#X connect 36 0 35 1;
-#X connect 39 0 33 0;
-#X connect 39 0 35 0;
-#X connect 40 0 37 0;
+#X connect 37 0 31 0;
+#X connect 37 0 33 0;
+#X connect 38 0 35 0;
+#X connect 41 0 28 0;
+#X connect 42 0 0 0;
+#X connect 42 0 14 0;
+#X connect 42 3 12 0;
