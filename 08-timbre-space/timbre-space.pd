@@ -1,4 +1,4 @@
-#N canvas 167 426 639 450 10;
+#N canvas 573 350 639 450 10;
 #X declare -path ./abstractions;
 #X declare -lib Gem;
 #X declare -lib hcs;
@@ -603,11 +603,11 @@ master-volume 8 8 0 12 -262144 -1 -1 10583 1;
 #X connect 38 0 37 0;
 #X restore 36 103 pd gem;
 #X obj 39 313 hsl 128 15 0.05 1 0 0 mouse-radius mouse-radius-set mouse-radius
-8 8 0 12 -262144 -1 -1 2674 1;
+8 8 0 12 -262144 -1 -1 4874 1;
 #X obj 36 208 tgl 15 0 mouseover-on mouseover-on-set Mouseover 17 7
 0 12 -262144 -1 -1 0 1;
 #X obj 39 336 hsl 128 15 0.03 0.25 0 0 point-size empty point-size
-8 8 0 12 -262144 -1 -1 0 1;
+8 8 0 12 -262144 -1 -1 6600 1;
 #N canvas 30 87 507 474 rotate 0;
 #X obj 43 94 tgl 15 0 render-points render-points-set Points 17 7 0
 10 -262144 -1 -1 0 1;
@@ -950,11 +950,11 @@ BFCC1 BFCC2 BFCC3 BFCC4 BFCC5 BFCC6 BFCC7;
 #X restore 36 43 pd init;
 #X obj 183 36 cnv 15 256 30 empty empty empty 20 12 0 14 -261234 -66577
 0;
-#N canvas 310 62 890 729 analysis 0;
+#N canvas 310 62 836 729 analysis 1;
 #X obj 31 118 s window-size;
-#X obj 277 564 bng 15 250 50 0 empty empty empty 17 7 0 10 -258113
--1 -1;
-#X obj 103 488 bng 15 250 50 0 empty empty empty 17 7 0 10 -4034 -1
+#X obj 93 558 bng 15 250 50 0 empty empty empty 17 7 0 10 -258113 -1
+-1;
+#X obj 30 496 bng 15 250 50 0 empty empty empty 17 7 0 10 -4034 -1
 -1;
 #N canvas 363 120 835 602 analysis 0;
 #X obj 604 224 cnv 15 200 30 empty empty empty 20 12 0 14 -261234 -66577
@@ -1304,12 +1304,12 @@ counter;
 #X connect 30 0 31 1;
 #X connect 31 0 33 0;
 #X connect 32 0 10 0;
-#X restore 153 602 pd analysis;
-#X obj 153 632 bng 15 250 50 0 empty empty Done 17 7 0 12 -262144 -1
+#X restore 30 583 pd analysis;
+#X obj 30 609 bng 15 250 50 0 empty empty Done 17 7 0 12 -262144 -1
 -1;
-#X obj 214 524 bng 15 250 50 0 empty empty empty 17 7 0 12 -4034 -1
+#X obj 61 534 bng 15 250 50 0 empty empty empty 17 7 0 12 -4034 -1
 -1;
-#X text 158 488 ...OR...;
+#X text 55 507 ...OR...;
 #N canvas 628 126 444 409 tID-samples 0;
 #N canvas 296 22 908 679 load-samples 0;
 #X obj 278 199 f;
@@ -1711,7 +1711,7 @@ out of timbreID;
 ;
 #X obj 9 232 table frame-start-samp;
 #X connect 11 0 12 0;
-#X restore 564 462 pd tID-samples;
+#X restore 549 462 pd tID-samples;
 #X msg 71 350 ../sound/individual-samples/*.wav;
 #X obj 31 384 s sample-directory;
 #X msg 31 320 ../sound/voice.wav;
@@ -1758,31 +1758,30 @@ out of timbreID;
 #X connect 16 1 7 1;
 #X connect 16 2 17 0;
 #X connect 19 0 8 0;
-#X restore 564 482 pd grain-info;
-#X obj 423 292 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X restore 549 482 pd grain-info;
+#X obj 408 292 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 423 312 openpanel;
-#X obj 423 334 split_path;
-#X obj 523 398 s sample-directory;
-#X msg 423 356 \$1/*.wav;
-#X obj 560 331 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj 408 312 openpanel;
+#X obj 408 334 split_path;
+#X obj 508 398 s sample-directory;
+#X msg 408 356 \$1/*.wav;
+#X obj 545 331 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 560 351 openpanel;
-#X text 236 524 Load a previously-stored analysis file;
+#X obj 545 351 openpanel;
+#X text 83 534 Load a previously-stored analysis file;
 #X msg 155 77 8192;
-#X text 298 564 Store analysis results to a separate file for later
+#X text 114 558 Store analysis results to a separate file for later
 (add the .timid file extension when you name it).;
-#X text 580 330 Single file;
-#X obj 340 667 cnv 15 1 1 empty empty 5) 0 0 0 28 -233017 -66577 0
-;
+#X text 565 330 Single file;
+#X obj 27 669 cnv 15 1 1 empty empty 5) 0 0 0 28 -233017 -66577 0;
 #X obj 31 44 cnv 15 1 1 empty empty 1) 0 0 0 28 -233017 -66577 0;
 #X obj 31 184 cnv 15 1 1 empty empty 3) 0 0 0 28 -233017 -66577 0;
 #X text 71 458 Analyze. This will choke Pd for a few seconds;
 #X obj 31 464 cnv 15 1 1 empty empty 4) 0 0 0 28 -233017 -66577 0;
 #X text 72 29 Set a grain size in samples;
 #X text 72 46 (should be a power of 2);
-#X text 444 291 Entire folder of .wav files;
-#X text 379 648 Go back to the parent patch \, turn on GEM rendering
+#X text 429 291 Entire folder of .wav files;
+#X text 66 650 Go back to the parent patch \, turn on GEM rendering
 \, click "Plot" \, and turn on "Mouseover". Pick different features
 for the axes and click "Plot" again as needed.;
 #N canvas 84 65 450 288 OPENPANEL-notes 0;
@@ -1799,10 +1798,10 @@ be fed to a message like;
 #X text 37 201 in order to load all the .wav or .aiff files in the
 directory. There may be a better strategy in the future - tweak this
 example as needed.;
-#X restore 423 248 pd OPENPANEL-notes;
-#X obj 423 178 cnv 15 400 60 empty empty empty 20 12 0 14 -261234 -66577
+#X restore 408 248 pd OPENPANEL-notes;
+#X obj 408 178 cnv 15 400 60 empty empty empty 20 12 0 14 -261234 -66577
 0;
-#X text 437 190 NOTE: this patch now *requires* [folder_list] and [split_path]
+#X text 422 190 NOTE: this patch now *requires* [folder_list] and [split_path]
 from the hcs library in Pd-extended.;
 #X obj 361 119 s db-thresh;
 #X msg 441 77 70;
@@ -1812,7 +1811,7 @@ from the hcs library in Pd-extended.;
 #X text 410 26 Choose a threshold in dB. Grains below this threshold
 won't be included in the plot \, which is good when you don't want
 to bother plotting gaps of silence.;
-#X text 554 248 <<<<< More details on using [openpanel];
+#X text 539 248 <<<<< More details on using [openpanel];
 #X text 28 208 Provide a path to load a single soundfile or an entire
 folder of soundfiles to analyze. The patch will make more sample arrays
 for you as needed. Use a wildcard like *.wav to load only wav files
