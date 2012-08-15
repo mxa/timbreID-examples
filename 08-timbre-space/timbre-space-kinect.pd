@@ -462,7 +462,7 @@ Synapse switch http://synapsekinect.tumblr.com/;
 #X obj 123 304 - 16;
 #X obj 307 224 s \$0-head;
 #X obj 156 283 r \$0-handdistance;
-#N canvas 704 169 250 167 smoothing 1;
+#N canvas 704 169 250 167 smoothing 0;
 #X obj 10 19 inlet;
 #X obj 10 49 unpack f f f;
 #X obj 10 119 outlet;
