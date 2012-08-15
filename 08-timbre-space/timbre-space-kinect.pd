@@ -1,12 +1,9 @@
-#N canvas 48 541 628 412 10;
-#X declare -lib zexy;
-#X declare -lib zexy;
-#X declare -lib zexy;
+#N canvas 16 486 628 412 10;
 #X declare -path ./abstractions;
 #X declare -lib Gem;
 #X declare -lib hcs;
 #X obj 39 338 hsl 128 16 40 100 0 0 master-volume master-volume-set
-master-volume 8 8 0 12 -262144 -1 -1 11983 1;
+master-volume 8 8 0 12 -262144 -1 -1 10583 1;
 #N canvas 0 22 724 484 players 0;
 #X obj 311 235 dac~;
 #X obj 311 211 *~;
@@ -116,7 +113,7 @@ master-volume 8 8 0 12 -262144 -1 -1 11983 1;
 #X restore 36 85 pd players;
 #X obj 36 188 bng 16 250 50 0 render-plot empty Plot 20 8 0 12 -203904
 -1 -1;
-#N canvas 100 383 385 567 gem 1;
+#N canvas 100 383 385 567 gem 0;
 #X obj 19 381 gemlist;
 #X obj 19 444 translateXYZ;
 #X obj 19 402 separator;
@@ -671,7 +668,7 @@ mouse-radius 8 8 0 12 -262144 -1 -1 9345 1;
 #X obj 36 226 tgl 16 0 kinect-on kinect-on-set Kinect-via-Synapse 20
 8 0 12 -262144 -1 -1 1 1;
 #X obj 39 275 hsl 128 16 0.03 0.5 0 0 point-size empty point-size 8
-8 0 12 -262144 -1 -1 2400 1;
+8 0 12 -262144 -1 -1 1800 1;
 #N canvas 518 247 320 203 timbreID 0;
 #X msg 227 93 clear;
 #X obj 22 23 r \$0-tID;
@@ -731,11 +728,11 @@ mouse-radius 8 8 0 12 -262144 -1 -1 9345 1;
 #X restore 36 45 pd init;
 #X obj 183 36 cnv 15 256 30 empty empty empty 20 12 0 14 -261234 -66577
 0;
-#N canvas 660 238 890 729 analysis 0;
+#N canvas 644 143 838 779 analysis 1;
 #X obj 31 118 s window-size;
-#X obj 277 564 bng 15 250 50 0 empty empty empty 17 7 0 10 -258113
--1 -1;
-#X obj 103 488 bng 15 250 50 0 empty empty empty 17 7 0 10 -4034 -1
+#X obj 95 569 bng 15 250 50 0 empty empty empty 17 7 0 10 -258113 -1
+-1;
+#X obj 32 496 bng 15 250 50 0 empty empty empty 17 7 0 10 -4034 -1
 -1;
 #N canvas 363 120 835 602 analysis 0;
 #X obj 604 224 cnv 15 200 30 empty empty empty 20 12 0 14 -261234 -66577
@@ -1085,12 +1082,12 @@ counter;
 #X connect 30 0 31 1;
 #X connect 31 0 33 0;
 #X connect 32 0 10 0;
-#X restore 153 602 pd analysis;
-#X obj 153 632 bng 15 250 50 0 empty empty Done 17 7 0 12 -262144 -1
+#X restore 32 594 pd analysis;
+#X obj 32 624 bng 15 250 50 0 empty empty Done 17 7 0 12 -262144 -1
 -1;
-#X obj 214 524 bng 15 250 50 0 empty empty empty 17 7 0 12 -4034 -1
+#X obj 63 544 bng 15 250 50 0 empty empty empty 17 7 0 12 -4034 -1
 -1;
-#X text 158 488 ...OR...;
+#X text 50 514 ...OR...;
 #N canvas 628 126 444 409 tID-samples 0;
 #N canvas 296 22 908 679 load-samples 0;
 #X obj 278 199 f;
@@ -1549,13 +1546,12 @@ out of timbreID;
 #X obj 560 331 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X obj 560 351 openpanel;
-#X text 236 524 Load a previously-stored analysis file;
+#X text 85 544 Load a previously-stored analysis file;
 #X msg 155 77 8192;
-#X text 298 564 Store analysis results to a separate file for later
+#X text 116 569 Store analysis results to a separate file for later
 (add the .timid file extension when you name it).;
 #X text 580 330 Single file;
-#X obj 340 667 cnv 15 1 1 empty empty 5) 0 0 0 28 -233017 -66577 0
-;
+#X obj 32 683 cnv 15 1 1 empty empty 5) 0 0 0 28 -233017 -66577 0;
 #X obj 31 44 cnv 15 1 1 empty empty 1) 0 0 0 28 -233017 -66577 0;
 #X obj 31 184 cnv 15 1 1 empty empty 3) 0 0 0 28 -233017 -66577 0;
 #X text 71 458 Analyze. This will choke Pd for a few seconds;
@@ -1563,9 +1559,6 @@ out of timbreID;
 #X text 72 29 Set a grain size in samples;
 #X text 72 46 (should be a power of 2);
 #X text 444 291 Entire folder of .wav files;
-#X text 379 648 Go back to the parent patch \, turn on GEM rendering
-\, click "Plot" \, and turn on "Mouseover". Pick different features
-for the axes and click "Plot" again as needed.;
 #N canvas 514 27 450 288 OPENPANEL-notes 0;
 #X msg 83 164 \$1/*.wav;
 #X msg 263 164 \$1/*.aiff;
@@ -1600,6 +1593,12 @@ for you as needed. Use a wildcard like *.wav to load only wav files
 \, for instance. The default maximum length of samples is 1 minute
 \, but you can change that in the [pd init] sub-patch at the parent
 level. You can also use the [openpanel] buttons at right >>>>>>;
+#X text 71 664 Go back to the parent patch \, run Synapse (http://synapsekinect.tumblr.com)
+\, turn on GEM rendering \, click "Plot" \, and turn on "Kinect-via-Synapse".
+Hold your hands up so that the elbows have a 90 degrees angle until
+the skeleton is overlayed in Synapse. Adjust head and hand distance
+to your position. Pick different features for the axes and click "Plot"
+again as needed.;
 #X connect 1 0 3 2;
 #X connect 2 0 3 0;
 #X connect 3 0 4 0;
@@ -1616,9 +1615,9 @@ level. You can also use the [openpanel] buttons at right >>>>>>;
 #X connect 20 0 21 0;
 #X connect 21 0 18 0;
 #X connect 23 0 0 0;
-#X connect 39 0 38 0;
-#X connect 40 0 38 0;
-#X connect 41 0 38 0;
+#X connect 38 0 37 0;
+#X connect 39 0 37 0;
+#X connect 40 0 37 0;
 #X restore 194 43 pd analysis;
 #X text 279 43 <<<<< START HERE;
 #X obj 36 169 tgl 16 0 render-on render-on-set GEM-render 20 8 0 12
@@ -1984,9 +1983,9 @@ BFCC1 BFCC2 BFCC3 BFCC4 BFCC5 BFCC6 BFCC7;
 #X floatatom 274 333 5 0 0 1 zoom-z zoom-control-z-range-set zoom-control-z-range
 ;
 #X obj 39 294 hsl 128 16 -15 15 0 0 \$0-headdistance empty head-distance
-8 8 0 12 -262144 -1 -1 2400 1;
+8 8 0 12 -262144 -1 -1 5900 1;
 #X obj 39 313 hsl 128 16 -10 20 0 0 \$0-handdistance empty hand-distance
-8 8 0 12 -262144 -1 -1 10000 1;
+8 8 0 12 -262144 -1 -1 11300 1;
 #X obj 486 171 tgl 16 0 \$0-continuous \$0-continuous-set continuous
-20 8 0 12 -262144 -1 -1 1 1;
+20 8 0 12 -262144 -1 -1 0 1;
 #X floatatom 511 269 5 6 60 0 - - #0-framerate;
