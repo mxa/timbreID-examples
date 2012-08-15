@@ -1,7 +1,6 @@
 #N canvas 1 53 651 338 10;
 #X obj 113 13 inlet;
 #X obj 363 13 inlet;
-#X obj 363 67 purepd/float_argument \$1 0.15;
 #X obj 374 40 loadbang;
 #X obj 189 311 outlet;
 #X obj 189 116 float;
@@ -14,15 +13,16 @@
 #X obj 242 282 pddp/pddplink http://www.itl.nist.gov/div898/handbook/pmc/section4/pmc431.htm
 ;
 #X obj 363 103 clip 0 1;
-#X connect 0 0 7 0;
-#X connect 1 0 2 0;
+#X obj 363 67 float_argument \$1 0.15;
+#X connect 0 0 6 0;
+#X connect 1 0 13 0;
 #X connect 2 0 13 0;
-#X connect 3 0 2 0;
-#X connect 5 0 11 0;
-#X connect 7 0 5 1;
-#X connect 7 1 5 0;
-#X connect 7 1 9 0;
-#X connect 9 0 11 1;
-#X connect 11 0 4 0;
-#X connect 11 0 9 1;
-#X connect 13 0 11 2;
+#X connect 4 0 10 0;
+#X connect 6 0 4 1;
+#X connect 6 1 4 0;
+#X connect 6 1 8 0;
+#X connect 8 0 10 1;
+#X connect 10 0 3 0;
+#X connect 10 0 8 1;
+#X connect 12 0 10 2;
+#X connect 13 0 12 0;
