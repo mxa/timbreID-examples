@@ -1,0 +1,30 @@
+#N canvas 807 35 532 616 10;
+#X declare -lib Gem;
+#X msg 16 116 create \, 1;
+#X msg 28 138 0 \, destroy;
+#X obj 18 206 gemhead;
+#X text 106 134 Gem window;
+#X obj 16 160 gemwin 50;
+#X obj 204 208 receive frame;
+#X obj 307 208 receive file;
+#N canvas 0 22 450 300 init 0;
+#X obj 7 26 loadbang;
+#X msg 7 107 0;
+#X obj 7 77 del 1000;
+#X msg 7 140 \; pd dsp \$1;
+#X msg 39 107 1;
+#X obj 7 53 t b b;
+#X text 6 182 who knows why \, but without this the subprocess doesn't
+start;
+#X obj 247 35 declare -lib Gem;
+#X connect 0 0 5 0;
+#X connect 1 0 3 0;
+#X connect 2 0 1 0;
+#X connect 4 0 3 0;
+#X connect 5 0 2 0;
+#X connect 5 1 4 0;
+#X restore 432 82 pd init;
+#X obj -7 114 cnv 15 20 20 empty empty 2 6 10 0 14 -261234 -66577 0
+;
+#X connect 0 0 4 0;
+#X connect 1 0 4 0;

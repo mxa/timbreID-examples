@@ -1,10 +1,10 @@
-#N canvas 16 486 628 412 10;
+#N canvas 35 502 628 412 10;
 #X declare -lib zexy;
 #X declare -lib zexy;
 #X declare -lib zexy;
 #X declare -path ./abstractions;
-#X declare -lib Gem;
 #X declare -lib hcs;
+#X declare -lib Gem;
 #X obj 39 338 hsl 128 16 40 100 0 0 master-volume master-volume-set
 master-volume 8 8 0 12 -262144 -1 -1 10583 1;
 #N canvas 0 22 724 484 players 0;
@@ -116,7 +116,7 @@ master-volume 8 8 0 12 -262144 -1 -1 10583 1;
 #X restore 36 85 pd players;
 #X obj 36 188 bng 16 250 50 0 render-plot empty Plot 20 8 0 12 -203904
 -1 -1;
-#N canvas 100 383 385 567 gem 0;
+#N canvas 525 48 613 600 gem 0;
 #X obj 19 381 gemlist;
 #X obj 19 444 translateXYZ;
 #X obj 19 402 separator;
@@ -182,7 +182,7 @@ master-volume 8 8 0 12 -262144 -1 -1 10583 1;
 #X restore 247 119 pd lighting;
 #X obj 19 181 f;
 #X obj 19 270 f;
-#N canvas 610 141 347 718 coord-storage 0;
+#N canvas 668 154 347 718 coord-storage 0;
 #X obj 34 17 inlet;
 #X obj 109 166 r coord-y;
 #X obj 96 145 r coord-x;
@@ -212,7 +212,7 @@ master-volume 8 8 0 12 -262144 -1 -1 10583 1;
 #X obj 81 341 tID/nearestPoint 3;
 #X obj 81 209 pack f f f;
 #X obj 138 187 r coord-z;
-#X obj 74 659 s \$0-trig-sound;
+#X obj 75 659 s \$0-trig-sound;
 #X obj 18 512 pack f f;
 #X obj 209 556 r \$0-continuous;
 #X obj 75 631 spigot 1;
@@ -327,13 +327,13 @@ master-volume 8 8 0 12 -262144 -1 -1 10583 1;
 #X obj 189 539 + 8;
 #X obj 118 401 r \$0-head;
 #X obj 225 514 r \$0-headdistance;
-#X obj 152 463 mapping/smooth 0.3;
-#X obj 187 485 mapping/smooth 0.3;
-#X obj 121 448 mapping/smooth 0.3;
 #X text 198 639 default: -1 1 -1 1 1 20;
 #X msg 121 618 view 0 0 20 \, perspec -1 1 -1 1 1.1 50;
 #X obj 619 585 r \$0-framerate;
 #X msg 618 611 frame \$1;
+#X obj 187 485 smooth 0.3;
+#X obj 152 463 smooth 0.3;
+#X obj 121 448 smooth 0.3;
 #X connect 0 0 3 0;
 #X connect 1 0 0 0;
 #X connect 2 0 27 0;
@@ -372,27 +372,27 @@ master-volume 8 8 0 12 -262144 -1 -1 10583 1;
 #X connect 38 0 5 0;
 #X connect 39 0 1 0;
 #X connect 40 0 4 0;
-#X connect 42 0 57 0;
-#X connect 42 1 55 0;
-#X connect 42 2 56 0;
+#X connect 42 0 61 0;
+#X connect 42 1 60 0;
+#X connect 42 2 59 0;
 #X connect 43 0 47 0;
 #X connect 44 0 51 0;
 #X connect 45 0 52 0;
 #X connect 46 0 26 0;
 #X connect 47 0 46 0;
-#X connect 48 0 59 0;
+#X connect 48 0 56 0;
 #X connect 49 0 11 0;
 #X connect 50 0 36 0;
 #X connect 51 0 47 1;
 #X connect 52 0 47 2;
 #X connect 53 0 42 0;
 #X connect 54 0 52 1;
-#X connect 55 0 44 0;
-#X connect 56 0 45 0;
-#X connect 57 0 43 0;
-#X connect 59 0 26 0;
-#X connect 60 0 61 0;
-#X connect 61 0 26 0;
+#X connect 56 0 26 0;
+#X connect 57 0 58 0;
+#X connect 58 0 26 0;
+#X connect 59 0 45 0;
+#X connect 60 0 44 0;
+#X connect 61 0 43 0;
 #X restore 247 79 pd gemwin-settings;
 #X obj 19 300 t b b f f;
 #N canvas 103 289 657 694 kinect 0;
@@ -437,10 +437,10 @@ master-volume 8 8 0 12 -262144 -1 -1 10583 1;
 #X obj 151 180 mrpeach/pipelist;
 #X obj 212 546 mrpeach/udpsend;
 #X msg 239 498 connect localhost 12346;
-#X obj 212 569 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+#X obj 212 569 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X obj 212 468 mrpeach/packOSC;
-#X obj 212 367 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+#X obj 212 367 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X obj 212 386 metro 2000;
 #X obj 54 283 / 40;
@@ -462,15 +462,15 @@ Synapse switch http://synapsekinect.tumblr.com/;
 #X obj 123 304 - 16;
 #X obj 307 224 s \$0-head;
 #X obj 156 283 r \$0-handdistance;
-#N canvas 704 169 510 394 smoothing 0;
-#X obj 51 28 inlet;
-#X obj 50 58 unpack f f f;
-#X obj 45 151 outlet;
-#X obj 170 144 outlet;
-#X obj 291 141 outlet;
-#X obj 46 103 mapping/smooth 0.4;
-#X obj 170 101 mapping/smooth 0.4;
-#X obj 291 101 mapping/smooth 0.4;
+#N canvas 704 169 250 167 smoothing 1;
+#X obj 10 19 inlet;
+#X obj 10 49 unpack f f f;
+#X obj 10 119 outlet;
+#X obj 80 119 outlet;
+#X obj 151 119 outlet;
+#X obj 10 94 smooth 0.4;
+#X obj 80 95 smooth 0.4;
+#X obj 151 94 smooth 0.4;
 #X connect 0 0 1 0;
 #X connect 1 0 5 0;
 #X connect 1 1 6 0;
@@ -669,9 +669,9 @@ Synapse switch http://synapsekinect.tumblr.com/;
 #X obj 39 256 hsl 128 16 0.05 2.7 0 0 mouse-radius mouse-radius-set
 mouse-radius 8 8 0 12 -262144 -1 -1 9345 1;
 #X obj 36 226 tgl 16 0 kinect-on kinect-on-set Kinect-via-Synapse 20
-8 0 12 -262144 -1 -1 1 1;
+8 0 12 -262144 -1 -1 0 1;
 #X obj 39 275 hsl 128 16 0.03 0.5 0 0 point-size empty point-size 8
-8 0 12 -262144 -1 -1 4000 1;
+8 0 12 -262144 -1 -1 0 1;
 #N canvas 518 247 320 203 timbreID 0;
 #X msg 227 93 clear;
 #X obj 22 23 r \$0-tID;
@@ -703,15 +703,14 @@ mouse-radius 8 8 0 12 -262144 -1 -1 9345 1;
 ;
 #X floatatom 274 314 5 0 0 1 zoom-y zoom-control-y-range-set zoom-control-y-range
 ;
-#N canvas 0 66 426 470 init 0;
+#N canvas 26 22 426 470 init 0;
 #X obj 13 17 loadbang;
 #X msg 13 408 \; pd dsp 1 \;;
 #X obj 88 68 s lb1;
 #X obj 73 92 s lb2;
 #X obj 58 116 s lb3;
 #X obj 231 14 declare -path ./abstractions;
-#X obj 231 37 declare -lib Gem;
-#X obj 231 58 declare -lib hcs;
+#X obj 231 38 declare -lib hcs;
 #X msg 28 187 \; db-thresh 0 \; x-mapping-set-set 12 \; y-mapping-set-set
 3 \; x-mapping-set 12 \; y-mapping-set 3 \; z-mapping-set 9 \; R-mapping-set
 13 \; G-mapping-set 14 \; B-mapping-set 15 \; render-points 0 \; samplerate
@@ -720,14 +719,15 @@ mouse-radius 8 8 0 12 -262144 -1 -1 9345 1;
 #X msg 43 139 0;
 #X obj 13 38 t b b b b b b;
 #X obj 43 161 s \$0-continuous-set;
-#X connect 0 0 10 0;
-#X connect 9 0 11 0;
-#X connect 10 0 1 0;
-#X connect 10 1 8 0;
-#X connect 10 2 9 0;
-#X connect 10 3 4 0;
-#X connect 10 4 3 0;
-#X connect 10 5 2 0;
+#X obj 231 62 declare -lib Gem;
+#X connect 0 0 9 0;
+#X connect 8 0 10 0;
+#X connect 9 0 1 0;
+#X connect 9 1 7 0;
+#X connect 9 2 8 0;
+#X connect 9 3 4 0;
+#X connect 9 4 3 0;
+#X connect 9 5 2 0;
 #X restore 36 45 pd init;
 #X obj 183 36 cnv 15 256 30 empty empty empty 20 12 0 14 -261234 -66577
 0;
@@ -1624,7 +1624,7 @@ again as needed.;
 #X restore 194 43 pd analysis;
 #X text 279 43 <<<<< START HERE;
 #X obj 36 169 tgl 16 0 render-on render-on-set GEM-render 20 8 0 12
--262144 -1 -1 1 1;
+-262144 -1 -1 0 1;
 #N canvas 0 22 545 565 grain-info-display 0;
 #X symbolatom 14 35 30 0 0 2 file-name grain-info-file-name-set -;
 #X floatatom 14 85 10 0 0 3 start grain-info-seconds-start-set -;
@@ -1986,9 +1986,9 @@ BFCC1 BFCC2 BFCC3 BFCC4 BFCC5 BFCC6 BFCC7;
 #X floatatom 274 333 5 0 0 1 zoom-z zoom-control-z-range-set zoom-control-z-range
 ;
 #X obj 39 294 hsl 128 16 -15 15 0 0 \$0-headdistance empty head-distance
-8 8 0 12 -262144 -1 -1 4200 1;
+8 8 0 12 -262144 -1 -1 0 1;
 #X obj 39 313 hsl 128 16 -10 20 0 0 \$0-handdistance empty hand-distance
-8 8 0 12 -262144 -1 -1 9500 1;
+8 8 0 12 -262144 -1 -1 0 1;
 #X obj 486 171 tgl 16 0 \$0-continuous \$0-continuous-set continuous
-20 8 0 12 -262144 -1 -1 1 1;
+20 8 0 12 -262144 -1 -1 0 1;
 #X floatatom 511 269 5 6 60 0 - - #0-framerate;
