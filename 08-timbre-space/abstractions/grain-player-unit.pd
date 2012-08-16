@@ -16,7 +16,7 @@
 #X obj 339 126 / 1000;
 #X obj 44 44 unpack f f;
 #X obj 71 268 tabplay~;
-#X msg 153 210 set tID-sample-\$1;
+#X msg 138 209 set tID-sample-\$1;
 #X obj 166 41 t f f;
 #X connect 0 0 11 0;
 #X connect 1 0 8 0;

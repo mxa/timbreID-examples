@@ -200,7 +200,7 @@ master-volume 8 8 0 12 -262144 -1 -1 10583 1;
 #X restore -62 90 pd receives;
 #X obj -88 -38 r \$0-render-on;
 #X obj -88 -11 sel 1 0;
-#N canvas 950 464 638 301 sends 1;
+#N canvas 950 464 638 301 sends 0;
 #X obj 25 19 inlet;
 #X obj 25 178 s \$0-tID;
 #X obj 83 177 s \$0-trig-sound;
@@ -229,9 +229,9 @@ master-volume 8 8 0 12 -262144 -1 -1 10583 1;
 #X obj 39 256 hsl 128 16 0.05 2.7 0 0 \$0-mouse-radius mouse-radius-set
 mouse-radius 8 8 0 12 -262144 -1 -1 9345 1;
 #X obj 36 226 tgl 16 0 \$0-kinect-on kinect-on-set Kinect-via-Synapse
-20 8 0 12 -262144 -1 -1 1 1;
+20 8 0 12 -262144 -1 -1 0 1;
 #X obj 39 275 hsl 128 16 0.03 0.5 0 0 \$0-point-size empty point-size
-8 8 0 12 -262144 -1 -1 6000 1;
+8 8 0 12 -262144 -1 -1 0 1;
 #N canvas 681 303 320 203 timbreID 0;
 #X msg 227 93 clear;
 #X obj 22 23 r \$0-tID;
@@ -240,16 +240,16 @@ mouse-radius 8 8 0 12 -262144 -1 -1 9345 1;
 #X floatatom 22 138 5 0 0 0 - - -;
 #X obj 200 65 t a b;
 #X obj 22 95 tID/timbreID;
-#X obj 91 139 s \$0-feature-list;
 #X obj 200 22 r \$0-load-timid;
+#X obj 91 139 s feature-list;
 #X connect 0 0 3 0;
 #X connect 1 0 6 0;
 #X connect 2 0 5 0;
 #X connect 5 0 3 0;
 #X connect 5 1 0 0;
 #X connect 6 0 4 0;
-#X connect 6 4 7 0;
-#X connect 8 0 2 0;
+#X connect 6 4 8 0;
+#X connect 7 0 2 0;
 #X restore 36 65 pd timbreID;
 #X obj 11 1 cnv 10 400 10 empty empty empty 20 12 0 14 -233017 -66577
 0;
@@ -572,8 +572,8 @@ counter;
 #X obj 52 341 s max-values;
 #X obj 37 52 t b b b b b;
 #X obj 37 373 s update-bfcc-max-min;
-#X obj 105 134 r \$0-feature-list;
 #X obj 73 277 r \$0-feature-list;
+#X obj 105 134 r feature-list;
 #X connect 0 0 11 0;
 #X connect 2 0 1 0;
 #X connect 3 0 4 0;
@@ -586,8 +586,8 @@ counter;
 #X connect 11 2 9 0;
 #X connect 11 3 3 0;
 #X connect 11 4 2 0;
-#X connect 13 0 3 1;
-#X connect 14 0 7 1;
+#X connect 13 0 7 1;
+#X connect 14 0 3 1;
 #X restore 43 522 pd store-max-min;
 #X obj 43 67 t b b b b b;
 #X obj 328 31 inlet;
@@ -599,17 +599,17 @@ counter;
 #X obj 373 256 list length;
 #X obj 358 280 f;
 #X msg 604 335 write \$1;
-#X obj 373 235 r \$0-feature-list;
 #X obj 358 301 s \$0-feature-length;
 #X obj 131 396 s \$0-feature-length;
 #X obj 403 142 s \$0-load-timid;
 #X obj 197 142 s \$0-reset-instance-count;
+#X obj 373 235 r feature-list;
 #X connect 2 0 22 0;
 #X connect 3 0 17 0;
 #X connect 6 0 7 0;
 #X connect 8 0 19 0;
 #X connect 12 0 13 1;
-#X connect 13 0 31 0;
+#X connect 13 0 30 0;
 #X connect 14 0 3 0;
 #X connect 16 0 15 0;
 #X connect 17 0 5 0;
@@ -620,7 +620,7 @@ counter;
 #X connect 19 1 6 0;
 #X connect 19 2 14 0;
 #X connect 19 3 16 0;
-#X connect 19 4 33 0;
+#X connect 19 4 32 0;
 #X connect 20 0 21 0;
 #X connect 21 0 23 0;
 #X connect 22 0 28 0;
@@ -628,13 +628,13 @@ counter;
 #X connect 23 1 6 0;
 #X connect 23 2 27 0;
 #X connect 23 3 24 0;
-#X connect 23 4 33 0;
-#X connect 23 5 32 0;
+#X connect 23 4 32 0;
+#X connect 23 5 31 0;
 #X connect 24 0 25 0;
 #X connect 26 0 27 1;
-#X connect 27 0 30 0;
+#X connect 27 0 29 0;
 #X connect 28 0 10 0;
-#X connect 29 0 26 0;
+#X connect 33 0 26 0;
 #X restore 37 571 pd analysis;
 #X obj 37 601 bng 15 250 50 0 empty empty Done 17 7 0 12 -262144 -1
 -1;
@@ -1171,7 +1171,7 @@ level. You can also use the [openpanel] buttons at right >>>>>>;
 #X restore 194 43 pd analysis;
 #X text 279 43 <<<<< START HERE;
 #X obj 36 169 tgl 16 0 \$0-render-on render-on-set GEM-render 20 8
-0 12 -262144 -1 -1 1 1;
+0 12 -262144 -1 -1 0 1;
 #N canvas 1097 22 545 565 grain-info-display 0;
 #X symbolatom 14 35 30 0 0 2 file-name grain-info-file-name-set -;
 #X floatatom 14 85 10 0 0 3 start grain-info-seconds-start-set -;
@@ -1224,7 +1224,7 @@ level. You can also use the [openpanel] buttons at right >>>>>>;
 #X obj 471 331 tID/tabletool max-values;
 #X obj 452 90 t b b b;
 #X msg 28 31 \$1;
-#X obj 49 114 r \$0-feature-list;
+#X obj 49 114 r feature-list;
 #X connect 0 0 6 0;
 #X connect 1 0 2 0;
 #X connect 3 0 20 0;
@@ -1260,6 +1260,7 @@ level. You can also use the [openpanel] buttons at right >>>>>>;
 #X connect 39 0 0 1;
 #X coords 0 -1 1 1 240 185 2 200 200;
 #X restore 14 355 pd display-bfccs;
+#X obj 144 285 grain-info pitch 11;
 #X obj 384 145 grain-info flux 5;
 #X obj 264 285 grain-info amplitude 12;
 #X obj 144 145 grain-info centroid 3;
@@ -1270,7 +1271,6 @@ level. You can also use the [openpanel] buttons at right >>>>>>;
 #X obj 264 215 grain-info skewness 8;
 #X obj 384 215 grain-info spread 9;
 #X obj 14 285 grain-info zero-crossing 10;
-#X obj 144 285 grain-info pitch 11;
 #X restore 272 238 pd grain-info-display;
 #X text 270 202 Open this sub-patch for;
 #X text 283 147 <<<<< More mapping options;
@@ -1285,11 +1285,11 @@ level. You can also use the [openpanel] buttons at right >>>>>>;
 #X symbolatom 513 112 15 0 0 0 - z-feature-name -;
 #N canvas 9 185 550 338 set-colors 0;
 #X obj 28 47 hradio 15 1 1 20 \$0-R-mapping R-mapping-set empty 0 -8
-0 10 -258113 -1 -1 12;
+0 10 -258113 -1 -1 13;
 #X obj 28 67 hradio 15 1 1 20 \$0-G-mapping G-mapping-set empty 0 -8
 0 10 -4034 -1 -1 14;
 #X obj 28 87 hradio 15 1 1 20 \$0-B-mapping B-mapping-set empty 0 -8
-0 10 -4032 -1 -1 16;
+0 10 -4032 -1 -1 15;
 #X text 32 25 R G B mapping switches;
 #X obj 29 115 bng 15 250 50 0 \$0-render-plot empty Plot 17 7 0 14
 -203904 -1 -1;
@@ -1472,8 +1472,8 @@ BFCC1 BFCC2 BFCC3 BFCC4 BFCC5 BFCC6 BFCC7;
 #X obj 268 94 r \$0-B-mapping;
 #X obj 248 178 r \$0-G-mapping;
 #X obj 229 255 r \$0-R-mapping;
-#X obj -9 14 r \$0-feature-list;
 #X obj 67 241 r \$0-y-mapping;
+#X obj -9 14 r feature-list;
 #X connect 0 0 16 0;
 #X connect 1 1 0 0;
 #X connect 2 0 18 0;
@@ -1500,8 +1500,8 @@ BFCC1 BFCC2 BFCC3 BFCC4 BFCC5 BFCC6 BFCC7;
 #X connect 22 0 7 1;
 #X connect 23 0 9 1;
 #X connect 24 0 11 1;
-#X connect 25 0 12 0;
-#X connect 26 0 3 1;
+#X connect 25 0 3 1;
+#X connect 26 0 12 0;
 #X restore 375 182 pd feature-parsing;
 #X text 25 141 Features used here are:;
 #X text 25 171 0: sample number;
@@ -1529,19 +1529,19 @@ BFCC1 BFCC2 BFCC3 BFCC4 BFCC5 BFCC6 BFCC7;
 #X obj 36 207 bng 16 250 50 0 \$0-reset-axes empty Reset 20 8 0 12
 -204786 -1 -1;
 #X obj 39 294 hsl 128 16 -15 15 0 0 \$0-headdistance empty head-distance
-8 8 0 12 -262144 -1 -1 3500 1;
+8 8 0 12 -262144 -1 -1 0 1;
 #X obj 39 313 hsl 128 16 -15 15 0 0 \$0-handdistance empty hand-distance
-8 8 0 12 -262144 -1 -1 3000 1;
+8 8 0 12 -262144 -1 -1 0 1;
 #X obj 486 171 tgl 16 0 \$0-continuous \$0-continuous-set continuous
-20 8 0 12 -262144 -1 -1 1 1;
-#X obj 486 307 nbx 5 14 1 60 0 0 \$0-framerate \$0-framerate-set framerate
-0 -8 0 10 -262144 -1 -1 25 256;
+20 8 0 12 -262144 -1 -1 0 1;
+#X obj 486 297 nbx 5 14 1 60 0 0 \$0-framerate \$0-framerate-set framerate
+0 -8 0 10 -262144 -1 -1 1 256;
 #X obj 272 295 nbx 4 14 1 20 0 0 \$0-zoom-control-x-range zoom-control-x-range-set
-zoom-x 50 8 0 10 -262144 -1 -1 10.1333 256;
+zoom-x 50 8 0 10 -262144 -1 -1 1 256;
 #X obj 272 312 nbx 4 14 1 20 0 0 \$0-zoom-control-y-range zoom-control-y-range-set
-zoom-y 50 8 0 10 -262144 -1 -1 7.6 256;
+zoom-y 50 8 0 10 -262144 -1 -1 1 256;
 #X obj 272 329 nbx 4 14 1 20 0 0 \$0-zoom-control-z-range zoom-control-z-range-set
-zoom-z 50 8 0 10 -262144 -1 -1 7.6 256;
+zoom-z 50 8 0 10 -262144 -1 -1 1 256;
 #X obj 369 295 nbx 4 14 -20 20 0 0 \$0-zoom-control-x-offset zoom-control-x-offset-set
 offset-x 50 8 0 10 -262144 -1 -1 0 256;
 #X obj 370 331 nbx 4 14 -20 20 0 0 \$0-zoom-control-z-offset zoom-control-z-offset-set
