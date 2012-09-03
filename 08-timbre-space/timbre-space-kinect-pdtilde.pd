@@ -1,4 +1,4 @@
-#N canvas 15 518 628 412 10;
+#N canvas 15 519 628 412 10;
 #X declare -path ./abstractions;
 #X declare -lib hcs;
 #X obj 39 338 hsl 128 16 40 100 0 0 \$0-master-volume master-volume-set
@@ -295,11 +295,11 @@ mouse-radius 8 8 0 12 -262144 -1 -1 6545 1;
 #X restore 36 45 pd init;
 #X obj 183 36 cnv 15 256 30 empty empty empty 20 12 0 14 -261234 -66577
 0;
-#N canvas 730 216 890 729 analysis 0;
-#X obj 31 121 s window-size;
-#X obj 98 494 bng 15 250 50 0 empty empty empty 17 7 0 10 -258113 -1
+#N canvas 648 202 881 633 analysis 0;
+#X obj 31 109 s window-size;
+#X obj 98 482 bng 15 250 50 0 empty empty empty 17 7 0 10 -258113 -1
 -1;
-#X obj 35 424 bng 15 250 50 0 empty empty empty 17 7 0 10 -4034 -1
+#X obj 35 412 bng 15 250 50 0 empty empty empty 17 7 0 10 -4034 -1
 -1;
 #N canvas 658 22 835 602 analysis 0;
 #X obj 575 36 cnv 15 200 30 empty empty empty 20 12 0 14 -261234 -66577
@@ -649,12 +649,12 @@ counter;
 #X connect 27 0 29 0;
 #X connect 28 0 10 0;
 #X connect 33 0 26 0;
-#X restore 35 517 pd analysis;
-#X obj 35 547 bng 15 250 50 0 empty empty Done 17 7 0 12 -262144 -1
+#X restore 35 505 pd analysis;
+#X obj 35 535 bng 15 250 50 0 empty empty Done 17 7 0 12 -262144 -1
 -1;
-#X obj 66 467 bng 15 250 50 0 empty empty empty 17 7 0 12 -4034 -1
+#X obj 66 455 bng 15 250 50 0 empty empty empty 17 7 0 12 -4034 -1
 -1;
-#X text 56 444 ...OR...;
+#X text 56 432 ...OR...;
 #N canvas 628 126 444 409 tID-samples 0;
 #N canvas 220 224 908 679 load-samples 0;
 #X obj 278 199 f;
@@ -1056,13 +1056,13 @@ out of timbreID;
 #X obj 9 232 table frame-start-samp;
 #X obj 264 140 r \$0-feature-length;
 #X connect 13 0 11 0;
-#X restore 474 493 pd tID-samples;
-#X msg 48 302 ../sound/individual-samples/*.wav;
-#X obj 32 336 s sample-directory;
-#X msg 32 272 ../sound/voice.wav;
-#X msg 108 77 4096;
-#X msg 31 77 1024;
-#X msg 69 77 2048;
+#X restore 474 481 pd tID-samples;
+#X msg 48 290 ../sound/individual-samples/*.wav;
+#X obj 32 324 s sample-directory;
+#X msg 32 260 ../sound/voice.wav;
+#X msg 108 65 4096;
+#X msg 31 65 1024;
+#X msg 69 65 2048;
 #N canvas 188 158 727 377 grain-info 0;
 #X obj 60 231 r samplerate;
 #X obj 45 253 /;
@@ -1103,29 +1103,29 @@ out of timbreID;
 #X connect 16 1 7 1;
 #X connect 16 2 17 0;
 #X connect 19 0 8 0;
-#X restore 474 513 pd grain-info;
-#X obj 456 202 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X restore 474 501 pd grain-info;
+#X obj 456 190 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 456 222 openpanel;
-#X obj 456 244 split_path;
-#X obj 456 352 s sample-directory;
-#X msg 456 266 \$1/*.wav;
-#X obj 474 299 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj 456 210 openpanel;
+#X obj 456 232 split_path;
+#X obj 456 340 s sample-directory;
+#X msg 456 254 \$1/*.wav;
+#X obj 474 287 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 474 319 openpanel;
-#X text 88 467 Load a previously-stored analysis file;
-#X msg 148 77 8192;
-#X text 119 494 Store analysis results to a separate file for later
+#X obj 474 307 openpanel;
+#X text 88 455 Load a previously-stored analysis file;
+#X msg 148 65 8192;
+#X text 119 482 Store analysis results to a separate file for later
 (add the .timid file extension when you name it).;
-#X text 494 298 Single file;
-#X obj 32 599 cnv 15 1 1 empty empty 5) 0 0 0 28 -233017 -66577 0;
-#X obj 31 44 cnv 15 1 1 empty empty 1) 0 0 0 28 -233017 -66577 0;
-#X obj 31 184 cnv 15 1 1 empty empty 3) 0 0 0 28 -233017 -66577 0;
-#X text 72 384 Analyze. This will choke Pd for a few seconds;
-#X obj 32 390 cnv 15 1 1 empty empty 4) 0 0 0 28 -233017 -66577 0;
-#X text 72 29 Set a grain size in samples;
-#X text 72 46 (should be a power of 2);
-#X text 477 201 Entire folder of .wav files;
+#X text 494 286 Single file;
+#X obj 32 587 cnv 15 1 1 empty empty 5) 0 0 0 28 -233017 -66577 0;
+#X obj 31 32 cnv 15 1 1 empty empty 1) 0 0 0 28 -233017 -66577 0;
+#X obj 31 172 cnv 15 1 1 empty empty 3) 0 0 0 28 -233017 -66577 0;
+#X text 72 372 Analyze. This will choke Pd for a few seconds;
+#X obj 32 378 cnv 15 1 1 empty empty 4) 0 0 0 28 -233017 -66577 0;
+#X text 72 17 Set a grain size in samples;
+#X text 72 34 (should be a power of 2);
+#X text 477 189 Entire folder of .wav files;
 #N canvas 84 65 450 288 OPENPANEL-notes 0;
 #X msg 83 164 \$1/*.wav;
 #X msg 263 164 \$1/*.aiff;
@@ -1140,27 +1140,27 @@ be fed to a message like;
 #X text 37 201 in order to load all the .wav or .aiff files in the
 directory. There may be a better strategy in the future - tweak this
 example as needed.;
-#X restore 455 173 pd OPENPANEL-notes;
-#X obj 529 237 cnv 15 330 50 empty empty empty 20 12 0 14 -261234 -66577
+#X restore 455 161 pd OPENPANEL-notes;
+#X obj 529 225 cnv 15 330 50 empty empty empty 20 12 0 14 -261234 -66577
 0;
-#X text 541 247 NOTE: this patch now *requires* [folder_list] and [split_path]
+#X text 541 235 NOTE: this patch now *requires* [folder_list] and [split_path]
 from the hcs library in Pd-extended.;
-#X obj 282 120 s db-thresh;
-#X msg 347 75 70;
-#X msg 282 75 0;
-#X msg 314 75 40;
-#X obj 282 42 cnv 15 1 1 empty empty 2) 0 0 0 28 -233017 -66577 0;
-#X text 331 24 Choose a threshold in dB. Grains below this threshold
+#X obj 282 108 s db-thresh;
+#X msg 347 63 70;
+#X msg 282 63 0;
+#X msg 314 63 40;
+#X obj 282 30 cnv 15 1 1 empty empty 2) 0 0 0 28 -233017 -66577 0;
+#X text 331 12 Choose a threshold in dB. Grains below this threshold
 won't be included in the plot \, which is good when you don't want
 to bother plotting gaps of silence.;
-#X text 586 174 <<<<< More details on using [openpanel];
-#X text 72 168 Provide a path to load a single soundfile or an entire
+#X text 586 162 <<<<< More details on using [openpanel];
+#X text 72 156 Provide a path to load a single soundfile or an entire
 folder of soundfiles to analyze. The patch will make more sample arrays
 for you as needed. Use a wildcard like *.wav to load only wav files
 \, for instance. The default maximum length of samples is 1 minute
 \, but you can change that in the [pd init] sub-patch at the parent
 level. You can also use the [openpanel] buttons at right >>>>>>;
-#X text 71 580 Go back to the parent patch \, turn on GEM rendering
+#X text 71 568 Go back to the parent patch \, turn on GEM rendering
 \, click "Plot" \, and turn on "Kinect-via-Synapse". Pick different
 features for the axes and click "Plot" again as needed.;
 #X connect 1 0 3 2;
@@ -1185,7 +1185,7 @@ features for the axes and click "Plot" again as needed.;
 #X restore 194 43 pd analysis;
 #X text 279 43 <<<<< START HERE;
 #X obj 36 169 tgl 16 0 \$0-render-on render-on-set GEM-render 20 8
-0 12 -262144 -1 -1 1 1;
+0 12 -262144 -1 -1 0 1;
 #N canvas 1097 22 545 565 grain-info-display 0;
 #X symbolatom 14 35 30 0 0 2 file-name grain-info-file-name-set -;
 #X floatatom 14 85 10 0 0 3 start grain-info-seconds-start-set -;
