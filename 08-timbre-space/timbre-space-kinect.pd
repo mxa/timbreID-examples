@@ -1,4 +1,4 @@
-#N canvas 35 502 628 412 10;
+#N canvas 18 544 628 412 10;
 #X declare -lib zexy;
 #X declare -lib zexy;
 #X declare -lib zexy;
@@ -116,7 +116,7 @@ master-volume 8 8 0 12 -262144 -1 -1 10583 1;
 #X restore 36 85 pd players;
 #X obj 36 188 bng 16 250 50 0 render-plot empty Plot 20 8 0 12 -203904
 -1 -1;
-#N canvas 525 48 613 600 gem 1;
+#N canvas 525 48 613 600 gem 0;
 #X obj 19 381 gemlist;
 #X obj 19 444 translateXYZ;
 #X obj 19 402 separator;
@@ -646,7 +646,7 @@ mouse-radius 8 8 0 12 -262144 -1 -1 9345 1;
 #X obj 36 226 tgl 16 0 kinect-on kinect-on-set Kinect-via-Synapse 20
 8 0 12 -262144 -1 -1 0 1;
 #X obj 39 275 hsl 128 16 0.03 0.5 0 0 point-size empty point-size 8
-8 0 12 -262144 -1 -1 0 1;
+8 0 12 -262144 -1 -1 1400 1;
 #N canvas 518 247 320 203 timbreID 0;
 #X msg 227 93 clear;
 #X obj 22 23 r \$0-tID;
@@ -678,7 +678,7 @@ mouse-radius 8 8 0 12 -262144 -1 -1 9345 1;
 ;
 #X floatatom 274 314 5 0 0 1 zoom-y zoom-control-y-range-set zoom-control-y-range
 ;
-#N canvas 26 22 426 470 init 0;
+#N canvas 651 251 426 470 init 0;
 #X obj 13 17 loadbang;
 #X msg 13 408 \; pd dsp 1 \;;
 #X obj 88 68 s lb1;
@@ -686,27 +686,27 @@ mouse-radius 8 8 0 12 -262144 -1 -1 9345 1;
 #X obj 58 116 s lb3;
 #X obj 231 14 declare -path ./abstractions;
 #X obj 231 38 declare -lib hcs;
-#X msg 28 187 \; db-thresh 0 \; x-mapping-set-set 12 \; y-mapping-set-set
-3 \; x-mapping-set 12 \; y-mapping-set 3 \; z-mapping-set 9 \; R-mapping-set
-13 \; G-mapping-set 14 \; B-mapping-set 15 \; render-points 0 \; samplerate
-44100 \; num-player-voices 32 \; mouse-radius-set 2 \; max-sample-length
-2.646e+06 \; master-volume-set 90 \;;
 #X msg 43 139 0;
 #X obj 13 38 t b b b b b b;
 #X obj 43 161 s \$0-continuous-set;
 #X obj 231 62 declare -lib Gem;
-#X connect 0 0 9 0;
-#X connect 8 0 10 0;
-#X connect 9 0 1 0;
-#X connect 9 1 7 0;
-#X connect 9 2 8 0;
-#X connect 9 3 4 0;
-#X connect 9 4 3 0;
-#X connect 9 5 2 0;
+#X msg 28 187 \; db-thresh 0 \; x-mapping-set-set 12 \; y-mapping-set-set
+3 \; x-mapping-set 12 \; y-mapping-set 3 \; z-mapping-set 9 \; R-mapping-set
+13 \; G-mapping-set 14 \; B-mapping-set 15 \; render-points 0 \; samplerate
+44100 \; num-player-voices 32 \; mouse-radius-set 2 \; max-sample-length
+1.411e+07 \; master-volume-set 90 \;;
+#X connect 0 0 8 0;
+#X connect 7 0 9 0;
+#X connect 8 0 1 0;
+#X connect 8 1 11 0;
+#X connect 8 2 7 0;
+#X connect 8 3 4 0;
+#X connect 8 4 3 0;
+#X connect 8 5 2 0;
 #X restore 36 45 pd init;
 #X obj 183 36 cnv 15 256 30 empty empty empty 20 12 0 14 -261234 -66577
 0;
-#N canvas 644 143 838 779 analysis 0;
+#N canvas 780 159 838 779 analysis 0;
 #X obj 31 118 s window-size;
 #X obj 95 569 bng 15 250 50 0 empty empty empty 17 7 0 10 -258113 -1
 -1;
@@ -1161,7 +1161,7 @@ thing that will be guaranteed to exist after the clear.;
 #X obj 278 450 pack f s f;
 #X msg 278 482 read -resize -maxsize \$3 \$2 tID-sample-\$1;
 #X text 373 450 set maxsize in [pd init];
-#X obj 334 421 r max-sample-length;
+#X obj 335 421 r max-sample-length;
 #X obj 278 250 t f f f f;
 #N canvas 532 140 593 408 rebound-samp-lengths 0;
 #X msg 141 148 max;
@@ -1599,7 +1599,7 @@ again as needed.;
 #X restore 194 43 pd analysis;
 #X text 279 43 <<<<< START HERE;
 #X obj 36 169 tgl 16 0 render-on render-on-set GEM-render 20 8 0 12
--262144 -1 -1 0 1;
+-262144 -1 -1 1 1;
 #N canvas 0 22 545 565 grain-info-display 0;
 #X symbolatom 14 35 30 0 0 2 file-name grain-info-file-name-set -;
 #X floatatom 14 85 10 0 0 3 start grain-info-seconds-start-set -;
@@ -1961,10 +1961,10 @@ BFCC1 BFCC2 BFCC3 BFCC4 BFCC5 BFCC6 BFCC7;
 #X floatatom 274 333 5 0 0 1 zoom-z zoom-control-z-range-set zoom-control-z-range
 ;
 #X obj 39 294 hsl 128 16 -15 15 0 0 \$0-headdistance empty head-distance
-8 8 0 12 -262144 -1 -1 0 1;
+8 8 0 12 -262144 -1 -1 2500 1;
 #X obj 39 313 hsl 128 16 -10 20 0 0 \$0-handdistance empty hand-distance
-8 8 0 12 -262144 -1 -1 0 1;
+8 8 0 12 -262144 -1 -1 4400 1;
 #X obj 486 171 tgl 16 0 \$0-continuous \$0-continuous-set continuous
-20 8 0 12 -262144 -1 -1 0 1;
+20 8 0 12 -262144 -1 -1 1 1;
 #X floatatom 511 269 5 6 60 1 framerate #0-framerate-set #0-framerate
 ;

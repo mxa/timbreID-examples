@@ -581,7 +581,7 @@ master-volume 8 8 0 12 -262144 -1 -1 10583 1;
 #X connect 38 0 37 0;
 #X restore 36 103 pd gem;
 #X obj 39 313 hsl 128 15 0.05 1 0 0 mouse-radius mouse-radius-set mouse-radius
-8 8 0 12 -262144 -1 -1 2674 1;
+8 8 0 12 -262144 -1 -1 12700 1;
 #X obj 36 208 tgl 15 0 mouseover-on mouseover-on-set Mouseover 17 7
 0 12 -262144 -1 -1 0 1;
 #X obj 39 336 hsl 128 15 0.03 0.25 0 0 point-size empty point-size
@@ -903,32 +903,32 @@ BFCC1 BFCC2 BFCC3 BFCC4 BFCC5 BFCC6 BFCC7;
 ;
 #X floatatom 246 364 5 0 0 1 zoom-y zoom-control-y-range-set zoom-control-y-range
 ;
-#N canvas 707 92 538 589 init 0;
+#N canvas 707 92 538 589 init 1;
 #X obj 43 34 loadbang;
 #X msg 43 344 \; pd dsp 1 \;;
 #X obj 244 115 s lb1;
 #X obj 226 141 s lb2;
 #X obj 208 170 s lb3;
 #X obj 43 55 t b b b b b b;
+#X obj 43 411 declare -path ./abstractions;
+#X obj 45 436 declare -lib Gem;
+#X obj 46 461 declare -lib hcs;
 #X msg 253 281 \; db-thresh 0 \; x-mapping-set-set 12 \; y-mapping-set-set
 3 \; z-mapping-set 9 \; R-mapping-set 13 \; G-mapping-set 14 \; B-mapping-set
 15 \; ortho-switch-set 1 \; render-snapshot-set 1 \; render-light-set
 1 \; render-points 0 \; reset-axes bang \; samplerate 44100 \; num-player-voices
-32 \; mouse-radius-set 0.25 \; max-sample-length 2.646e+06 \; master-volume-set
+32 \; mouse-radius-set 0.25 \; max-sample-length 1.411e+07 \; master-volume-set
 90 \;;
-#X obj 43 411 declare -path ./abstractions;
-#X obj 45 436 declare -lib Gem;
-#X obj 46 461 declare -lib hcs;
 #X connect 0 0 5 0;
 #X connect 5 0 1 0;
-#X connect 5 1 6 0;
+#X connect 5 1 9 0;
 #X connect 5 3 4 0;
 #X connect 5 4 3 0;
 #X connect 5 5 2 0;
 #X restore 36 43 pd init;
 #X obj 183 36 cnv 15 256 30 empty empty empty 20 12 0 14 -261234 -66577
 0;
-#N canvas 310 62 836 729 analysis 0;
+#N canvas 188 134 836 729 analysis 1;
 #X obj 31 118 s window-size;
 #X obj 93 558 bng 15 250 50 0 empty empty empty 17 7 0 10 -258113 -1
 -1;
