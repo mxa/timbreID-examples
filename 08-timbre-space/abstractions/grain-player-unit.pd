@@ -1,4 +1,4 @@
-#N canvas 643 143 482 452 10;
+#N canvas 643 143 672 452 10;
 #X obj 71 369 *~;
 #X obj 44 109 t b f;
 #X obj 71 172 pack f f;
@@ -18,6 +18,13 @@
 #X obj 71 268 tabplay~;
 #X msg 138 209 set tID-sample-\$1;
 #X obj 166 41 t f f;
+#X msg 204 128 bang;
+#X msg 505 264 -0.25;
+#X obj 505 236 loadbang;
+#X obj 438 335 cos;
+#X obj 438 308 line;
+#X obj 438 365 print;
+#X msg 438 203 -0.25 \, 0.25 21.33;
 #X connect 0 0 11 0;
 #X connect 1 0 8 0;
 #X connect 1 1 2 0;
@@ -39,3 +46,9 @@
 #X connect 17 0 16 0;
 #X connect 18 0 2 1;
 #X connect 18 1 7 0;
+#X connect 19 0 8 0;
+#X connect 20 0 23 0;
+#X connect 21 0 20 0;
+#X connect 22 0 24 0;
+#X connect 23 0 22 0;
+#X connect 25 0 23 0;
