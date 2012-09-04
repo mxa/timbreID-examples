@@ -1,8 +1,8 @@
-#N canvas 15 519 628 412 10;
+#N canvas 15 522 628 412 10;
 #X declare -path ./abstractions;
 #X declare -lib hcs;
 #X obj 39 338 hsl 128 16 40 100 0 0 \$0-master-volume master-volume-set
-master-volume 8 8 0 12 -262144 -1 -1 12700 1;
+master-volume 8 8 0 12 -262144 -1 -1 12100 0;
 #N canvas 0 22 724 484 players 0;
 #X obj 311 235 dac~;
 #X obj 311 211 *~;
@@ -224,24 +224,20 @@ local variables for the main instance here;
 #X connect 4 4 6 0;
 #X connect 4 5 7 0;
 #X restore -88 167 pd sends;
-#X obj 28 103 print receive;
-#X obj -12 162 print send;
 #X connect 0 0 1 0;
 #X connect 1 0 6 0;
-#X connect 1 0 8 0;
 #X connect 2 0 1 0;
 #X connect 3 0 1 0;
-#X connect 3 0 7 0;
 #X connect 4 0 5 0;
 #X connect 5 0 2 0;
 #X connect 5 1 0 0;
 #X restore 36 105 pd gem;
 #X obj 39 256 hsl 128 16 0.05 2.7 0 0 \$0-mouse-radius mouse-radius-set
-mouse-radius 8 8 0 12 -262144 -1 -1 6545 1;
+mouse-radius 8 8 0 12 -262144 -1 -1 5900 0;
 #X obj 36 226 tgl 16 0 \$0-kinect-on kinect-on-set Kinect-via-Synapse
 20 8 0 12 -262144 -1 -1 1 1;
 #X obj 39 275 hsl 128 16 0.03 0.5 0 0 \$0-point-size empty point-size
-8 8 0 12 -262144 -1 -1 1400 0;
+8 8 0 12 -262144 -1 -1 2400 0;
 #N canvas 511 22 320 203 timbreID 0;
 #X msg 227 93 clear;
 #X obj 22 23 r \$0-tID;
@@ -295,7 +291,7 @@ mouse-radius 8 8 0 12 -262144 -1 -1 6545 1;
 #X restore 36 45 pd init;
 #X obj 183 36 cnv 15 256 30 empty empty empty 20 12 0 14 -261234 -66577
 0;
-#N canvas 648 202 881 633 analysis 0;
+#N canvas 661 313 881 633 analysis 1;
 #X obj 31 109 s window-size;
 #X obj 98 482 bng 15 250 50 0 empty empty empty 17 7 0 10 -258113 -1
 -1;
@@ -656,7 +652,7 @@ counter;
 -1;
 #X text 56 432 ...OR...;
 #N canvas 628 126 444 409 tID-samples 0;
-#N canvas 220 224 908 679 load-samples 0;
+#N canvas 220 224 908 679 load-samples 1;
 #X obj 278 199 f;
 #X obj 308 199 + 1;
 #X msg 296 170 0;
@@ -785,6 +781,7 @@ thing that will be guaranteed to exist after the clear.;
 #X connect 14 0 7 0;
 #X restore 124 410 pd rebound-samp-lengths;
 #X obj 159 342 t f f b f;
+#X obj 370 624 print sample-length;
 #X connect 0 0 1 0;
 #X connect 0 0 11 1;
 #X connect 0 0 34 0;
@@ -810,6 +807,7 @@ thing that will be guaranteed to exist after the clear.;
 #X connect 20 0 19 1;
 #X connect 21 0 22 0;
 #X connect 22 0 23 0;
+#X connect 22 0 37 0;
 #X connect 27 0 19 1;
 #X connect 28 0 18 0;
 #X connect 28 1 11 0;
@@ -1185,7 +1183,7 @@ features for the axes and click "Plot" again as needed.;
 #X restore 194 43 pd analysis;
 #X text 279 43 <<<<< START HERE;
 #X obj 36 169 tgl 16 0 \$0-render-on render-on-set GEM-render 20 8
-0 12 -262144 -1 -1 0 1;
+0 12 -262144 -1 -1 1 1;
 #N canvas 1097 22 545 565 grain-info-display 0;
 #X symbolatom 14 35 30 0 0 2 file-name grain-info-file-name-set -;
 #X floatatom 14 85 10 0 0 3 start grain-info-seconds-start-set -;
@@ -1289,21 +1287,21 @@ features for the axes and click "Plot" again as needed.;
 #X text 270 202 Open this sub-patch for;
 #X text 283 147 <<<<< More mapping options;
 #X obj 190 74 hradio 16 1 0 20 \$0-x-mapping x-mapping-set X -16 8
-0 12 -262144 -1 -1 13;
-#X obj 190 93 hradio 16 1 0 20 \$0-y-mapping y-mapping-set Y -16 8
 0 12 -262144 -1 -1 11;
+#X obj 190 93 hradio 16 1 0 20 \$0-y-mapping y-mapping-set Y -16 8
+0 12 -262144 -1 -1 12;
 #X obj 190 112 hradio 16 1 1 20 \$0-z-mapping z-mapping-set Z -16 8
 0 12 -262144 -1 -1 3;
 #X symbolatom 513 74 15 0 0 0 - x-feature-name -;
 #X symbolatom 513 93 15 0 0 0 - y-feature-name -;
 #X symbolatom 513 112 15 0 0 0 - z-feature-name -;
-#N canvas 834 22 550 338 set-colors 0;
+#N canvas 667 605 550 319 set-colors 1;
 #X obj 28 47 hradio 15 1 1 20 \$0-R-mapping R-mapping-set empty 0 -8
-0 10 -258113 -1 -1 12;
+0 10 -258113 -1 -1 14;
 #X obj 28 67 hradio 15 1 1 20 \$0-G-mapping G-mapping-set empty 0 -8
-0 10 -4034 -1 -1 14;
+0 10 -4034 -1 -1 15;
 #X obj 28 87 hradio 15 1 1 20 \$0-B-mapping B-mapping-set empty 0 -8
-0 10 -4032 -1 -1 15;
+0 10 -4032 -1 -1 16;
 #X text 32 25 R G B mapping switches;
 #X obj 29 115 bng 15 250 50 0 \$0-render-plot empty Plot 17 7 0 14
 -203904 -1 -1;
@@ -1543,13 +1541,13 @@ BFCC1 BFCC2 BFCC3 BFCC4 BFCC5 BFCC6 BFCC7;
 #X obj 36 207 bng 16 250 50 0 \$0-reset-axes empty Reset 20 8 0 12
 -204786 -1 -1;
 #X obj 39 294 hsl 128 16 -15 15 0 0 \$0-headdistance empty head-distance
-8 8 0 12 -262144 -1 -1 2400 1;
+8 8 0 12 -262144 -1 -1 2700 0;
 #X obj 39 313 hsl 128 16 -15 15 0 0 \$0-handdistance empty hand-distance
-8 8 0 12 -262144 -1 -1 12100 1;
+8 8 0 12 -262144 -1 -1 11800 0;
 #X obj 486 171 tgl 16 0 \$0-continuous \$0-continuous-set continuous
 20 8 0 12 -262144 -1 -1 1 1;
 #X obj 486 297 nbx 5 14 1 60 0 0 \$0-framerate \$0-framerate-set framerate
-0 -8 0 10 -262144 -1 -1 30 256;
+0 -8 0 10 -262144 -1 -1 12 256;
 #X obj 272 295 nbx 4 14 1 20 0 0 \$0-zoom-control-x-range zoom-control-x-range-set
 zoom-x 50 8 0 10 -262144 -1 -1 10.1333 256;
 #X obj 272 312 nbx 4 14 1 20 0 0 \$0-zoom-control-y-range zoom-control-y-range-set
