@@ -1,8 +1,8 @@
-#N canvas 22 537 628 412 10;
+#N canvas 21 545 628 412 10;
 #X declare -path ./abstractions;
 #X declare -lib hcs;
 #X obj 39 338 hsl 128 16 40 100 0 0 \$0-master-volume master-volume-set
-master-volume 8 8 0 12 -262144 -1 -1 10583 0;
+master-volume 8 8 0 12 -262144 -1 -1 12000 0;
 #N canvas 0 22 724 484 players 0;
 #X obj 311 235 dac~;
 #X obj 311 211 *~;
@@ -110,55 +110,60 @@ master-volume 8 8 0 12 -262144 -1 -1 10583 0;
 #X connect 13 0 11 0;
 #X connect 46 0 5 0;
 #X restore 36 85 pd players;
-#X obj 36 188 bng 16 250 50 0 \$0-render-plot empty Plot 20 8 0 12
+#X obj 37 175 bng 16 250 50 0 \$0-render-plot empty Plot 20 8 0 12
 -203904 -1 -1;
-#N canvas 650 699 275 241 gem 1;
+#N canvas 673 711 275 241 gem 1;
 #X msg -69 49 pd~ stop;
 #X obj -88 127 pd~ -sr 41100 -noutsig 0 -fifo 20;
 #X msg -88 21 pd~ start -lib Gem gem-process.pd;
-#N canvas 302 77 1259 880 receives 1;
+#N canvas 89 62 1128 906 receives 0;
 #X obj 39 820 outlet;
-#X obj 419 727 r \$0-render-plot;
+#X obj 467 624 r \$0-render-plot;
 #X obj 354 18 r \$0-reset-axes;
-#X obj 404 671 r \$0-kinect-on;
-#X msg 404 697 kinect-on \$1;
-#X obj 374 620 r \$0-mouse-radius;
-#X msg 374 646 mouse-radius \$1;
-#X obj 353 570 r \$0-point-size;
-#X msg 353 596 point-size \$1;
-#X obj 337 520 r \$0-headdistance;
-#X msg 337 546 headdistance \$1;
-#X obj 317 469 r \$0-handdistance;
-#X msg 317 495 handdistance \$1;
-#X msg 292 439 zoom-control-x-range \$1;
-#X obj 292 413 r \$0-zoom-control-x-range;
-#X msg 262 382 zoom-control-x-range \$1;
-#X obj 262 356 r \$0-zoom-control-x-range;
-#X obj 237 306 r \$0-zoom-control-y-range;
-#X msg 237 332 zoom-control-y-range \$1;
-#X obj 215 253 r \$0-zoom-control-z-range;
-#X msg 215 279 zoom-control-z-range \$1;
-#X obj 190 199 r \$0-framerate;
-#X msg 190 225 framerate \$1;
+#X obj 346 621 r \$0-kinect-on;
+#X msg 346 647 kinect-on \$1;
+#X obj 316 570 r \$0-mouse-radius;
+#X msg 316 596 mouse-radius \$1;
+#X obj 295 520 r \$0-point-size;
+#X msg 295 546 point-size \$1;
+#X obj 279 470 r \$0-headdistance;
+#X msg 279 496 headdistance \$1;
+#X obj 259 419 r \$0-handdistance;
+#X msg 259 445 handdistance \$1;
+#X msg 234 389 zoom-control-x-range \$1;
+#X obj 234 363 r \$0-zoom-control-x-range;
+#X msg 204 332 zoom-control-x-range \$1;
+#X obj 204 306 r \$0-zoom-control-x-range;
+#X obj 179 256 r \$0-zoom-control-y-range;
+#X msg 179 282 zoom-control-y-range \$1;
+#X obj 157 203 r \$0-zoom-control-z-range;
+#X msg 157 229 zoom-control-z-range \$1;
+#X obj 132 149 r \$0-framerate;
+#X msg 132 175 framerate \$1;
 #X msg 354 41 \; zoom-control-x-range-set 10.1333 \; zoom-control-y-range-set
 7.6 \; zoom-control-z-range-set 7.6 \; zoom-control-x-offset-set 0
 \; zoom-control-y-offset-set 0 \; zoom-control-z-offset-set 0 \;;
-#X obj 158 147 r \$0-continuous;
-#X msg 158 173 continuous \$1;
-#X obj 106 95 r num-frames-total;
-#X msg 106 121 num-frames-total \$1;
+#X obj 100 97 r \$0-continuous;
+#X msg 100 123 continuous \$1;
+#X obj 513 650 r num-frames-total;
+#X msg 507 724 num-frames-total \$1;
 #X obj 79 47 r \$0-coord-RGB;
 #X msg 79 69 coord-RGB \$1 \$2 \$3;
-#X msg 419 753 render-plot bang;
+#X msg 375 682 render-plot bang;
 #X obj 45 -1 r \$0-framerate;
 #X msg 45 25 framerate \$1;
 #X text 750 9 this subpatch contains the local and non local receives
 that will be transmitted into the Gem instance;
 #X text 750 46 inside the Pd~ process these will values will be automatically
 available with global receives.;
-#X obj 422 786 r \$0-coord-XYZ;
-#X msg 422 808 coord-XYZ \$1 \$2 \$3;
-#X connect 1 0 30 0;
+#X obj 502 752 r \$0-coord-XYZ;
+#X msg 502 774 coord-XYZ \$1 \$2 \$3;
+#X obj 507 700 f;
+#X obj 513 672 t b f;
+#X obj 467 647 t b b;
+#X obj 508 798 r \$0-lefthand;
+#X msg 508 824 lefthand \$1;
+#X connect 1 0 39 0;
 #X connect 2 0 23 0;
 #X connect 3 0 4 0;
 #X connect 4 0 0 0;
@@ -182,7 +187,7 @@ available with global receives.;
 #X connect 22 0 0 0;
 #X connect 24 0 25 0;
 #X connect 25 0 0 0;
-#X connect 26 0 27 0;
+#X connect 26 0 38 0;
 #X connect 27 0 0 0;
 #X connect 28 0 29 0;
 #X connect 29 0 0 0;
@@ -191,6 +196,13 @@ available with global receives.;
 #X connect 32 0 0 0;
 #X connect 35 0 36 0;
 #X connect 36 0 0 0;
+#X connect 37 0 27 0;
+#X connect 38 0 37 0;
+#X connect 38 1 37 1;
+#X connect 39 0 30 0;
+#X connect 39 1 37 0;
+#X connect 40 0 41 0;
+#X connect 41 0 0 0;
 #X restore -53 81 pd receives;
 #X obj -88 -38 r \$0-render-on;
 #X obj -88 -11 sel 1 0;
@@ -227,11 +239,11 @@ local variables for the main instance here;
 #X connect 5 1 0 0;
 #X restore 36 105 pd gem;
 #X obj 39 256 hsl 128 16 0.05 2.7 0 0 \$0-mouse-radius mouse-radius-set
-mouse-radius 8 8 0 12 -262144 -1 -1 9345 0;
-#X obj 36 226 tgl 16 0 \$0-kinect-on kinect-on-set Kinect-via-Synapse
-20 8 0 12 -262144 -1 -1 0 1;
+mouse-radius 8 8 0 12 -262144 -1 -1 2800 0;
+#X obj 37 213 tgl 16 0 \$0-kinect-on kinect-on-set Kinect-via-Synapse
+20 8 0 12 -262144 -1 -1 1 1;
 #X obj 39 275 hsl 128 16 0.03 0.25 0 0 \$0-point-size empty point-size
-8 8 0 12 -262144 -1 -1 0 0;
+8 8 0 12 -262144 -1 -1 1800 0;
 #N canvas 511 22 320 203 timbreID 0;
 #X msg 227 93 clear;
 #X obj 22 23 r \$0-tID;
@@ -285,7 +297,7 @@ mouse-radius 8 8 0 12 -262144 -1 -1 9345 0;
 #X restore 36 45 pd init;
 #X obj 183 36 cnv 15 256 30 empty empty empty 20 12 0 14 -261234 -66577
 0;
-#N canvas 663 318 881 633 analysis 1;
+#N canvas 671 324 881 633 analysis 1;
 #X obj 31 109 s window-size;
 #X obj 98 482 bng 15 250 50 0 empty empty empty 17 7 0 10 -258113 -1
 -1;
@@ -1176,7 +1188,7 @@ features for the axes and click "Plot" again as needed.;
 #X connect 40 0 37 0;
 #X restore 194 43 pd analysis;
 #X text 279 43 <<<<< START HERE;
-#X obj 36 169 tgl 16 0 \$0-render-on render-on-set GEM-render 20 8
+#X obj 37 156 tgl 16 0 \$0-render-on render-on-set GEM-render 20 8
 0 12 -262144 -1 -1 1 1;
 #N canvas 1097 22 545 565 grain-info-display 0;
 #X symbolatom 14 35 30 0 0 2 file-name grain-info-file-name-set -;
@@ -1283,7 +1295,7 @@ features for the axes and click "Plot" again as needed.;
 #X obj 190 74 hradio 16 1 0 20 \$0-x-mapping x-mapping-set X -16 8
 0 12 -262144 -1 -1 12;
 #X obj 190 93 hradio 16 1 0 20 \$0-y-mapping y-mapping-set Y -16 8
-0 12 -262144 -1 -1 3;
+0 12 -262144 -1 -1 5;
 #X obj 190 112 hradio 16 1 1 20 \$0-z-mapping z-mapping-set Z -16 8
 0 12 -262144 -1 -1 9;
 #X symbolatom 513 74 15 0 0 0 - x-feature-name -;
@@ -1538,12 +1550,12 @@ BFCC1 BFCC2 BFCC3 BFCC4 BFCC5 BFCC6 BFCC7;
 #X text 270 217 grain info on touch;
 #X text 35 372 timbreID - William Brent 2012;
 #X text 35 386 Kinect Grain Space Naviagtion – Max Neupert 2012;
-#X obj 36 207 bng 16 250 50 0 \$0-reset-axes empty Reset 20 8 0 12
+#X obj 37 194 bng 16 250 50 0 \$0-reset-axes empty Reset 20 8 0 12
 -204786 -1 -1;
 #X obj 39 294 hsl 128 16 -15 15 0 0 \$0-headdistance empty head-distance
-8 8 0 12 -262144 -1 -1 0 0;
+8 8 0 12 -262144 -1 -1 1800 0;
 #X obj 39 313 hsl 128 16 -15 15 0 0 \$0-handdistance empty hand-distance
-8 8 0 12 -262144 -1 -1 0 0;
+8 8 0 12 -262144 -1 -1 12000 0;
 #X obj 486 171 tgl 16 0 \$0-continuous \$0-continuous-set continuous
 20 8 0 12 -262144 -1 -1 0 1;
 #X obj 486 297 nbx 5 14 1 60 0 0 \$0-framerate \$0-framerate-set framerate
@@ -1560,3 +1572,5 @@ offset-x 50 8 0 10 -262144 -1 -1 0 256;
 offset-z 50 8 0 10 -262144 -1 -1 0 256;
 #X obj 370 313 nbx 4 14 -20 20 0 0 \$0-zoom-control-y-offset zoom-control-y-offset-set
 offset-y 50 8 0 10 -262144 -1 -1 0 256;
+#X obj 45 231 tgl 8 0 \$0-lefthand \$0-lefthand-set Letfty 13 4 0 9
+-262144 -1 -1 1 1;
