@@ -1,9 +1,9 @@
-#N canvas 10 561 628 412 10;
+#N canvas 18 551 628 412 10;
 #X declare -path ./abstractions;
 #X declare -lib hcs;
 #X obj 39 338 hsl 128 16 40 100 0 0 \$0-master-volume master-volume-set
 master-volume 2 8 0 12 -262144 -1 -1 12700 0;
-#N canvas 0 22 724 484 players 1;
+#N canvas 587 43 724 484 players 0;
 #X obj 311 235 dac~;
 #X obj 311 211 *~;
 #X obj 421 121 dbtorms;
@@ -62,40 +62,9 @@ master-volume 2 8 0 12 -262144 -1 -1 12700 0;
 #X restore 27 94 pd modding;
 #X msg 27 148 \; play-\$1 \$2 \$3 \$4 \;;
 #X obj 421 30 r \$0-master-volume;
-#X obj 546 274 grain-player-unit 24;
-#X obj 196 294 grain-player-unit 9;
-#X obj 26 294 grain-player-unit 1;
-#X obj 26 314 grain-player-unit 2;
-#X obj 26 334 grain-player-unit 3;
-#X obj 26 354 grain-player-unit 4;
-#X obj 26 374 grain-player-unit 5;
-#X obj 26 394 grain-player-unit 6;
-#X obj 26 414 grain-player-unit 7;
-#X obj 196 274 grain-player-unit 8;
-#X obj 196 314 grain-player-unit 10;
-#X obj 196 334 grain-player-unit 11;
-#X obj 196 354 grain-player-unit 12;
-#X obj 196 374 grain-player-unit 13;
-#X obj 196 394 grain-player-unit 14;
-#X obj 196 414 grain-player-unit 15;
-#X obj 376 274 grain-player-unit 16;
-#X obj 376 294 grain-player-unit 17;
-#X obj 376 314 grain-player-unit 18;
-#X obj 376 334 grain-player-unit 19;
-#X obj 376 354 grain-player-unit 20;
-#X obj 376 374 grain-player-unit 21;
-#X obj 376 394 grain-player-unit 22;
-#X obj 376 414 grain-player-unit 23;
-#X obj 546 294 grain-player-unit 25;
-#X obj 546 314 grain-player-unit 26;
-#X obj 546 334 grain-player-unit 27;
-#X obj 546 354 grain-player-unit 28;
-#X obj 546 374 grain-player-unit 29;
-#X obj 546 394 grain-player-unit 30;
-#X obj 546 414 grain-player-unit 31;
-#N canvas 1070 249 498 306 hann 1;
+#N canvas 1032 615 498 306 hann 0;
 #N canvas 0 22 450 300 (subpatch) 0;
-#X array \$0-hann 512 float 1;
+#X array hann 512 float 1;
 #A 0 0 3.76403e-05 0.000150591 0.000338793 0.000602275 0.000940919
 0.00135475 0.00184369 0.00240761 0.00304651 0.00376022 0.00454867 0.00541171
 0.00634927 0.00736114 0.00844723 0.00960734 0.0108413 0.0121489 0.01353
@@ -163,14 +132,13 @@ master-volume 2 8 0 12 -262144 -1 -1 12700 0;
 0.00634828 0.00541082 0.00454783 0.00375944 0.0030458 0.00240701 0.00184312
 0.00135428 0.000940531 0.000601947 0.000338554 0.000150412 3.75509e-05
 ;
-#X coords 0 1 511 0 200 120 1;
+#X coords 0 1 511 0 200 120 1 0 0;
 #X restore 259 62 graph;
 #X msg 137 76 0;
 #X obj 31 125 osc~;
 #X obj 31 77 samplerate~;
 #X obj 31 148 *~ -0.5;
 #X obj 31 171 +~ 0.5;
-#X obj 23 196 tabwrite~ \$0-hann;
 #X text 245 54 1;
 #X text 238 172 0;
 #X text 254 185 0;
@@ -182,17 +150,49 @@ master-volume 2 8 0 12 -262144 -1 -1 12700 0;
 #X obj 23 26 loadbang;
 #X text 56 44;
 #X text 48 48 recalculate Hann window table;
+#X obj 23 196 tabwrite~ hann;
 #X connect 1 0 2 1;
 #X connect 2 0 4 0;
-#X connect 3 0 10 0;
+#X connect 3 0 9 0;
 #X connect 4 0 5 0;
-#X connect 5 0 6 0;
-#X connect 10 0 2 0;
-#X connect 11 0 3 0;
-#X connect 11 0 1 0;
-#X connect 11 0 6 0;
-#X connect 14 0 11 0;
+#X connect 5 0 16 0;
+#X connect 9 0 2 0;
+#X connect 10 0 3 0;
+#X connect 10 0 1 0;
+#X connect 10 0 16 0;
+#X connect 13 0 10 0;
 #X restore 543 105 pd hann;
+#X obj 546 274 grain-player-unit 24;
+#X obj 196 294 grain-player-unit 9;
+#X obj 26 294 grain-player-unit 1;
+#X obj 26 314 grain-player-unit 2;
+#X obj 26 334 grain-player-unit 3;
+#X obj 26 354 grain-player-unit 4;
+#X obj 26 374 grain-player-unit 5;
+#X obj 26 394 grain-player-unit 6;
+#X obj 26 414 grain-player-unit 7;
+#X obj 196 274 grain-player-unit 8;
+#X obj 196 314 grain-player-unit 10;
+#X obj 196 334 grain-player-unit 11;
+#X obj 196 354 grain-player-unit 12;
+#X obj 196 374 grain-player-unit 13;
+#X obj 196 394 grain-player-unit 14;
+#X obj 196 414 grain-player-unit 15;
+#X obj 376 274 grain-player-unit 16;
+#X obj 376 294 grain-player-unit 17;
+#X obj 376 314 grain-player-unit 18;
+#X obj 376 334 grain-player-unit 19;
+#X obj 376 354 grain-player-unit 20;
+#X obj 376 374 grain-player-unit 21;
+#X obj 376 394 grain-player-unit 22;
+#X obj 376 414 grain-player-unit 23;
+#X obj 546 294 grain-player-unit 25;
+#X obj 546 314 grain-player-unit 26;
+#X obj 546 334 grain-player-unit 27;
+#X obj 546 354 grain-player-unit 28;
+#X obj 546 374 grain-player-unit 29;
+#X obj 546 394 grain-player-unit 30;
+#X obj 546 414 grain-player-unit 31;
 #X connect 1 0 0 1;
 #X connect 1 0 0 0;
 #X connect 2 0 3 0;
@@ -213,11 +213,11 @@ master-volume 2 8 0 12 -262144 -1 -1 12700 0;
 #X obj 37 175 bng 16 250 50 0 \$0-render-plot empty Plot 20 8 0 12
 -203904 -1 -1;
 #X obj 39 256 hsl 128 16 0.05 2.7 0 0 \$0-mouse-radius mouse-radius-set
-mouse-radius 2 8 0 12 -262144 -1 -1 1900 0;
+mouse-radius 2 8 0 12 -262144 -1 -1 4600 0;
 #X obj 37 213 tgl 16 0 \$0-kinect-on kinect-on-set Kinect-via-Synapse
 20 8 0 12 -262144 -1 -1 1 1;
 #X obj 39 275 hsl 128 16 0.03 0.25 0 0 \$0-point-size empty point-size
-2 8 0 12 -262144 -1 -1 2800 0;
+2 8 0 12 -262144 -1 -1 1000 0;
 #N canvas 511 22 320 203 timbreID 0;
 #X msg 227 93 clear;
 #X obj 22 23 r \$0-tID;
@@ -1164,7 +1164,7 @@ features for the axes and click "Plot" again as needed.;
 #X text 279 43 <<<<< START HERE;
 #X obj 37 156 tgl 16 0 \$0-render-on render-on-set GEM-render 20 8
 0 12 -262144 -1 -1 1 1;
-#N canvas 1097 22 545 565 grain-info-display 0;
+#N canvas 1097 22 545 565 grain-info-display 1;
 #X symbolatom 14 35 30 0 0 2 file-name grain-info-file-name-set -;
 #X floatatom 14 85 10 0 0 3 start grain-info-seconds-start-set -;
 #X floatatom 114 85 10 0 0 3 end grain-info-seconds-end-set -;
@@ -1263,15 +1263,14 @@ features for the axes and click "Plot" again as needed.;
 #X obj 264 215 grain-info skewness 8;
 #X obj 384 215 grain-info spread 9;
 #X obj 14 285 grain-info zero-crossing 10;
-#X restore 272 238 pd grain-info-display;
-#X text 270 202 Open this sub-patch for;
+#X restore 190 236 pd grain-info-display;
 #X text 283 147 <<<<< More mapping options;
 #X obj 190 74 hradio 16 1 0 20 \$0-x-mapping x-mapping-set X -16 8
-0 12 -262144 -1 -1 12;
+0 12 -262144 -1 -1 11;
 #X obj 190 93 hradio 16 1 0 20 \$0-y-mapping y-mapping-set Y -16 8
-0 12 -262144 -1 -1 4;
+0 12 -262144 -1 -1 3;
 #X obj 190 112 hradio 16 1 1 20 \$0-z-mapping z-mapping-set Z -16 8
-0 12 -262144 -1 -1 13;
+0 12 -262144 -1 -1 9;
 #X symbolatom 513 74 15 0 0 0 - x-feature-name -;
 #X symbolatom 513 93 15 0 0 0 - y-feature-name -;
 #X symbolatom 513 112 15 0 0 0 - z-feature-name -;
@@ -1521,16 +1520,15 @@ BFCC1 BFCC2 BFCC3 BFCC4 BFCC5 BFCC6 BFCC7;
 #X obj -9 1 cnv 10 10 400 empty empty empty 20 12 0 14 -233017 -66577
 0;
 #X restore 190 147 pd set-colors;
-#X text 270 217 grain info on touch;
 #X text 35 372 timbreID - William Brent 2012;
 #X text 35 386 Kinect Grain Space Naviagtion – Max Neupert 2012;
 #X obj 37 194 bng 16 250 50 0 \$0-reset-axes empty Reset 20 8 0 12
 -204786 -1 -1;
 #X obj 39 294 hsl 128 16 0 1 0 0 \$0-headdistance empty head-distance/zoom
-2 8 0 12 -262144 -1 -1 2400 0;
+2 8 0 12 -262144 -1 -1 5500 0;
 #X obj 39 313 hsl 128 16 -15 15 0 0 \$0-handdistance empty hand-distance
 2 8 0 12 -262144 -1 -1 10800 0;
-#X obj 486 171 tgl 16 0 \$0-continuous \$0-continuous-set continuous
+#X obj 190 169 tgl 16 0 \$0-continuous \$0-continuous-set continuous-playback
 20 8 0 12 -262144 -1 -1 1 1;
 #X obj 486 297 nbx 5 14 1 60 0 0 \$0-framerate \$0-framerate-set framerate
 0 -8 0 10 -262144 -1 -1 25 256;
@@ -1547,11 +1545,10 @@ offset-z 50 8 0 10 -262144 -1 -1 0 256;
 #X obj 370 313 nbx 4 14 -20 20 0 0 \$0-zoom-control-y-offset zoom-control-y-offset-set
 offset-y 50 8 0 10 -262144 -1 -1 0 256;
 #X obj 45 231 tgl 8 0 \$0-lefthand \$0-lefthand-set Left-handed 13
-4 0 9 -262144 -1 -1 0 1;
+4 0 9 -262144 -1 -1 1 1;
 #N canvas 673 711 275 241 gem-viz 0;
 #X msg -69 49 pd~ stop;
 #X obj -88 127 pd~ -sr 41100 -noutsig 0 -fifo 20;
-#X msg -88 21 pd~ start -lib Gem gem-process.pd;
 #N canvas 89 62 1128 906 receives 0;
 #X obj 39 820 outlet;
 #X obj 467 624 r \$0-render-plot;
@@ -1599,6 +1596,8 @@ available with global receives.;
 #X obj 467 647 t b b;
 #X obj 508 798 r \$0-lefthand;
 #X msg 508 824 lefthand \$1;
+#X obj 508 849 r \$0-manualmode;
+#X msg 508 871 manualmode \$1 \$2 \$3;
 #X connect 1 0 39 0;
 #X connect 2 0 23 0;
 #X connect 3 0 4 0;
@@ -1639,6 +1638,8 @@ available with global receives.;
 #X connect 39 1 37 0;
 #X connect 40 0 41 0;
 #X connect 41 0 0 0;
+#X connect 42 0 43 0;
+#X connect 43 0 0 0;
 #X restore -53 81 pd receives;
 #X obj -88 -38 r \$0-render-on;
 #X obj -88 -11 sel 1 0;
@@ -1664,13 +1665,40 @@ local variables for the main instance here;
 #X restore -88 167 pd sends;
 #X obj -33 105 print sendingToPdTilde;
 #X obj -32 152 print receivingFromPdTilde;
+#X msg -88 21 pd~ start -lib Gem gem-process.pd;
+#X text -14 2 try -nogui;
 #X connect 0 0 1 0;
-#X connect 1 0 6 0;
-#X connect 1 0 8 0;
+#X connect 1 0 5 0;
+#X connect 1 0 7 0;
 #X connect 2 0 1 0;
-#X connect 3 0 1 0;
-#X connect 3 0 7 0;
-#X connect 4 0 5 0;
-#X connect 5 0 2 0;
-#X connect 5 1 0 0;
+#X connect 2 0 6 0;
+#X connect 3 0 4 0;
+#X connect 4 0 8 0;
+#X connect 4 1 0 0;
+#X connect 8 0 1 0;
 #X restore 36 105 pd gem-viz;
+#N canvas 655 555 450 300 manual-mode 0;
+#X text 39 19 if you don't have a kinect connected you may try to navigate
+with these controls:;
+#X obj 40 60 hsl 128 15 -1 11 0 0 empty empty x -2 -8 0 10 -262144
+-1 -1 5500 1;
+#X obj 39 264 s \$0-manualmode;
+#X obj 39 240 pack f f f;
+#X obj 170 62 vsl 15 128 -10 2 0 0 empty empty y 0 -9 0 10 -262144
+-1 -1 6000 1;
+#X obj 58 217 t b f;
+#X obj 40 177 hsl 128 15 10 22 0 0 empty empty z -2 -8 0 10 -262144
+-1 -1 6300 1;
+#X obj 101 219 t b f;
+#X connect 1 0 3 0;
+#X connect 3 0 2 0;
+#X connect 4 0 5 0;
+#X connect 5 0 3 0;
+#X connect 5 1 3 1;
+#X connect 6 0 7 0;
+#X connect 7 0 3 0;
+#X connect 7 1 3 2;
+#X restore 190 213 pd manual-mode;
+#X text 285 212 <<<<< Manual control w/o kinect;
+#X text 318 251;
+#X text 328 235 <<<<< Grain info on touch;
