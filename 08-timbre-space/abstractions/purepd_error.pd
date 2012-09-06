@@ -1,8 +1,8 @@
-#N canvas 577 79 466 316 10;
-#X obj 168 52 inlet;
-#X obj 168 186 print error;
-#X obj 168 124 list prepend \$1:;
-#X obj 168 156 list trim;
+#N canvas 577 79 195 217 10;
+#X obj 26 21 inlet;
+#X obj 26 155 print error;
+#X obj 26 93 list prepend \$1:;
+#X obj 26 125 list trim;
 #X connect 0 0 2 0;
 #X connect 2 0 3 0;
 #X connect 3 0 1 0;

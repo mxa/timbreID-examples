@@ -1,9 +1,9 @@
-#N canvas 13 554 628 412 10;
+#N canvas 15 602 628 412 10;
 #X declare -path ./abstractions;
 #X declare -lib hcs;
 #X obj 39 338 hsl 128 16 40 100 0 0 \$0-master-volume master-volume-set
 master-volume 2 8 0 12 -262144 -1 -1 10583 0;
-#N canvas 587 43 724 484 players 0;
+#N canvas 599 45 724 484 players 0;
 #X obj 311 235 dac~;
 #X obj 311 211 *~;
 #X obj 421 121 dbtorms;
@@ -13,13 +13,12 @@ master-volume 2 8 0 12 -262144 -1 -1 10583 0;
 #X obj 421 74 t b;
 #X msg 421 96 0;
 #X obj 311 27 catch~ grain-bus;
-#N canvas 0 22 730 457 set-sample-and-grain 0;
+#N canvas 661 302 730 457 set-sample-and-grain 0;
 #X obj 251 208 tabread frame-locations;
 #X obj 54 396 outlet;
 #X obj 273 248 s current-playback-sample;
 #X obj 73 209 s current-playback-frame;
 #X obj 54 247 tabread frame-start-samp;
-#X obj 54 9 r \$0-trig-sound;
 #X obj 54 75 t f f f;
 #X obj 54 42 unpack f f;
 #X obj 448 253 + 1;
@@ -28,20 +27,21 @@ master-volume 2 8 0 12 -262144 -1 -1 10583 0;
 #X obj 54 366 pack f f f;
 #X text 495 204 distance = volume;
 #X obj 464 151 r \$0-mouse-radius;
+#X obj 54 9 r trig-sound;
 #X connect 0 0 2 0;
-#X connect 0 0 11 1;
-#X connect 4 0 11 0;
-#X connect 5 0 7 0;
-#X connect 6 0 4 0;
-#X connect 6 1 3 0;
-#X connect 6 2 0 0;
-#X connect 7 0 6 0;
-#X connect 7 1 10 0;
-#X connect 8 0 11 2;
+#X connect 0 0 10 1;
+#X connect 4 0 10 0;
+#X connect 5 0 4 0;
+#X connect 5 1 3 0;
+#X connect 5 2 0 0;
+#X connect 6 0 5 0;
+#X connect 6 1 9 0;
+#X connect 7 0 10 2;
+#X connect 8 0 7 0;
 #X connect 9 0 8 0;
-#X connect 10 0 9 0;
-#X connect 11 0 1 0;
-#X connect 13 0 10 1;
+#X connect 10 0 1 0;
+#X connect 12 0 9 1;
+#X connect 13 0 6 0;
 #X restore 27 32 pd set-sample-and-grain;
 #X obj 27 63 t b l;
 #X obj 27 126 list append;
@@ -62,106 +62,6 @@ master-volume 2 8 0 12 -262144 -1 -1 10583 0;
 #X restore 27 94 pd modding;
 #X msg 27 148 \; play-\$1 \$2 \$3 \$4 \;;
 #X obj 421 30 r \$0-master-volume;
-#N canvas 1032 615 498 306 hann 0;
-#N canvas 0 22 450 300 (subpatch) 0;
-#X array hann 512 float 1;
-#A 0 0 3.76403e-05 0.000150591 0.000338793 0.000602275 0.000940919
-0.00135475 0.00184369 0.00240761 0.00304651 0.00376022 0.00454867 0.00541171
-0.00634927 0.00736114 0.00844723 0.00960734 0.0108413 0.0121489 0.01353
-0.0149843 0.0165117 0.0181119 0.0197847 0.0215298 0.0233469 0.0252359
-0.0271963 0.0292279 0.0313304 0.0335035 0.0357469 0.0380602 0.040443
-0.042895 0.0454159 0.0480052 0.0506626 0.0533877 0.05618 0.0590392
-0.0619648 0.0649563 0.0680134 0.0711355 0.0743222 0.077573 0.0808874
-0.084265 0.0877051 0.0912073 0.0947711 0.0983959 0.102081 0.105826
-0.109631 0.113494 0.117416 0.121395 0.125431 0.129524 0.133672 0.137876
-0.142134 0.146446 0.150811 0.155229 0.159699 0.16422 0.168792 0.173413
-0.178084 0.182803 0.18757 0.192384 0.197244 0.20215 0.2071 0.212095
-0.217133 0.222214 0.227337 0.2325 0.237704 0.242948 0.24823 0.25355
-0.258907 0.264301 0.26973 0.275194 0.280691 0.286222 0.291785 0.297379
-0.303003 0.308658 0.314341 0.320052 0.32579 0.331555 0.337344 0.343159
-0.348997 0.354857 0.36074 0.366643 0.372567 0.37851 0.384471 0.390449
-0.396444 0.402455 0.40848 0.414519 0.420571 0.426635 0.432709 0.438794
-0.444889 0.450991 0.457101 0.463218 0.46934 0.475466 0.481596 0.487729
-0.493864 0.5 0.506136 0.512271 0.518404 0.524534 0.53066 0.536782 0.542899
-0.549009 0.555111 0.561205 0.56729 0.573365 0.579429 0.585481 0.59152
-0.597545 0.603556 0.609551 0.615529 0.62149 0.627433 0.633357 0.63926
-0.645143 0.651003 0.656841 0.662656 0.668445 0.67421 0.679948 0.685659
-0.691342 0.696997 0.702621 0.708215 0.713778 0.719309 0.724806 0.73027
-0.735699 0.741093 0.74645 0.75177 0.757052 0.762295 0.767499 0.772663
-0.777786 0.782867 0.787905 0.7929 0.79785 0.802756 0.807616 0.812431
-0.817197 0.821916 0.826587 0.831209 0.83578 0.840301 0.844771 0.849189
-0.853554 0.857866 0.862124 0.866328 0.870476 0.874569 0.878605 0.882584
-0.886506 0.890369 0.894174 0.897919 0.901605 0.905229 0.908793 0.912295
-0.915736 0.919113 0.922428 0.925678 0.928865 0.931987 0.935044 0.938036
-0.940961 0.94382 0.946613 0.949338 0.951995 0.954585 0.957106 0.959558
-0.96194 0.964254 0.966497 0.96867 0.970773 0.972804 0.974765 0.976654
-0.978471 0.980216 0.981889 0.983489 0.985016 0.98647 0.987852 0.989159
-0.990393 0.991553 0.992639 0.993651 0.994589 0.995452 0.99624 0.996954
-0.997593 0.998156 0.998645 0.999059 0.999398 0.999661 0.999849 0.999962
-1 0.999962 0.999849 0.999661 0.999398 0.999059 0.998645 0.998156 0.997592
-0.996953 0.996239 0.995451 0.994588 0.99365 0.992638 0.991552 0.990392
-0.989158 0.987851 0.986469 0.985015 0.983488 0.981887 0.980215 0.978469
-0.976652 0.974763 0.972803 0.970771 0.968669 0.966495 0.964252 0.961939
-0.959556 0.957104 0.954583 0.951993 0.949336 0.946611 0.943818 0.940959
-0.938034 0.935042 0.931985 0.928863 0.925676 0.922425 0.919111 0.915733
-0.912293 0.908791 0.905227 0.901602 0.897917 0.894171 0.890367 0.886503
-0.882582 0.878602 0.874566 0.870473 0.866325 0.862121 0.857863 0.853551
-0.849186 0.844768 0.840298 0.835777 0.831205 0.826584 0.821913 0.817194
-0.812427 0.807613 0.802753 0.797847 0.792896 0.787901 0.782863 0.777782
-0.77266 0.767496 0.762292 0.757048 0.751766 0.746446 0.741089 0.735695
-0.730266 0.724802 0.719305 0.713774 0.708211 0.702617 0.696993 0.691338
-0.685655 0.679944 0.674206 0.668441 0.662652 0.656837 0.650999 0.645139
-0.639256 0.633353 0.627429 0.621486 0.615525 0.609547 0.603552 0.597541
-0.591516 0.585477 0.579425 0.573361 0.567286 0.561201 0.555107 0.549004
-0.542894 0.536778 0.530656 0.52453 0.518399 0.512266 0.506131 0.499996
-0.49386 0.487725 0.481592 0.475462 0.469335 0.463213 0.457097 0.450987
-0.444884 0.43879 0.432705 0.42663 0.420566 0.414515 0.408476 0.40245
-0.39644 0.390445 0.384466 0.378505 0.372563 0.366639 0.360736 0.354853
-0.348993 0.343155 0.33734 0.331551 0.325786 0.320048 0.314337 0.308654
-0.302999 0.297375 0.291781 0.286218 0.280687 0.27519 0.269726 0.264297
-0.258904 0.253547 0.248226 0.242944 0.237701 0.232497 0.227333 0.222211
-0.21713 0.212092 0.207097 0.202146 0.19724 0.19238 0.187566 0.182799
-0.17808 0.17341 0.168788 0.164217 0.159696 0.155226 0.150808 0.146443
-0.142131 0.137873 0.133669 0.129521 0.125428 0.121392 0.117413 0.113491
-0.109628 0.105823 0.102078 0.0983929 0.0947681 0.0912043 0.0877022
-0.084262 0.0808845 0.0775702 0.0743194 0.0711327 0.0680107 0.0649537
-0.0619622 0.0590366 0.0561775 0.0533852 0.0506602 0.0480028 0.0454136
-0.0428927 0.0404407 0.038058 0.0357448 0.0335014 0.0313284 0.0292259
-0.0271944 0.025234 0.0233451 0.0215281 0.019783 0.0181103 0.0165102
-0.0149829 0.0135286 0.0121476 0.01084 0.00960612 0.0084461 0.0073601
-0.00634828 0.00541082 0.00454783 0.00375944 0.0030458 0.00240701 0.00184312
-0.00135428 0.000940531 0.000601947 0.000338554 0.000150412 3.75509e-05
-;
-#X coords 0 1 511 0 200 120 1 0 0;
-#X restore 259 62 graph;
-#X msg 137 76 0;
-#X obj 31 125 osc~;
-#X obj 31 77 samplerate~;
-#X obj 31 148 *~ -0.5;
-#X obj 31 171 +~ 0.5;
-#X text 245 54 1;
-#X text 238 172 0;
-#X text 254 185 0;
-#X obj 31 101 / 512;
-#X obj 23 54 bng 15 250 50 0 empty empty empty 0 -6 0 8 -262144 -1
--1;
-#X text 302 34 Hann window;
-#X text 79 123 period 512;
-#X obj 23 26 loadbang;
-#X text 56 44 comment;
-#X text 48 48 recalculate Hann window table;
-#X obj 23 196 tabwrite~ hann;
-#X connect 1 0 2 1;
-#X connect 2 0 4 0;
-#X connect 3 0 9 0;
-#X connect 4 0 5 0;
-#X connect 5 0 16 0;
-#X connect 9 0 2 0;
-#X connect 10 0 3 0;
-#X connect 10 0 1 0;
-#X connect 10 0 16 0;
-#X connect 13 0 10 0;
-#X restore 543 105 pd hann;
 #X obj 546 274 grain-player-unit 24;
 #X obj 196 294 grain-player-unit 9;
 #X obj 26 294 grain-player-unit 1;
@@ -213,11 +113,11 @@ master-volume 2 8 0 12 -262144 -1 -1 10583 0;
 #X obj 37 175 bng 16 250 50 0 \$0-render-plot empty Plot 20 8 0 12
 -203904 -1 -1;
 #X obj 39 256 hsl 128 16 0.05 2.7 0 0 \$0-mouse-radius mouse-radius-set
-mouse-radius 2 8 0 12 -262144 -1 -1 2500 0;
+mouse-radius 2 8 0 12 -262144 -1 -1 2300 0;
 #X obj 37 213 tgl 16 0 \$0-kinect-on kinect-on-set Kinect-via-Synapse
-20 8 0 12 -262144 -1 -1 1 1;
+20 8 0 12 -262144 -1 -1 0 1;
 #X obj 39 275 hsl 128 16 0.03 0.25 0 0 \$0-point-size empty point-size
-2 8 0 12 -262144 -1 -1 100 0;
+2 8 0 12 -262144 -1 -1 0 0;
 #N canvas 511 22 320 203 timbreID 0;
 #X msg 227 93 clear;
 #X obj 22 23 r \$0-tID;
@@ -241,37 +141,41 @@ mouse-radius 2 8 0 12 -262144 -1 -1 2500 0;
 0;
 #X obj 1 1 cnv 10 10 400 empty empty empty 20 12 0 14 -233017 -66577
 0;
-#N canvas 902 458 426 470 init 0;
+#N canvas 628 73 426 701 init 0;
 #X obj 13 17 loadbang;
-#X msg 13 408 \; pd dsp 1 \;;
-#X obj 87 110 s lb1;
-#X obj 72 134 s lb2;
-#X obj 57 158 s lb3;
+#X msg 13 454 \; pd dsp 1 \;;
+#X obj 87 152 s lb1;
+#X obj 72 176 s lb2;
+#X obj 57 200 s lb3;
 #X obj 231 14 declare -path ./abstractions;
 #X obj 231 37 declare -lib hcs;
-#X msg 42 181 0;
-#X obj 42 203 s \$0-continuous-set;
-#X msg 27 229 \; db-thresh 0 \; x-mapping-set 12 \; y-mapping-set 3
+#X msg 42 223 0;
+#X obj 42 245 s \$0-continuous-set;
+#X msg 27 275 \; db-thresh 0 \; x-mapping-set 12 \; y-mapping-set 3
 \; z-mapping-set 9 \; R-mapping-set 13 \; G-mapping-set 14 \; B-mapping-set
 15 \; num-player-voices 32 \; mouse-radius-set 2 \; max-sample-length
 1.411e+07 \; master-volume-set 90 \;;
-#X obj 100 61 samplerate~;
-#X obj 13 38 t b b b b b b b;
-#X obj 100 83 s samplerate;
-#X connect 0 0 11 0;
+#X obj 100 107 samplerate~;
+#X obj 100 129 s samplerate;
+#X obj 111 83 s \$0-headdistance-set;
+#X msg 111 60 0.5;
+#X obj 13 38 t b b b b b b b b;
+#X connect 0 0 14 0;
 #X connect 7 0 8 0;
-#X connect 10 0 12 0;
-#X connect 11 0 1 0;
-#X connect 11 1 9 0;
-#X connect 11 2 7 0;
-#X connect 11 3 4 0;
-#X connect 11 4 3 0;
-#X connect 11 5 2 0;
-#X connect 11 6 10 0;
+#X connect 10 0 11 0;
+#X connect 13 0 12 0;
+#X connect 14 0 1 0;
+#X connect 14 1 9 0;
+#X connect 14 2 7 0;
+#X connect 14 3 4 0;
+#X connect 14 4 3 0;
+#X connect 14 5 2 0;
+#X connect 14 6 10 0;
+#X connect 14 7 13 0;
 #X restore 36 45 pd init;
 #X obj 183 36 cnv 15 256 30 empty empty empty 20 12 0 14 -261234 -66577
 0;
-#N canvas 671 324 881 633 analysis 1;
+#N canvas 654 371 881 633 analysis 0;
 #X obj 31 109 s window-size;
 #X obj 98 482 bng 15 250 50 0 empty empty empty 17 7 0 10 -258113 -1
 -1;
@@ -1099,7 +1003,6 @@ out of timbreID;
 #X obj 32 587 cnv 15 1 1 empty empty 5) 0 0 0 28 -233017 -66577 0;
 #X obj 31 32 cnv 15 1 1 empty empty 1) 0 0 0 28 -233017 -66577 0;
 #X obj 31 172 cnv 15 1 1 empty empty 3) 0 0 0 28 -233017 -66577 0;
-#X text 72 372 Analyze. This will choke Pd for a few seconds;
 #X obj 32 378 cnv 15 1 1 empty empty 4) 0 0 0 28 -233017 -66577 0;
 #X text 72 17 Set a grain size in samples;
 #X text 72 34 (should be a power of 2);
@@ -1141,6 +1044,8 @@ level. You can also use the [openpanel] buttons at right >>>>>>;
 #X text 71 568 Go back to the parent patch \, turn on GEM rendering
 \, click "Plot" \, and turn on "Kinect-via-Synapse". Pick different
 features for the axes and click "Plot" again as needed.;
+#X text 72 372 Wait until file has been loaded. Then analyze. This
+will choke Pd for a few seconds;
 #X connect 1 0 3 2;
 #X connect 2 0 3 0;
 #X connect 3 0 4 0;
@@ -1157,14 +1062,14 @@ features for the axes and click "Plot" again as needed.;
 #X connect 20 0 21 0;
 #X connect 21 0 18 0;
 #X connect 23 0 0 0;
-#X connect 38 0 37 0;
-#X connect 39 0 37 0;
-#X connect 40 0 37 0;
+#X connect 37 0 36 0;
+#X connect 38 0 36 0;
+#X connect 39 0 36 0;
 #X restore 194 43 pd analysis;
 #X text 279 43 <<<<< START HERE;
 #X obj 37 156 tgl 16 0 \$0-render-on render-on-set GEM-render 20 8
 0 12 -262144 -1 -1 1 1;
-#N canvas 1110 395 545 565 grain-info-display 1;
+#N canvas 1134 469 545 565 grain-info-display 1;
 #X symbolatom 14 35 30 0 0 2 file-name grain-info-file-name-set -;
 #X floatatom 14 85 10 0 0 3 start grain-info-seconds-start-set -;
 #X floatatom 114 85 10 0 0 3 end grain-info-seconds-end-set -;
@@ -1173,7 +1078,7 @@ features for the axes and click "Plot" again as needed.;
 -;
 #X floatatom 264 85 10 0 0 2 frame-number grain-info-frame-number-set
 -;
-#N canvas 313 127 916 542 display-bfccs 0;
+#N canvas 18 79 916 542 display-bfccs 0;
 #X obj 28 138 list;
 #X msg 170 116 feature_list \$1;
 #X obj 170 136 s \$0-tID;
@@ -1207,7 +1112,6 @@ features for the axes and click "Plot" again as needed.;
 #X obj 55 374 s bfcc-tmp;
 #X msg 28 401 add min-bfccs;
 #X msg 452 408 subtract min-bfccs;
-#X obj 28 10 r \$0-trig-sound;
 #X obj 28 51 t b f;
 #X obj 55 322 tID/tabletool bfcc-tmp;
 #X obj 28 423 tID/tabletool bfcc-tmp;
@@ -1217,58 +1121,59 @@ features for the axes and click "Plot" again as needed.;
 #X obj 452 90 t b b b;
 #X msg 28 31 \$1;
 #X obj 49 114 r feature-list;
+#X obj 28 10 r trig-sound;
 #X connect 0 0 6 0;
 #X connect 1 0 2 0;
 #X connect 3 0 20 0;
 #X connect 4 0 17 0;
 #X connect 6 1 3 0;
-#X connect 7 0 35 0;
+#X connect 7 0 34 0;
 #X connect 10 0 11 0;
-#X connect 12 0 36 0;
+#X connect 12 0 35 0;
 #X connect 13 0 14 0;
-#X connect 15 0 37 0;
+#X connect 15 0 36 0;
 #X connect 18 0 19 0;
 #X connect 20 0 21 0;
 #X connect 20 1 4 0;
 #X connect 21 0 28 0;
 #X connect 21 1 25 0;
 #X connect 23 0 24 0;
-#X connect 25 0 32 0;
+#X connect 25 0 31 0;
 #X connect 26 0 27 0;
-#X connect 28 0 33 0;
-#X connect 29 0 34 0;
-#X connect 30 0 38 0;
-#X connect 31 0 0 0;
-#X connect 31 1 1 0;
-#X connect 32 1 26 0;
-#X connect 33 1 18 0;
-#X connect 34 1 23 0;
-#X connect 35 1 10 0;
-#X connect 36 1 13 0;
-#X connect 37 0 29 0;
-#X connect 37 1 12 0;
-#X connect 37 2 7 0;
-#X connect 38 0 31 0;
-#X connect 39 0 0 1;
+#X connect 28 0 32 0;
+#X connect 29 0 33 0;
+#X connect 30 0 0 0;
+#X connect 30 1 1 0;
+#X connect 31 1 26 0;
+#X connect 32 1 18 0;
+#X connect 33 1 23 0;
+#X connect 34 1 10 0;
+#X connect 35 1 13 0;
+#X connect 36 0 29 0;
+#X connect 36 1 12 0;
+#X connect 36 2 7 0;
+#X connect 37 0 30 0;
+#X connect 38 0 0 1;
+#X connect 39 0 37 0;
 #X coords 0 -1 1 1 240 185 2 200 200;
 #X restore 14 355 pd display-bfccs;
+#X obj 144 215 grain-info kurtosis 7;
+#X obj 14 145 grain-info brightness 2;
+#X obj 144 145 grain-info centroid 3;
 #X obj 144 285 grain-info pitch 11;
 #X obj 384 145 grain-info flux 5;
 #X obj 264 285 grain-info amplitude 12;
-#X obj 144 145 grain-info centroid 3;
 #X obj 264 145 grain-info flatness 4;
-#X obj 14 145 grain-info brightness 2;
 #X obj 14 215 grain-info irregularity 6;
-#X obj 144 215 grain-info kurtosis 7;
 #X obj 264 215 grain-info skewness 8;
 #X obj 384 215 grain-info spread 9;
 #X obj 14 285 grain-info zero-crossing 10;
 #X restore 190 236 pd grain-info-display;
 #X text 283 147 <<<<< More mapping options;
 #X obj 190 74 hradio 16 1 0 20 \$0-x-mapping x-mapping-set X -16 8
-0 12 -262144 -1 -1 11;
+0 12 -262144 -1 -1 12;
 #X obj 190 93 hradio 16 1 0 20 \$0-y-mapping y-mapping-set Y -16 8
-0 12 -262144 -1 -1 2;
+0 12 -262144 -1 -1 3;
 #X obj 190 112 hradio 16 1 1 20 \$0-z-mapping z-mapping-set Z -16 8
 0 12 -262144 -1 -1 9;
 #X symbolatom 513 74 15 0 0 0 - x-feature-name -;
@@ -1524,14 +1429,14 @@ BFCC1 BFCC2 BFCC3 BFCC4 BFCC5 BFCC6 BFCC7;
 #X text 35 386 Kinect Grain Space Naviagtion – Max Neupert 2012;
 #X obj 37 194 bng 16 250 50 0 \$0-reset-axes empty Reset 20 8 0 12
 -204786 -1 -1;
-#X obj 39 294 hsl 128 16 0 1 0 0 \$0-headdistance empty head-distance/zoom
-2 8 0 12 -262144 -1 -1 4100 0;
+#X obj 39 294 hsl 128 16 0 1 0 0 \$0-headdistance \$0-headdistance-set
+head-distance/zoom 2 8 0 12 -262144 -1 -1 4100 0;
 #X obj 39 313 hsl 128 16 -15 15 0 0 \$0-handdistance empty hand-distance
 2 8 0 12 -262144 -1 -1 0 0;
 #X obj 190 169 tgl 16 0 \$0-continuous \$0-continuous-set continuous-playback
 20 8 0 12 -262144 -1 -1 0 1;
 #X obj 486 297 nbx 5 14 1 60 0 0 \$0-framerate \$0-framerate-set framerate
-0 -8 0 10 -262144 -1 -1 25 256;
+0 -8 0 10 -262144 -1 -1 8 256;
 #X obj 272 295 nbx 4 14 1 20 0 0 \$0-zoom-control-x-range zoom-control-x-range-set
 zoom-x 50 8 0 10 -262144 -1 -1 10.1333 256;
 #X obj 272 312 nbx 4 14 1 20 0 0 \$0-zoom-control-y-range zoom-control-y-range-set
@@ -1546,7 +1451,7 @@ offset-z 50 8 0 10 -262144 -1 -1 0 256;
 offset-y 50 8 0 10 -262144 -1 -1 0 256;
 #X obj 45 231 tgl 8 0 \$0-lefthand \$0-lefthand-set Left-handed 13
 4 0 9 -262144 -1 -1 0 1;
-#N canvas 673 711 275 241 gem-viz 0;
+#N canvas 673 711 318 244 gem-viz 1;
 #X msg -69 49 pd~ stop;
 #X obj -88 127 pd~ -sr 41100 -noutsig 0 -fifo 20;
 #N canvas 89 62 1128 906 receives 0;
@@ -1646,7 +1551,6 @@ available with global receives.;
 #N canvas 943 523 638 301 sends 0;
 #X obj 25 19 inlet;
 #X obj 25 178 s \$0-tID;
-#X obj 83 177 s \$0-trig-sound;
 #X obj 140 155 s \$0-framerate-set;
 #X obj 25 54 route tID trig-sound framerate-set x-range y-range z-range
 ;
@@ -1655,41 +1559,42 @@ available with global receives.;
 #X obj 312 91 s \$0-z-range;
 #X text 101 7 messages from inside the pd~ process get converted into
 local variables for the main instance here;
-#X connect 0 0 4 0;
-#X connect 4 0 1 0;
-#X connect 4 1 2 0;
-#X connect 4 2 3 0;
-#X connect 4 3 5 0;
-#X connect 4 4 6 0;
-#X connect 4 5 7 0;
+#X obj 83 177 s trig-sound;
+#X connect 0 0 3 0;
+#X connect 3 0 1 0;
+#X connect 3 1 8 0;
+#X connect 3 2 2 0;
+#X connect 3 3 4 0;
+#X connect 3 4 5 0;
+#X connect 3 5 6 0;
 #X restore -88 167 pd sends;
 #X obj -33 105 print sendingToPdTilde;
 #X obj -32 152 print receivingFromPdTilde;
-#X msg -88 21 pd~ start -lib Gem gem-process.pd;
-#X text -14 2 try -nogui;
+#X text -14 2 remove -nogui to look at the patch;
+#X msg -88 22 pd~ start -lib Gem gem-process.pd;
 #X connect 0 0 1 0;
 #X connect 1 0 5 0;
 #X connect 1 0 7 0;
 #X connect 2 0 1 0;
 #X connect 2 0 6 0;
 #X connect 3 0 4 0;
-#X connect 4 0 8 0;
+#X connect 4 0 9 0;
 #X connect 4 1 0 0;
-#X connect 8 0 1 0;
+#X connect 9 0 1 0;
 #X restore 36 105 pd gem-viz;
-#N canvas 655 555 450 300 manual-mode 1;
+#N canvas 663 706 450 300 manual-mode 1;
 #X text 39 19 if you don't have a kinect connected you may try to navigate
 with these controls:;
-#X obj 40 60 hsl 128 15 -1 11 0 0 empty empty x -2 -8 0 10 -262144
--1 -1 5500 1;
-#X obj 39 264 s \$0-manualmode;
-#X obj 39 240 pack f f f;
-#X obj 170 62 vsl 15 128 -10 2 0 0 empty empty y 0 -9 0 10 -262144
--1 -1 7600 1;
-#X obj 58 217 t b f;
-#X obj 40 177 hsl 128 15 10 22 0 0 empty empty z -2 -8 0 10 -262144
--1 -1 7300 1;
-#X obj 101 219 t b f;
+#X obj 40 60 hsl 128 15 -6 6 0 0 empty empty x -2 -8 0 10 -261234 -1
+-1 5600 1;
+#X obj 38 264 s \$0-manualmode;
+#X obj 38 240 pack f f f;
+#X obj 170 62 vsl 15 128 -7 5 0 0 empty empty y 0 -9 0 10 -204786 -1
+-1 7100 1;
+#X obj 50 212 t b f;
+#X obj 188 60 hsl 128 15 -6 6 0 0 empty empty z -2 -8 0 10 -203904
+-1 -1 5600 1;
+#X obj 186 202 t b f;
 #X connect 1 0 3 0;
 #X connect 3 0 2 0;
 #X connect 4 0 5 0;
