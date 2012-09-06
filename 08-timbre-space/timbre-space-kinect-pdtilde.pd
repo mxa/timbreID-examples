@@ -1,4 +1,4 @@
-#N canvas 15 602 628 412 10;
+#N canvas 7 575 628 412 10;
 #X declare -path ./abstractions;
 #X declare -lib hcs;
 #X obj 39 338 hsl 128 16 40 100 0 0 \$0-master-volume master-volume-set
@@ -113,7 +113,7 @@ master-volume 2 8 0 12 -262144 -1 -1 10583 0;
 #X obj 37 175 bng 16 250 50 0 \$0-render-plot empty Plot 20 8 0 12
 -203904 -1 -1;
 #X obj 39 256 hsl 128 16 0.05 2.7 0 0 \$0-mouse-radius mouse-radius-set
-mouse-radius 2 8 0 12 -262144 -1 -1 2300 0;
+mouse-radius 2 8 0 12 -262144 -1 -1 3200 0;
 #X obj 37 213 tgl 16 0 \$0-kinect-on kinect-on-set Kinect-via-Synapse
 20 8 0 12 -262144 -1 -1 0 1;
 #X obj 39 275 hsl 128 16 0.03 0.25 0 0 \$0-point-size empty point-size
@@ -175,7 +175,7 @@ mouse-radius 2 8 0 12 -262144 -1 -1 2300 0;
 #X restore 36 45 pd init;
 #X obj 183 36 cnv 15 256 30 empty empty empty 20 12 0 14 -261234 -66577
 0;
-#N canvas 654 371 881 633 analysis 0;
+#N canvas 656 100 881 633 analysis 0;
 #X obj 31 109 s window-size;
 #X obj 98 482 bng 15 250 50 0 empty empty empty 17 7 0 10 -258113 -1
 -1;
@@ -1069,7 +1069,7 @@ will choke Pd for a few seconds;
 #X text 279 43 <<<<< START HERE;
 #X obj 37 156 tgl 16 0 \$0-render-on render-on-set GEM-render 20 8
 0 12 -262144 -1 -1 1 1;
-#N canvas 1134 469 545 565 grain-info-display 1;
+#N canvas 1000 417 545 565 grain-info-display 1;
 #X symbolatom 14 35 30 0 0 2 file-name grain-info-file-name-set -;
 #X floatatom 14 85 10 0 0 3 start grain-info-seconds-start-set -;
 #X floatatom 114 85 10 0 0 3 end grain-info-seconds-end-set -;
@@ -1430,11 +1430,11 @@ BFCC1 BFCC2 BFCC3 BFCC4 BFCC5 BFCC6 BFCC7;
 #X obj 37 194 bng 16 250 50 0 \$0-reset-axes empty Reset 20 8 0 12
 -204786 -1 -1;
 #X obj 39 294 hsl 128 16 0 1 0 0 \$0-headdistance \$0-headdistance-set
-head-distance/zoom 2 8 0 12 -262144 -1 -1 4100 0;
+head-distance/zoom 2 8 0 12 -262144 -1 -1 4200 0;
 #X obj 39 313 hsl 128 16 -15 15 0 0 \$0-handdistance empty hand-distance
 2 8 0 12 -262144 -1 -1 0 0;
 #X obj 190 169 tgl 16 0 \$0-continuous \$0-continuous-set continuous-playback
-20 8 0 12 -262144 -1 -1 0 1;
+20 8 0 12 -262144 -1 -1 1 1;
 #X obj 486 297 nbx 5 14 1 60 0 0 \$0-framerate \$0-framerate-set framerate
 0 -8 0 10 -262144 -1 -1 8 256;
 #X obj 272 295 nbx 4 14 1 20 0 0 \$0-zoom-control-x-range zoom-control-x-range-set
@@ -1450,7 +1450,7 @@ offset-z 50 8 0 10 -262144 -1 -1 0 256;
 #X obj 370 313 nbx 4 14 -20 20 0 0 \$0-zoom-control-y-offset zoom-control-y-offset-set
 offset-y 50 8 0 10 -262144 -1 -1 0 256;
 #X obj 45 231 tgl 8 0 \$0-lefthand \$0-lefthand-set Left-handed 13
-4 0 9 -262144 -1 -1 0 1;
+4 0 9 -262144 -1 -1 1 1;
 #N canvas 673 711 318 244 gem-viz 1;
 #X msg -69 49 pd~ stop;
 #X obj -88 127 pd~ -sr 41100 -noutsig 0 -fifo 20;
@@ -1582,19 +1582,23 @@ local variables for the main instance here;
 #X connect 4 1 0 0;
 #X connect 9 0 1 0;
 #X restore 36 105 pd gem-viz;
-#N canvas 663 706 450 300 manual-mode 1;
-#X text 39 19 if you don't have a kinect connected you may try to navigate
+#N canvas 525 50 620 425 manual-mode 0;
+#X text 33 12 if you don't have a kinect connected you may try to navigate
 with these controls:;
-#X obj 40 60 hsl 128 15 -6 6 0 0 empty empty x -2 -8 0 10 -261234 -1
--1 5600 1;
-#X obj 38 264 s \$0-manualmode;
-#X obj 38 240 pack f f f;
-#X obj 170 62 vsl 15 128 -7 5 0 0 empty empty y 0 -9 0 10 -204786 -1
--1 7100 1;
-#X obj 50 212 t b f;
-#X obj 188 60 hsl 128 15 -6 6 0 0 empty empty z -2 -8 0 10 -203904
--1 -1 5600 1;
-#X obj 186 202 t b f;
+#X obj 313 43 hsl 125 15 -6 6 0 0 empty empty x -2 -8 0 10 -261234
+-1 -1 3700 1;
+#X obj 42 301 s \$0-manualmode;
+#X obj 42 277 pack f f f;
+#X obj 436 60 vsl 15 125 -7 5 0 0 empty empty y 0 -9 0 10 -204786 -1
+-1 9200 1;
+#X obj 54 249 t b f;
+#X obj 313 185 hsl 120 15 -6 6 0 0 empty empty z -2 -8 0 10 -203904
+-1 -1 6700 1;
+#X obj 190 239 t b f;
+#X obj 310 59 cnv 15 125 125 empty empty empty 20 12 0 14 -233017 -66577
+0;
+#X obj 332 132 cnv 15 15 15 \$0-cursor empty empty 20 12 0 14 -257985
+-66577 0;
 #X connect 1 0 3 0;
 #X connect 3 0 2 0;
 #X connect 4 0 5 0;
